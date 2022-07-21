@@ -247,19 +247,19 @@ body{
 /* background */
 
 .bg-header-2{
-    background-image: url(/assets/img/bg-phone-v2.png);
+    background-image: url(../images/img/bg-phone-v2.png);
     background-repeat: no-repeat;
     /* background-position: top right; */
     background-size: 60%;
 }
 .bg-header-3{
-    background-image: url(/assets/img/bg-v3.png);
+    background-image: url(../images/img/bg-v3.png);
     background-repeat: no-repeat;
     /* background-position: top right; */
     background-size: 100%;
 }
 .bg-auth{
-    background-image: url(/assets/img/auth-mask.png);
+    background-image: url(../images/img/auth-mask.png);
     background-size: 100%;
 }
 .bg-box-count{
@@ -551,9 +551,7 @@ input::-webkit-inner-spin-button {
 .button-collapse{
     display: none;
 }
-.nav-menu{
-    visibility: visible;
-}
+
 @media (max-width:412px){
     .container-box{
         margin-left: 20px !important;
@@ -594,7 +592,7 @@ input::-webkit-inner-spin-button {
         padding-bottom: 50px;
     }
     .bg-header-3{
-        background-image: url(/assets/img/bg-v3.png);
+        background-image: url(../images/img/bg-v3.png);
         background-repeat: no-repeat;
         /* background-position: top right; */
         background-size: cover;
@@ -687,22 +685,18 @@ input::-webkit-inner-spin-button {
     .button-collapse{
         display: flex;
     }
-    .nav-menu{
-        display: none;
-    }
-    .nav-menu.opened{
-        display: flex;
-        margin-top: 40px;
-    }
     .btn-collapse-position{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
     }
  }
 
 /* // `md` applies to small devices (landscape phones, less than 768px) */
 @media (min-width: 767.98px) { 
+    .btn-collapse-position{
+        display: none;
+    }
     .bg-img-1{
         width: 40%;
     }
@@ -733,7 +727,7 @@ input::-webkit-inner-spin-button {
         width: 100%;
     }
     .bg-header-1{
-        background-image: url(/assets/img/bg-v1.png);
+        background-image: url(../images/img/bg-v1.png);
         background-repeat: no-repeat;
         background-position: top right;
         background-size: 50%;
@@ -765,7 +759,7 @@ input::-webkit-inner-spin-button {
         width: 100%;
     }
     .bg-header-1{
-        background-image: url(/assets/img/bg-v1.png);
+        background-image: url(../images/img/bg-v1.png);
         background-repeat: no-repeat;
         background-position: top right;
         background-size: 50%;
@@ -820,7 +814,7 @@ input::-webkit-inner-spin-button {
         width: 100%;
     }
     .bg-header-1{
-        background-image: url(/assets/img/bg-v1.png);
+        background-image: url(../images/img/bg-v1.png);
         background-repeat: no-repeat;
         background-position: top right;
         background-size: 40%;
@@ -851,7 +845,7 @@ input::-webkit-inner-spin-button {
         width: 100%;
     }
     .bg-header-1{
-        background-image: url(/assets/img/bg-v1.png);
+        background-image: url(../images/img/bg-v1.png);
         background-repeat: no-repeat;
         background-position: top right;
         background-size: 35%;
