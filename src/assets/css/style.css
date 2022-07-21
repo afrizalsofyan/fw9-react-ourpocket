@@ -609,6 +609,9 @@ input::-webkit-inner-spin-button {
     }
 }
 @media (max-width: 766px) { 
+    .nav-menu{
+        display: none !important;
+    }
     .text-content-banner{
         display: flex;
         flex-direction: column;

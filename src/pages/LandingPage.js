@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import ImagePhone1 from '../assets/images/img/png-phone.png'
 import ImagePhone2 from '../assets/images/img/png-phone2.png'
 import Icon1 from '../assets/images/icons/icon1.svg'
@@ -32,12 +33,21 @@ function LandingPage() {
                 </div>
                 {isShowMenu ? <nav className="banner-position-1 mar-t-50">
                     <div>
-                        <a href="./auth/pages/login.html" className="btn-custom-white mar-r-20 link-rm-line">
-                            Login
-                        </a>
-                        <a href="./auth/pages/register.html" className="btn-custom-blue link-rm-line">Sign Up</a>
+                        <Link to='/login' className="btn-custom-white mar-r-20 link-rm-line">Login</Link>
+                        <Link to='/register' className="btn-custom-blue link-rm-line">Sign Up</Link>
                     </div>
                 </nav> : null}
+                <nav className="banner-position-1 nav-menu">
+                    <div>
+                        <span className="logo-txt-blue">
+                            OurPocket
+                        </span>
+                    </div>
+                    <div>
+                        <Link to='/login' className="btn-custom-white mar-r-20 link-rm-line">Login</Link>
+                        <Link to='/register' className="btn-custom-blue link-rm-line">Sign Up</Link>                        
+                    </div>
+                </nav>
                 <div className="content-position-v1">
                     <div className="text-content-banner">
                         <div className="width-100">
@@ -45,7 +55,7 @@ function LandingPage() {
                             <p className="fnt-paragraph">We bring you a mobile app for banking problems that
                             oftenly wasting much of your times.</p>
                         </div>
-                        <a href="./auth/pages/register.html" className="btn-try-blue link-rm-line">Try It Free</a>
+                        <Link to='/register' className="btn-try-blue link-rm-line">Try It Free</Link>
                     </div>
                     <div className="bg-img-1">
                         <img className="width-img-banner-1" src={ImagePhone1} alt="imgphone1" width="100%" height="100%"/>
