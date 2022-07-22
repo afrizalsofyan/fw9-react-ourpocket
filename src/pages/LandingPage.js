@@ -33,8 +33,8 @@ function LandingPage() {
                 </div>
                 {isShowMenu ? <nav className="banner-position-1 mar-t-50">
                     <div>
-                        <Link to='/login' className="btn-custom-white mar-r-20 link-rm-line">Login</Link>
-                        <Link to='/register' className="btn-custom-blue link-rm-line">Sign Up</Link>
+                        <Link to='/auth/login' className="btn-custom-white mar-r-20 link-rm-line">Login</Link>
+                        <Link to='/auth/register' className="btn-custom-blue link-rm-line">Sign Up</Link>
                     </div>
                 </nav> : null}
                 <nav className="banner-position-1 nav-menu">
@@ -44,8 +44,8 @@ function LandingPage() {
                         </span>
                     </div>
                     <div>
-                        <Link to='/login' className="btn-custom-white mar-r-20 link-rm-line">Login</Link>
-                        <Link to='/register' className="btn-custom-blue link-rm-line">Sign Up</Link>                        
+                        <Link to='/auth/login' className="btn-custom-white mar-r-20 link-rm-line">Login</Link>
+                        <Link to='/auth/register' className="btn-custom-blue link-rm-line">Sign Up</Link>                        
                     </div>
                 </nav>
                 <div className="content-position-v1">
@@ -55,7 +55,7 @@ function LandingPage() {
                             <p className="fnt-paragraph">We bring you a mobile app for banking problems that
                             oftenly wasting much of your times.</p>
                         </div>
-                        <Link to='/register' className="btn-try-blue link-rm-line">Try It Free</Link>
+                        <Link to='/auth/register' className="btn-try-blue link-rm-line">Try It Free</Link>
                     </div>
                     <div className="bg-img-1">
                         <img className="width-img-banner-1" src={ImagePhone1} alt="imgphone1" width="100%" height="100%"/>

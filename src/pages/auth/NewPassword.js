@@ -18,7 +18,7 @@ function NewPassword() {
                 <InputField icon={<FiLock size={24} className='bg-grey-light'/>} type={showPass?'text':'password'} placeholder={'Create new password'} suffixIcon={<FiEyeOff size={24} className='bg-grey-light' onClick={()=>setShowPass(!showPass)}/>}/>
                 <InputField icon={<FiLock size={24} className='bg-grey-light'/>} type={showConfirmPass?'text':'password'} placeholder={'Confirm new password'} suffixIcon={<FiEyeOff size={24} className='bg-grey-light' onClick={()=>setShowConfirmPass(!showConfirmPass)}/>}/>
             </div>
-            <ButtonAuth link={'/login'} textButton={'Reset Password'} />
+            <ButtonAuth link={'/auth/login'} textButton={'Reset Password'} />
         </Col>
     </Row>
   )

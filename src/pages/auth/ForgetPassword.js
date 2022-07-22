@@ -4,8 +4,7 @@ import AuthBanner from '../../components/AuthBanner'
 import TitleAuthForm from '../../components/TitleAuthForm'
 import InputField from '../../components/InputField'
 import ButtonAuth from '../../components/ButtonAuth'
-import {FiMail, FiLock, FiEyeOff} from 'react-icons/fi'
-import {Link} from 'react-router-dom'
+import {FiMail} from 'react-icons/fi'
 
 function ForgetPassword() {
   return (
@@ -16,7 +15,7 @@ function ForgetPassword() {
                 <TitleAuthForm title={'Did You Forgot Your Password? Don\'t Worry, You Can Reset Your Password In a Minutes.'} subtitle={'To reset your password, you must type your e-mail and we will send a link to your email and you will be directed to the reset password screens.'}/>
                 <InputField icon={<FiMail size={24} className='bg-grey-light'/>} type={'text'} placeholder={'Enter your e-mail'}/>
             </div>
-            <ButtonAuth link={'/addNewPassword'} textButton={'Confirm'} />
+            <ButtonAuth link={'/auth/addNewPassword'} textButton={'Confirm'} />
         </Col>
     </Row>
   )

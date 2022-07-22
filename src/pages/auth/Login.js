@@ -18,12 +18,12 @@ function Login() {
                 <InputField icon={<FiMail size={24} className='bg-grey-light'/>} type={'text'} placeholder={'Enter your e-mail'}/>
                 <InputField icon={<FiLock size={24} className='bg-grey-light'/>} type={showPass?'text':'password'} placeholder={'Enter your password'} suffixIcon={<FiEyeOff size={24} className='bg-grey-light' onClick={()=>setShowPass(!showPass)}/>}/>
                 <div className='text-end my-3'>
-                    <Link to='/forgetPassword' className="link-secondary link-rm-line">Forgot password?</Link>
+                    <Link to='/auth/forgetPassword' className="link-secondary link-rm-line">Forgot password?</Link>
                 </div>
             </div>
-            <ButtonAuth link={''} textButton={'login'} />
+            <ButtonAuth link={'/home/dashboard'} textButton={'login'} />
             <div class="text-center">
-                <span>Don’t have an account? Let’s <Link to='/register' class="link-rm-line fw-bold">Sign
+                <span>Don’t have an account? Let’s <Link to='/auth/register' class="link-rm-line fw-bold">Sign
                     Up</Link></span>
             </div>
         </Col>
