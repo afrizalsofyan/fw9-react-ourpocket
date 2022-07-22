@@ -22,8 +22,8 @@ function Login() {
                 </div>
             </div>
             <ButtonAuth link={'/home/dashboard'} textButton={'login'} />
-            <div class="text-center">
-                <span>Don’t have an account? Let’s <Link to='/auth/register' class="link-rm-line fw-bold">Sign
+            <div className="text-center">
+                <span>Don't have an account? Let's <Link to='/auth/register' className="link-rm-line fw-bold">Sign
                     Up</Link></span>
             </div>
         </Col>

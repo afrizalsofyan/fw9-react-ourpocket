@@ -20,8 +20,8 @@ function Register() {
                 <InputField icon={<FiLock size={24} className='bg-grey-light'/>} type={showPass?'text':'password'} placeholder='Enter your password' suffixIcon={<FiEyeOff size={24} className='bg-grey-light' onClick={()=>setShowPass(!showPass)}/>}/>
             </div>
             <ButtonAuth link={'/auth/createPin'} textButton={'Sign Up'} />
-            <div class="text-center">
-                <span>Already have an account? Let's <Link to='/login' class="link-rm-line fw-bold">Login</Link></span>
+            <div className="text-center">
+                <span>Already have an account? Let's <Link to='/login' className="link-rm-line fw-bold">Login</Link></span>
             </div>
         </Col>
     </Row>

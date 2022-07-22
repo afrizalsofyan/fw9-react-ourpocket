@@ -7,6 +7,7 @@ import Login from './pages/auth/Login'
 import NewPassword from './pages/auth/NewPassword'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/dashboard/Dashboard'
+import History from './pages/dashboard/History'
 import LandingPage from './pages/LandingPage'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       </Route>
       <Route path='/home'>
         <Route path='dashboard' element={<Dashboard/>}></Route>
+        <Route path='history' element={<History/>}></Route>
       </Route>
     </Routes>
   )

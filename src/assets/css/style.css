@@ -11,6 +11,13 @@ body{
 .bell-notification .dropdown-toggle::after {
     display: none !important; 
 }
+.bell-notification .nav-link.active{
+    color: unset !important;
+}
+
+/* .bell-notification .nav-link:hover{
+    color: #000;
+} */
 .bell-notification .dropdown-menu {
     margin-top: 50% !important;
 }
