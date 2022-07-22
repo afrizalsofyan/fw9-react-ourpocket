@@ -8,6 +8,10 @@ import NewPassword from './pages/auth/NewPassword'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/dashboard/Dashboard'
 import History from './pages/dashboard/History'
+import Profile from './pages/dashboard/Profile'
+import TopUp from './pages/dashboard/TopUp'
+import Transfer from './pages/dashboard/Transfer'
+import TransferAmount from './pages/dashboard/TransferAmount'
 import LandingPage from './pages/LandingPage'
 
 function App() {
@@ -25,6 +29,10 @@ function App() {
       <Route path='/home'>
         <Route path='dashboard' element={<Dashboard/>}></Route>
         <Route path='history' element={<History/>}></Route>
+        <Route path='transfer' element={<Transfer/>}></Route>
+        <Route path='transfer/:id' element={<TransferAmount/>}></Route>
+        <Route path='topup' element={<TopUp/>}></Route>
+        <Route path='profile' element={<Profile/>}></Route>
       </Route>
     </Routes>
   )
