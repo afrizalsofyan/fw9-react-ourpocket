@@ -7,6 +7,9 @@ import Login from './pages/auth/Login'
 import NewPassword from './pages/auth/NewPassword'
 import Register from './pages/auth/Register'
 import AddNewPhone from './pages/dashboard/AddNewPhone'
+import ChangeNewPin from './pages/dashboard/ChangeNewPin'
+import ChangePassword from './pages/dashboard/ChangePassword'
+import ChangePin from './pages/dashboard/ChangePin'
 import Dashboard from './pages/dashboard/Dashboard'
 import DetailProfile from './pages/dashboard/DetailProfile'
 import FailedTransfer from './pages/dashboard/FailedTransfer'
@@ -43,8 +46,13 @@ function App() {
         <Route path='topup' element={<TopUp/>}></Route>
         <Route path='profile'>
           <Route index element={<Profile/>}/>
+          <Route path='changePassword' element={<ChangePassword/>}></Route>
+          <Route path='changePin'>
+            <Route index element={<ChangePin/>}></Route>
+            <Route path='newPin' element={<ChangeNewPin/>}></Route>
+          </Route>
           <Route path='details' >
-          <Route index element={<DetailProfile/>}/>
+            <Route index element={<DetailProfile/>}/>
             <Route path='managePhone' >
               <Route index element={<ManagePhone />}/>
               <Route path='addPhone' element={<AddNewPhone />}/>

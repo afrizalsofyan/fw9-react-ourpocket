@@ -7,6 +7,9 @@ body{
     font-style: normal !important;
     background: #473AD10F;
 }
+.pin-custom{
+    box-shadow: none !important;
+}
 .cstm-btn-modal .btn-close:focus{
     box-shadow: none !important;
 }
