@@ -6,9 +6,12 @@ import ForgetPassword from './pages/auth/ForgetPassword'
 import Login from './pages/auth/Login'
 import NewPassword from './pages/auth/NewPassword'
 import Register from './pages/auth/Register'
+import AddNewPhone from './pages/dashboard/AddNewPhone'
 import Dashboard from './pages/dashboard/Dashboard'
+import DetailProfile from './pages/dashboard/DetailProfile'
 import FailedTransfer from './pages/dashboard/FailedTransfer'
 import History from './pages/dashboard/History'
+import ManagePhone from './pages/dashboard/ManagePhone'
 import Profile from './pages/dashboard/Profile'
 import SuccessTransfer from './pages/dashboard/SuccessTransfer'
 import TopUp from './pages/dashboard/TopUp'
@@ -38,7 +41,17 @@ function App() {
         <Route path='transfer/:id/tranferConfirmation/success' element={<SuccessTransfer />}></Route>
         <Route path='transfer/:id/tranferConfirmation/failed' element={<FailedTransfer />}></Route>
         <Route path='topup' element={<TopUp/>}></Route>
-        <Route path='profile' element={<Profile/>}></Route>
+        <Route path='profile'>
+          <Route index element={<Profile/>}/>
+          <Route path='details' >
+          <Route index element={<DetailProfile/>}/>
+            <Route path='managePhone' >
+              <Route index element={<ManagePhone />}/>
+              <Route path='addPhone' element={<AddNewPhone />}/>
+            </Route>
+          </Route>
+        </Route>
+        
       </Route>
     </Routes>
   )

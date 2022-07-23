@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Image, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import ContentLayout from "../../components/ContentLayout";
 import NavbarDashboard from "../../components/NavbarDashboard";
 import SideBarMenu from "../../components/SideBarMenu";
@@ -20,7 +20,7 @@ function TopUp() {
                 </div>
                 <div>
                   <ol class="mv-marker">
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
@@ -29,7 +29,7 @@ function TopUp() {
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
@@ -38,7 +38,7 @@ function TopUp() {
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
@@ -47,7 +47,7 @@ function TopUp() {
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
@@ -57,7 +57,7 @@ function TopUp() {
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
@@ -66,7 +66,7 @@ function TopUp() {
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
@@ -75,14 +75,14 @@ function TopUp() {
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">Press transfer / top up.</span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4">
+                    <div class="card border-0 shadow-sm mt-4 ps-2">
                       <div class="card-body px-4 py-4">
                         <li class="num-mark">
                           <span class="fnt-desc">
