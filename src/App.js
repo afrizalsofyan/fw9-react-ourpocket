@@ -12,6 +12,7 @@ import Profile from './pages/dashboard/Profile'
 import TopUp from './pages/dashboard/TopUp'
 import Transfer from './pages/dashboard/Transfer'
 import TransferAmount from './pages/dashboard/TransferAmount'
+import TransferConfirmation from './pages/dashboard/TransferConfirmation'
 import LandingPage from './pages/LandingPage'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='history' element={<History/>}></Route>
         <Route path='transfer' element={<Transfer/>}></Route>
         <Route path='transfer/:id' element={<TransferAmount/>}></Route>
+        <Route path='transfer/:id/tranferConfirmation' element={<TransferConfirmation/>}></Route>
         <Route path='topup' element={<TopUp/>}></Route>
         <Route path='profile' element={<Profile/>}></Route>
       </Route>

@@ -7,6 +7,9 @@ body{
     font-style: normal !important;
     background: #473AD10F;
 }
+.cstm-btn-modal .btn-close:focus{
+    box-shadow: none !important;
+}
 li.link-wrapper > a.active {
     display: block;
     width: 100%;
@@ -593,9 +596,9 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width:416px){
-    .container-box{
-        margin-left: 20px !important;
-        margin-right: 20px !important; 
+    .modal-footer-position.modal-footer{
+        justify-content: center !important;
+        display: block !important;
     }
     .box-pin{
         width: 1em; 

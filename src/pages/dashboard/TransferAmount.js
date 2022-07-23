@@ -7,9 +7,10 @@ import ContentLayout from "../../components/ContentLayout";
 import { UserCard } from "../../components/UserCard";
 import Img3 from "../../assets/images/img/img3.png";
 import { FiEdit2 } from "react-icons/fi";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 function TransferAmount() {
+  const {id} = useParams();
   return (
     <>
       <NavbarDashboard />
@@ -57,7 +58,7 @@ function TransferAmount() {
                     </div>
                     <div className="d-flex flex-row justify-content-end mt-5 me-5">
                       <Link
-                        to="./confirmation.html"
+                        to={`/home/transfer/${id}/tranferConfirmation`}
                         className="btn btn-primary px-4 py-2 color-blue-pm btn-cstm"
                       >
                         Continue
