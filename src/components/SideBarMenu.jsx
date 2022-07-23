@@ -1,12 +1,14 @@
 import React from 'react'
 import { Col, Image } from 'react-bootstrap'
 import { FiArrowUp, FiGrid, FiLogOut, FiPlus, FiUser } from 'react-icons/fi'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import ActiveIcon from "../assets/images/icons/active-mark.png";
 
 function SideBarMenu() {
     const pathUrl = useLocation().pathname;
+    const {id} = useParams();
     console.log(pathUrl);
+    console.log(id);
     return (
         <Col sm={12} lg={3} as="aside" className="mb-5 mb-lg-0 d-flex">
             <div className="w-100 d-flex flex-column justify-content-between bg-white ps-3 pe-5 py-5 rounded-5 shadow-sm">
@@ -24,7 +26,7 @@ function SideBarMenu() {
                     <li className="nav-item">
                         <Link
                             to="/home/transfer"
-                            className={`nav-link not-act border-0 d-flex flex-row gap-4 align-items-center ${pathUrl === '/home/transfer' ? 'active' : ''}`}
+                            className={`nav-link not-act border-0 d-flex flex-row gap-4 align-items-center ${pathUrl === '/home/transfer' || pathUrl === `/home/transfer/${id}` || pathUrl === `/home/transfer/${id}/tranferConfirmation` || pathUrl === `/home/transfer/${id}/tranferConfirmation/success` || pathUrl === `/home/transfer/${id}/tranferConfirmation/failed` ? 'active' : ''}`}
                         >
                             <FiArrowUp size={24} />
                             <span className="fw-bold fs-5">Transfer</span>

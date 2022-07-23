@@ -7,8 +7,10 @@ import Login from './pages/auth/Login'
 import NewPassword from './pages/auth/NewPassword'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/dashboard/Dashboard'
+import FailedTransfer from './pages/dashboard/FailedTransfer'
 import History from './pages/dashboard/History'
 import Profile from './pages/dashboard/Profile'
+import SuccessTransfer from './pages/dashboard/SuccessTransfer'
 import TopUp from './pages/dashboard/TopUp'
 import Transfer from './pages/dashboard/Transfer'
 import TransferAmount from './pages/dashboard/TransferAmount'
@@ -33,6 +35,8 @@ function App() {
         <Route path='transfer' element={<Transfer/>}></Route>
         <Route path='transfer/:id' element={<TransferAmount/>}></Route>
         <Route path='transfer/:id/tranferConfirmation' element={<TransferConfirmation/>}></Route>
+        <Route path='transfer/:id/tranferConfirmation/success' element={<SuccessTransfer />}></Route>
+        <Route path='transfer/:id/tranferConfirmation/failed' element={<FailedTransfer />}></Route>
         <Route path='topup' element={<TopUp/>}></Route>
         <Route path='profile' element={<Profile/>}></Route>
       </Route>

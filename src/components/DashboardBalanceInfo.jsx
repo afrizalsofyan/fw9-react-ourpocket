@@ -19,7 +19,7 @@ function DashboardBalanceInfo() {
                     <div className="wd-bx-3 color-white-20 border border-light rounded-3 text-center py-2">
                         <div className="">
                             <Link
-                                to="#"
+                                to="/home/transfer"
                                 className="link-rm-line d-flex flex-column flex-sm-row justify-content-between px-3 align-items-center"
                             >
                                 <FiArrowUp size={24} className="color-blue-light" />
@@ -29,7 +29,7 @@ function DashboardBalanceInfo() {
                     </div>
                     <div className="wd-bx-3 color-white-20 border border-light rounded-3 text-center py-2">
                         <Link
-                            to=""
+                            to="/home/topup"
                             className="link-rm-line d-flex flex-column flex-sm-row justify-content-between px-3 align-items-center"
                         >
                             <FiPlus size={24} className="color-blue-light" />
