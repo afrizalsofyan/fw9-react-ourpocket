@@ -14,6 +14,9 @@ li.link-wrapper > a.active {
     color: white;
     background-color: blue;
 }
+.text-desc-layout{
+    width: 50%;
+}
 /* dropdown */
 .bell-notification .dropdown-toggle::after {
     display: none !important; 
@@ -503,6 +506,7 @@ input::-webkit-inner-spin-button {
 .notes-custom{
     border: unset;
     border-bottom: 1px solid #A9A9A9CC;
+    border-radius: unset;
     overflow-x: scroll;
 }
 .icon-grey-light{
@@ -656,6 +660,10 @@ input::-webkit-inner-spin-button {
     }
 }
 @media (max-width: 766px) {
+    .text-desc-layout{
+        width: auto;
+        text-align: center;
+    }
     .bell-notification .dropdown-menu {
         margin-top: unset !important;
     }
