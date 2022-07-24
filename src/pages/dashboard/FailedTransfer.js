@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container, Image, Row } from 'react-bootstrap'
+import { Container, Image, Row } from 'react-bootstrap'
 import ContentLayout from '../../components/ContentLayout'
 import NavbarDashboard from '../../components/NavbarDashboard'
 import SideBarMenu from '../../components/SideBarMenu'
@@ -8,7 +8,6 @@ import Img3 from "../../assets/images/img/img3.png";
 import FailedLogo from "../../assets/images/icons/failed.png"
 import DetailTransferList from '../../components/DetailTransferList'
 import FooterDashboard from '../../components/FooterDashboard'
-import { FiDownload, FiShare2 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
 function FailedTransfer() {

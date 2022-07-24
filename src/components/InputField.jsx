@@ -3,13 +3,11 @@ import {InputGroup,Form} from 'react-bootstrap'
 
 export const InputPin = () => {
   return(
-    
-      <div className="d-flex align-items-center box-pin-border">
-        <InputGroup className="box-pin shadow-0">
-          <Form.Control type={'text'} maxLength={1} className='border-0 text-center pin-custom' placeholder=''/>
+      <div className="d-flex flex-column align-items-center box-pin-border p-2">
+        <InputGroup className='box-pin'>
+          <Form.Control type={'text'} maxLength={1} className='border-0 text-center' placeholder=''/>
         </InputGroup>       
       </div>
-    
   )
 }
 

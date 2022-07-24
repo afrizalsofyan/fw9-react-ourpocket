@@ -1,6 +1,6 @@
 import React from "react";
 import NavbarDashboard from "../../components/NavbarDashboard";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import SideBarMenu from "../../components/SideBarMenu";
 import FooterDashboard from "../../components/FooterDashboard";
 import ContentLayout from "../../components/ContentLayout";
@@ -20,7 +20,7 @@ function History() {
             child={
               <>
                 <h1 className="fw-bold fs-4">Transaction History</h1>
-                <div className="d-flex flex-column gap-5 overflow-auto px-md-4">
+                <div className="d-flex flex-column gap-3 overflow-auto px-md-4 my-4">
                   <span className="bg-grey-light fw-bold">This Week</span>
                   <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name='Samuel Suhi' type_transaction='Transfer' amount='+Rp50.000'/>
                   <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' name='Netflix' type_transaction='Subscription' amount='-Rp149.000'/>

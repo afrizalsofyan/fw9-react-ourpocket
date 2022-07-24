@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Container, Modal, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Button, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import ContentLayout from "../../components/ContentLayout";
 import FooterDashboard from "../../components/FooterDashboard";
 import NavbarDashboard from "../../components/NavbarDashboard";

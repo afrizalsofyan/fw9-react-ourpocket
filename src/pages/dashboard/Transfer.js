@@ -1,6 +1,6 @@
 import React from "react";
 import NavbarDashboard from "../../components/NavbarDashboard";
-import { Container, Row } from "react-bootstrap";
+import { Container, Form, InputGroup, Row } from "react-bootstrap";
 import SideBarMenu from "../../components/SideBarMenu";
 import FooterDashboard from "../../components/FooterDashboard";
 import ContentLayout from "../../components/ContentLayout";
@@ -10,6 +10,7 @@ import Img1 from "../../assets/images/img/img1.png";
 import Img2 from "../../assets/images/img/img2.png";
 import Img3 from "../../assets/images/img/img3.png";
 import Img4 from "../../assets/images/img/img4.png";
+import { FiSearch } from "react-icons/fi";
 
 function Transfer() {
   return (
@@ -25,16 +26,12 @@ function Transfer() {
                 <div className="d-flex flex-row justify-content-between">
                   <span className="fw-bold fs-5">Search Receiver</span>
                 </div>
-                <div className="input-group search-input">
+                <InputGroup className="search-input my-4">
                   <span className="icon-input">
-                    <i data-feather="search"></i>
+                    <FiSearch size={24}/>
                   </span>
-                  <input
-                    type="text"
-                    className="form-control ps-5 border-0 bg-grey-input rounded-3 py-3"
-                    placeholder="Search receiver here"
-                  />
-                </div>
+                  <Form.Control type="text" className="ps-5 border-0 bg-grey-input rounded-3 py-3" placeholder="Search receiver here"/>
+                </InputGroup>
                 <div className="d-flex flex-column gap-5 py-4 overflow-auto h-75 pe-4">
                   <UserCard
                     url={"/home/transfer/1"}

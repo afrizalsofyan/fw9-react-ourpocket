@@ -12,13 +12,13 @@ function AddNewPhone() {
         subtitleText="Add at least one phone number for the transfer ID so you can start transfering your money to another user."
         child={
           <>
-            <div class="d-flex flex-row justify-content-center py-5">
-              <div class="d-flex flex-column justify-content-center gap-5 w-75">
+            <div className="d-flex flex-row justify-content-center py-5">
+              <div className="d-flex flex-column justify-content-center gap-5 w-75">
                 <InputField
                   icon={
                     <>
-                      <FiPhone size={24} class="txt-color-blue" />
-                      <span class="ms-2 fw-bold">+62</span>
+                      <FiPhone size={24} className="txt-color-blue" />
+                      <span className="ms-2 fw-bold">+62</span>
                     </>
                   }
                   placeholder="Enter your phone number"

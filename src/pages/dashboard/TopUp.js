@@ -16,76 +16,76 @@ function TopUp() {
             child={
               <>
                 <div>
-                  <span class="fw-bold">How To Top Up</span>
+                  <span className="fw-bold">How To Top Up</span>
                 </div>
                 <div>
-                  <ol class="mv-marker">
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                  <ol className="mv-marker">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             Go to the nearest ATM or you can use E-Banking.
                           </span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             Type your security number on the ATM or E-Banking.
                           </span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             Select “Transfer” in the menu.
                           </span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             Type the virtual account number that we provide you
                             at the top.
                           </span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             Type the amount of the money you want to top up.
                           </span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             Read the summary details.
                           </span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">Press transfer / top up.</span>
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">Press transfer / top up.</span>
                         </li>
                       </div>
                     </div>
-                    <div class="card border-0 shadow-sm mt-4 ps-2">
-                      <div class="card-body px-4 py-4">
-                        <li class="num-mark">
-                          <span class="fnt-desc">
+                    <div className="card border-0 shadow-sm mt-4 ps-2">
+                      <div className="card-body px-4 py-4">
+                        <li className="num-mark">
+                          <span className="fnt-desc">
                             You can see your money in Zwallet within 3 hours.
                           </span>
                         </li>

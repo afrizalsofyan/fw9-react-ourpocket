@@ -21,7 +21,7 @@ function NavbarDashboard() {
           <Navbar.Collapse id="basic-navbar-nav" className="">
             <Nav className="ms-auto d-flex flex-column flex-sm-row gap-3 align-items-center bell-notification py-4">
               <Nav.Link
-                href=""
+                href="/home/profile"
                 className="d-flex d-sm-flex flex-column flex-sm-row gap-3 align-items-center"
               >
                 <Image src={UserPhoto} />
