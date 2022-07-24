@@ -46,9 +46,9 @@ function SideBarMenu() {
                     <li className="nav-item">
                         <Link
                             to="/home/profile"
-                            className={`nav-link not-act border-0 d-flex flex-row gap-4 align-items-center ${pathUrl === '/home/profile' ? 'active fw-bold' : ''}`}
+                            className={`nav-link not-act border-0 d-flex flex-row gap-4 align-items-center ${pathUrl === '/home/profile' || pathUrl === '/home/profile/details' || pathUrl === '/home/profile/details' || pathUrl === '/home/profile/details/managePhone' || pathUrl === '/home/profile/details/managePhone/addPhone' || pathUrl === '/home/profile/changePin' || pathUrl === '/home/profile/changePin/newPin' || pathUrl === '/home/profile/changePassword' ? 'active fw-bold' : ''}`}
                         >
-                            {pathUrl === '/home/profile' ? <Image src={ActiveIcon} alt="activeimg" /> : null}
+                            {pathUrl === '/home/profile' || pathUrl === '/home/profile/details' || pathUrl === '/home/profile/details' || pathUrl === '/home/profile/details/managePhone' || pathUrl === '/home/profile/details/managePhone/addPhone' || pathUrl === '/home/profile/changePin' || pathUrl === '/home/profile/changePin/newPin' || pathUrl === '/home/profile/changePassword' ? <Image src={ActiveIcon} alt="activeimg" /> : null}
                             <FiUser size={24} />
                             <span className="fs-5">Profile</span>
                         </Link>

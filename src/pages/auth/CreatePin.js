@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
 import ButtonAuth from "../../components/ButtonAuth";
+import { InputPin } from "../../components/InputField";
 
 function CreatePin() {
   return (
@@ -22,68 +23,14 @@ function CreatePin() {
               "Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!"
             }
           />
-          <div className="d-flex flex-row pin-wrapper gap-2 gap-sm-3 gap-md-2 gap-lg-4 justify-content-center">
-            <div className="d-flex align-items-center box-pin-border">
-              <input
-                type="text"
-                inputMode="numeric"
-                maxLength="1"
-                name=""
-                id=""
-                className="box-pin text-center"
-              />
+          <div className="d-flex flex-row pin-wrapper gap-2 gap-md-2 gap-lg-4 justify-content-center">
+              <InputPin />
+              <InputPin />
+              <InputPin />
+              <InputPin />
+              <InputPin />
+              <InputPin />
             </div>
-            <div className="d-flex align-items-center box-pin-border">
-              <input
-                type="text"
-                inputMode="numeric"
-                maxLength="1"
-                name=""
-                id=""
-                className="box-pin text-center"
-              />
-            </div>
-            <div className="d-flex align-items-center box-pin-border">
-              <input
-                type="text"
-                inputMode="numeric"
-                maxLength="1"
-                name=""
-                id=""
-                className="box-pin text-center"
-              />
-            </div>
-            <div className="d-flex align-items-center box-pin-border">
-              <input
-                type="text"
-                inputMode="numeric"
-                maxLength="1"
-                name=""
-                id=""
-                className="box-pin text-center"
-              />
-            </div>
-            <div className="d-flex align-items-center box-pin-border">
-              <input
-                type="text"
-                inputMode="numeric"
-                maxLength="1"
-                name=""
-                id=""
-                className="box-pin text-center"
-              />
-            </div>
-            <div className="d-flex align-items-center box-pin-border">
-              <input
-                type="text"
-                inputMode="numeric"
-                maxLength="1"
-                name=""
-                id=""
-                className="box-pin text-center"
-              />
-            </div>
-          </div>
         </div>
         <ButtonAuth link={"/auth/createPinSuccess"} textButton={"Confirm"} />
       </Col>
