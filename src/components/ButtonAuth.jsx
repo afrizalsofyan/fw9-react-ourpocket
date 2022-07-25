@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export const ButtonMenuProfile = ({menuName, suffixIcon, to}) => {
@@ -17,10 +18,18 @@ export const ButtonMenuProfile = ({menuName, suffixIcon, to}) => {
   )
 }
 
-function ButtonAuth({ textButton, link }) {
+export const ButtonSubmit = ({textButton}) => {
+  return(
+    <div className="d-grid">
+      <Button className="btn btn-primary btn-lg fw-bold text-white btn-cstm color-blue-pm" type="submit">{textButton}</Button>
+    </div>
+  )
+}
+
+function ButtonAuth({ textButton, link, type }) {
   return (
     <div className="d-grid">
-      <Link to={link} className="btn btn-primary btn-lg fw-bold text-white btn-cstm color-blue-pm">{textButton}</Link>
+      <Link to={link} className="btn btn-primary btn-lg fw-bold text-white btn-cstm color-blue-pm" type={type}>{textButton}</Link>
     </div>
   )
 }
