@@ -7,6 +7,9 @@ body{
     font-style: normal !important;
     background: #473AD10F;
 }
+.bell-notification .menu-navbar-collapse .nav-link.active{
+    color: #6379F4 !important;
+}
 .pin-custom{
     box-shadow: none !important;
 }

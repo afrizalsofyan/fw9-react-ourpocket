@@ -4,12 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import UserPhoto from "../assets/images/img/img3.png";
 import { FiBell, FiArrowDown, FiArrowUp } from "react-icons/fi";
-import { DropdownButton, Image } from "react-bootstrap";
+import { DropdownButton, Image, Row } from "react-bootstrap";
 import {
   NotificationCardHeader,
   NotificationCardItem,
 } from "./NotificationCard";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { MenuNavbar } from './SideBarMenu';
 
 
 function NavbarDashboard({titlePage}) {
@@ -38,6 +39,7 @@ function NavbarDashboard({titlePage}) {
                     <span className="fw-light">+62 8139 3877 7946</span>
                   </div>
                 </Nav.Link>
+                
                 <DropdownButton
                   align="end"
                   title={<FiBell size={24} className="bg-grey-light icon-btn" />}
@@ -71,6 +73,7 @@ function NavbarDashboard({titlePage}) {
                     amount={"300.000"}
                   />
                 </DropdownButton>
+                <MenuNavbar/>
               </Nav>
             </Navbar.Collapse>
           </Container>
