@@ -11,7 +11,7 @@ function Dashboard() {
   return (
     <>
       {/* HEADER NAVBAR */}
-      <NavbarDashboard />
+      <NavbarDashboard titlePage='OPo - Dashboard'/>
       {/* SIDEBAR */}
       <Container as="section" className="g-0">
         <Row className="d-flex pt-5 gx-0 gx-sm-3">

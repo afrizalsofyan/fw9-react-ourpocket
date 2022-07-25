@@ -30,7 +30,7 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
 function Profile() {
   return (
     <>
-      <NavbarDashboard />
+      <NavbarDashboard titlePage='OPo - profile'/>
       <Container as="section" className="g-0">
         <Row className="pt-5 gx-0 gx-md-3">
           <SideBarMenu />

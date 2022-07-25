@@ -15,7 +15,7 @@ import { FiSearch } from "react-icons/fi";
 function Transfer() {
   return (
     <>
-      <NavbarDashboard />
+      <NavbarDashboard titlePage='OPo - transfer'/>
 
       <Container as="section" className="g-0">
         <Row className="pt-5 gx-0 gx-md-3">

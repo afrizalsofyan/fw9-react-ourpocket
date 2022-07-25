@@ -5,12 +5,19 @@ import InputField from '../../components/InputField'
 import AuthBanner from '../../components/AuthBanner'
 import TitleAuthForm from '../../components/TitleAuthForm'
 import ButtonAuth from '../../components/ButtonAuth'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 
 function NewPassword() {
     const [showPass, setShowPass] = React.useState(false)
     const [showConfirmPass, setShowConfirmPass] = React.useState(false)
   return (
-    <Row className='gx-0'>
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Forget Password - Reset Password</title>
+        </Helmet>
+      </HelmetProvider>
+      <Row className='gx-0'>
         <AuthBanner/>
         <Col xs={12} md={5} className='px-5 py-5 d-flex flex-column justify-content-center bg-white gap-5'>
             <div className="d-flex flex-column gap-5">
@@ -21,6 +28,7 @@ function NewPassword() {
             <ButtonAuth link={'/auth/login'} textButton={'Reset Password'} />
         </Col>
     </Row>
+    </>
   )
 }
 

@@ -1,0 +1,44 @@
+{
+    "success": true,
+    "message": "This is all transaction",
+    "info": {
+        "totalDatas": 33,
+        "pages": 7,
+        "currentPage": 1,
+        "prevPage": null,
+        "nextPage": 2
+    },
+    "result": [
+        {
+            "id": 131,
+            "time_transaction": "2022-07-12T14:04:02.000Z",
+            "notes": "beli minum",
+            "type_name": 14,
+            "recipient_name": "Justin Kol",
+            "sender_name": "Holand Cree",
+            "amount": 100000,
+            "url_photo": "",
+            "is_deleted": false
+        },
+        {
+            "id": 130,
+            "time_transaction": "2022-07-12T14:03:44.000Z",
+            "notes": "netlfix",
+            "type_name": "subcription",
+            "recipient_name": "Netflix",
+            "sender_name": "Holand Cree",
+            "amount": 100000,
+            "is_deleted": false
+        },
+        {
+            "id": 129,
+            "time_transaction": "2022-07-12T14:01:38.000Z",
+            "notes": "topup",
+            "type_name": "topup",
+            "recipient_name": "Cloe joe",
+            "sender_id": "Justin",
+            "amount": 100000,
+            "is_deleted": false
+        }
+    ]
+}

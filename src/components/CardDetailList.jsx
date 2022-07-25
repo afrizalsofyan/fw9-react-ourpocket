@@ -1,6 +1,33 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 
+export const CardHistoryDashboard = ({imgUrl, name, type, amount}) => {
+  return (
+      <div className="d-flex flex-column gap-3 gap-sm-0 flex-sm-row justify-content-between shadow-sm p-3">
+          <div className="d-flex gap-3">
+              <div>
+                  <img
+                      className="we-3"
+                      src={imgUrl}
+                      alt="img1"
+                  />
+              </div>
+              <div className="d-flex flex-column justify-content-center">
+                  <span className="fw-semibold">{name}</span>
+                  <span className="fw-light bg-grey-light">
+                      {type}
+                  </span>
+              </div>
+          </div>
+          <div>
+              <span className="fw-bold fs-5 color-green">
+                  {amount}
+              </span>
+          </div>
+      </div>
+  )
+}
+
 export const DetailCardProfile = ({ title, content, cardButton }) => {
   return (
     <>

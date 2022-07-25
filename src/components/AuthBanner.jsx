@@ -1,14 +1,17 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ImagePhoneAuth from '../assets/images/img/auth-phone-img.png'
+import {Link} from 'react-router-dom'
 
 function AuthBanner() {
     return (
         <Col xs={12} md={7} className='bg-auth px-5 py-5 d-flex'>
             <Row>
-                <Col xs={12} className='px-md-5'>
-                    <span className='text-white fs-1 fw-bold'>OurPocket</span>
-                </Col>
+                <Link to='/'>
+                    <Col xs={12} className='px-md-5'>
+                        <span className='text-white fs-1 fw-bold'>OurPocket</span>
+                    </Col>
+                </Link>
                 <Col sm={12} className='d-flex w-100 flex-column gap-5 mt-4 justify-content-center'>
                     <div className="d-flex flex-row align-items-center px-md-5">
                         <img src={ImagePhoneAuth} alt="phoneimage" className="w-75 w-md-75 mx-auto" />

@@ -4,9 +4,16 @@ import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
 import ButtonAuth from "../../components/ButtonAuth";
 import { InputPin } from "../../components/InputField";
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 
 function CreatePin() {
   return (
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Register - Create Pin</title>
+        </Helmet>
+      </HelmetProvider>
     <Row className="gx-0">
       <AuthBanner />
       <Col
@@ -35,6 +42,7 @@ function CreatePin() {
         <ButtonAuth link={"/auth/createPinSuccess"} textButton={"Confirm"} />
       </Col>
     </Row>
+    </>
   );
 }
 

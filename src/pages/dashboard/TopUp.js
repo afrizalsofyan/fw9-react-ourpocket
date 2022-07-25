@@ -8,7 +8,7 @@ import FooterDashboard from "../../components/FooterDashboard";
 function TopUp() {
   return (
     <>
-      <NavbarDashboard />
+      <NavbarDashboard titlePage='OPo - topup'/>
       <Container as="section" className="g-0">
         <Row className="pt-5 gx-0 gx-md-3">
           <SideBarMenu />

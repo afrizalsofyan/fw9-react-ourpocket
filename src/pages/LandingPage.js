@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Helmet, HelmetProvider} from 'react-helmet-async'
 import ImagePhone1 from '../assets/images/img/png-phone.png'
 import ImagePhone2 from '../assets/images/img/png-phone2.png'
 import Icon1 from '../assets/images/icons/icon1.svg'
@@ -19,6 +20,11 @@ function LandingPage() {
     const [isShowMenu, setShowMenu] = React.useState(false)
   return (
     <>
+        <HelmetProvider>
+            <Helmet>
+                <title>OPo</title>
+            </Helmet>
+        </HelmetProvider>
         <header className="pad-t-60 bg-header-1">
             <div className="container-box">
                 <div className="btn-collapse-position">
