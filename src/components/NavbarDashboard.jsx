@@ -4,13 +4,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import UserPhoto from "../assets/images/img/img3.png";
 import { FiBell, FiArrowDown, FiArrowUp } from "react-icons/fi";
-import { DropdownButton, Image, Row } from "react-bootstrap";
+import { DropdownButton, Image } from "react-bootstrap";
 import {
   NotificationCardHeader,
   NotificationCardItem,
 } from "./NotificationCard";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { MenuNavbar } from './SideBarMenu';
+import { Link } from 'react-router-dom';
 
 
 function NavbarDashboard({titlePage}) {
@@ -29,8 +30,8 @@ function NavbarDashboard({titlePage}) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="">
               <Nav className="ms-auto d-flex flex-column flex-sm-row gap-3 align-items-center bell-notification py-4">
-                <Nav.Link
-                  href="/home/profile"
+                <Link
+                  to="/home/profile"
                   className="d-flex d-sm-flex flex-column flex-sm-row gap-3 align-items-center"
                 >
                   <Image src={UserPhoto} />
@@ -38,7 +39,7 @@ function NavbarDashboard({titlePage}) {
                     <span className="fw-bold">Robert Chandler</span>
                     <span className="fw-light">+62 8139 3877 7946</span>
                   </div>
-                </Nav.Link>
+                </Link>
                 
                 <DropdownButton
                   align="end"

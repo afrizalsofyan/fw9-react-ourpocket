@@ -15,6 +15,7 @@ import Logo3 from '../assets/images/icons/company_logo3.svg'
 import Logo4 from '../assets/images/icons/company_logo4.svg'
 import Logo5 from '../assets/images/icons/company_logo5.svg'
 import Logo6 from '../assets/images/icons/company_logo6.svg'
+import { FiDownload, FiLock, FiPhone } from 'react-icons/fi'
 
 function LandingPage() {
     const [isShowMenu, setShowMenu] = React.useState(false)
@@ -81,21 +82,30 @@ function LandingPage() {
                     <div className="about-section-v1">
                         <div className="card-1">
                             <div className="flx-row mar-x-auto wd-100 jstfy-center">
-                                <img src={Icon1} alt="iconPhone.svg" className="" width="35%" height="100%"/>
+                                {/* <img src={} alt="iconPhone.svg" className="" width="35%" height="100%"/> */}
+                                <span className="bg-rounded-icon pad-25 rad-100 mar-b-20">
+                                    <FiPhone size={30}/>
+                                </span>
                             </div>
                             <p className="txt-ctr fnt-paragraph">24/7 Support</p>
                             <p className="txt-ctr fnt-desc">We have 24/7 contact support so you can contact us whenever you want and we will respond it.</p>
                         </div>
                         <div className="card-1">
                             <div className="flx-row mar-x-auto wd-100 jstfy-center">
-                                <img src={Icon2} alt="iconPhone.svg" className="" width="35%" height="100%"/>
+                                <span className="bg-rounded-icon pad-25 rad-100 mar-b-20">
+                                    <FiLock size={30}/>
+                                </span>
+                                {/* <img src={Icon2} alt="iconPhone.svg" className="" width="35%" height="100%"/> */}
                             </div>
                             <p className="txt-ctr fnt-paragraph">Data Privacy</p>
                             <p className="txt-ctr fnt-desc">We make sure your data is safe in our database and we will encrypt any data you submitted to us.</p>
                         </div>
                         <div className="card-1">
                             <div className="flx-row mar-x-auto wd-100 jstfy-center">
-                                <img src={Icon3} alt="iconPhone.svg" className="" width="35%" height="100%"/>
+                                <span className="bg-rounded-icon pad-25 rad-100 mar-b-20">
+                                    <FiDownload size={30}/>
+                                </span>
+                                {/* <img src={Icon3} alt="iconPhone.svg" className="" width="35%" height="100%"/> */}
                             </div>
                             <p className="txt-ctr fnt-paragraph">Easy Download</p>
                             <p className="txt-ctr fnt-desc">Zwallet is 100% totally free to use it’s now available on Google Play Store and App Store.</p>
@@ -190,18 +200,18 @@ function LandingPage() {
         <footer className="bg-blue">
             <div className="container-box">
                 <div className="pad-y-80">
-                    <span className="logo-txt-white mar-b-30">Zwallet</span>
+                    <span className="logo-txt-white mar-b-30">OurPocket</span>
                     <div className="width-25">
                         <div className="wd-100">
                             <p className="fnt-footer">Simplify financial needs and saving much time in banking needs with one single app.</p>
                         </div>
                     </div>
-                    <hr className="mar-t-50 mar-b-30"/>
+                    <hr className="mar-t-50 mar-b-30 border-new-color"/>
                     <div className="footer-copyright copyrigth-text">
-                        <span>2020 Zwallet. All right reserved.</span>
+                        <span>2020 OurPocket. All right reserved.</span>
                         <div className="footer-copyright gap-20">
                             <span>+62 5637 8882 9901</span>
-                            <span className="mar-r-40">contact@zwallet.com</span>
+                            <span className="mar-r-40">contact@OurPocket.com</span>
                         </div>
                     </div>
                 </div>

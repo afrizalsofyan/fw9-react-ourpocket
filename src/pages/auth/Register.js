@@ -108,7 +108,7 @@ function Register() {
           <div className="text-center">
             <span>
               Already have an account? Let's{" "}
-              <Link to="/login" className="link-rm-line fw-bold">
+              <Link to="/auth/login" className="link-rm-line fw-bold">
                 Login
               </Link>
             </span>
