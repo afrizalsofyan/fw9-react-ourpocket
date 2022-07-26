@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 
 export const UserCard = ({url, img_path, name, phone }) => {
     return (
-        <Link to={url} className='link-rm-line text-black'>
+        <Link to={url} className='link-rm-line color-text-primary'>
             <div className="d-flex flex-column align-items-center flex-sm-row justify-content-between">
                 <div className="d-flex flex-column flex-sm-row align-items-center gap-3">
                     <div>
                         <img className="we-3" src={img_path} alt="" />
                     </div>
                     <div className="d-flex flex-column justify-content-center align-items-center align-items-md-start">
-                        <span className="fw-semibold">{name}</span>
+                        <span className="fw-semibold color-text-6">{name}</span>
                         <span className="fw-light bg-grey-light">{phone}</span>
                     </div>
                 </div>

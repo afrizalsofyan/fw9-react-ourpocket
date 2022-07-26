@@ -36,7 +36,7 @@ export const ProfileLayout = ({headerText, subtitleText, child}) => {
 function ContentLayout({ child }) {
     return (
         <Col sm={12} lg={9} className='d-flex flex-column gap-4'>
-            <Row className='bg-white rounded-5 ms-lg-2 p-5 gx-0'>
+            <Row className='bg-white rounded-5 ms-lg-2 p-5 gx-0 shadow-sm'>
                 {child}
             </Row>
         </Col>

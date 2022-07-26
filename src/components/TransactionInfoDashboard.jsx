@@ -18,11 +18,11 @@ function TransactionInfoDashboard() {
     
     return (
         <Col sm={12} md={6} className="ps-md-3">
-            <div className="d-flex flex-column bg-white p-4 gap-4 rounded-5 h-100">
+            <div className="d-flex flex-column bg-white p-4 gap-4 rounded-5 h-100 color-text-6">
                 <div className="d-flex flex-row justify-content-between">
                     <span className="fw-bold fs-6">Transaction History</span>
                     <Link className="link-rm-line" to="/home/history">
-                        <span className="fw-light txt-color-blue">See all</span>
+                        <span className="fw-light color-text-6">See all</span>
                     </Link>
                 </div>
                 {/* item max 3 */}

@@ -106,9 +106,9 @@ function Register() {
             </Formik>
           </div>
           <div className="text-center">
-            <span>
+            <span> 
               Already have an account? Let's{" "}
-              <Link to="/auth/login" className="link-rm-line fw-bold">
+              <Link to="/auth/login" className="link-rm-line fw-bold color-text-primary">
                 Login
               </Link>
             </span>

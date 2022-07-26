@@ -17,20 +17,20 @@ function Transfer() {
     <>
       <NavbarDashboard titlePage='OPo - transfer'/>
 
-      <Container as="section" className="g-0">
+      <Container as="section" className="g-0 ">
         <Row className="pt-5 gx-0 gx-md-3">
           <SideBarMenu />
           <ContentLayout
             child={
               <>
                 <div className="d-flex flex-row justify-content-between">
-                  <span className="fw-bold fs-5">Search Receiver</span>
+                  <span className="fw-bold fs-5 color-text-2">Search Receiver</span>
                 </div>
-                <InputGroup className="search-input my-4">
+                <InputGroup className="search-input my-4 ">
                   <span className="icon-input">
                     <FiSearch size={24}/>
                   </span>
-                  <Form.Control type="text" className="ps-5 border-0 bg-grey-input rounded-3 py-3" placeholder="Search receiver here"/>
+                  <Form.Control type="text" className="ps-5 border-0 bg-grey-input rounded-3 py-3 color-text-6" placeholder="Search receiver here"/>
                 </InputGroup>
                 <div className="d-flex flex-column gap-5 py-4 overflow-auto h-75 pe-4">
                   <UserCard

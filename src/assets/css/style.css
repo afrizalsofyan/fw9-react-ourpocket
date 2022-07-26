@@ -5,8 +5,58 @@ body{
     margin: 0;
     font-family: 'Nunito Sans' !important;
     font-style: normal !important;
-    background: #c6ffff7e;
+    background: #EFFFFD;
 }
+.nav-link.not-act.active{
+    background-color: transparent !important;
+}
+.bg-color-1{
+    background-color: #42C2FF !important;
+}
+.bg-color-2{
+    background-color: #85F4FF !important;
+}
+.bg-color-3{
+    background-color: #B8FFF9 !important;
+}
+.bg-color-4{
+    background-color: #EFFFFD !important;
+}
+.color-text-1{
+    color: #42C2FF !important;
+}
+.color-text-2{
+    color: #0d3846 !important;
+}
+.color-text-3{
+    color: #B8FFF9 !important;
+}
+.color-text-4{
+    color: #EFFFFD !important;
+}
+.color-text-5{
+    color: #E93B81 !important;
+}
+.color-text-6{
+    color: #007c92 !important;
+}
+.color-text-on-bg{
+    color: #0d3846 !important;
+}
+.color-text-secondary.logo-style:hover{
+    color: #cf75b4 !important;
+}
+.btn-prim-1{
+    background-color: #009fbb !important;
+    border: 2px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+.btn-prim-1:hover{
+    background-color: #00d9ff !important;
+    border: 2px solid #FFFFFF !important;
+    color: #004b58 !important;
+}
+
 .bell-notification .menu-navbar-collapse .nav-link.active{
     color: #6379F4 !important;
 }
@@ -115,14 +165,14 @@ li.link-wrapper > a.active {
     font-weight: 800;
     font-size: 50px;
     line-height: 93px;
-    color: #0095af !important;
+    color: #513252 !important;
 }
 .fnt-header2{
     font-family: 'Nunito Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
-    color: #3A3D42;
+    color: #513252;
 }
 .fnt-paragraph{
     font-family: 'Nunito Sans';
@@ -139,14 +189,14 @@ li.link-wrapper > a.active {
     font-size: 16px;
     line-height: 31px;
     text-align: center;
-    color: #00505e;
+    color: #F9F7F7;
 }
 .fnt-desc2{
     font-family: 'Nunito Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    color: rgba(58, 61, 66, 0.9);
+    color: #513252 !important;
 }
 .fnt-bold{
     font-weight: bold;
@@ -260,18 +310,18 @@ li.link-wrapper > a.active {
     color: #FFFFFF;
 }
 .bg-blue{
-    background: #0192ac;
+    background: #066374;
     width: 100%;
 }
 .bg-white{
-    background-color: #FFFFFF;
+    background-color: #ffffff !important;
 }
 .bg-prmry{
-    background: #e2ffff73;
+    background: #F9F7F7;
     width: 100%;
 }
 .bg-scnd{
-    background: #5cffff6e;
+    background: #8adaff;
     width: 100%;
 }
 .bg-color-tranasparent{
@@ -288,10 +338,16 @@ li.link-wrapper > a.active {
 }
 
 .nav-link.not-act{
-    color: #3A3D42CC !important;
+    color: #0d3846 !important;
+}
+.nav-link.not-act:hover{
+    color: #08c7e9 !important;
 }
 .nav-link.active{
-    color: #6379F4 !important;
+    color: #0095af !important;
+}
+.nav-link.active:hover{
+    color: #6be0f5 !important;
 }
 /* background */
 
@@ -309,26 +365,27 @@ li.link-wrapper > a.active {
 }
 .bg-auth{
     background-image: url(../images/img/auth-mask.png);
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .bg-box-count{
     background-color: #473AD10F;
 }
 .bg-rounded-icon {
-    background-color: #8cffffc4;
-    color: #05adadfa;
+    background-color: #40DFEF;
+    color: #FFFBE7;
 }
 /* border */
 .border-blue{
     border: 2px solid #6379F4;
 }
 .border-new-color{
-    border: 2px solid #84ffff;
+    border: 2px solid #0d3846;
 }
 /* card */
 .card-1{
     /* width: 360px; */
-    background: #efffffc4;
+    background: #112D4E;
     border-radius: 25px;
     padding: 40px 20px;
 }
@@ -537,7 +594,7 @@ input::-webkit-inner-spin-button {
     border: 2px solid #6379f446 !important;
 }
 .num-mark::marker{
-    color: #6379F4 !important;
+    color: #0095af !important;
     font-weight: bold !important;
     
 }

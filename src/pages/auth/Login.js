@@ -59,9 +59,9 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
       <ButtonSubmit textButton={'Login'}/>
       {/* <ButtonAuth link={"#"} textButton={"login"} type={'submit'}/> */}
       <div className="text-center">
-        <span>
+        <span className="color-text-secondary">
           Don't have an account? Let's{" "}
-          <Link to="/auth/register" className="link-rm-line fw-bold">
+          <Link to="/auth/register" className="link-rm-line color-text-primary fw-bold">
             Sign Up
           </Link>
         </span>

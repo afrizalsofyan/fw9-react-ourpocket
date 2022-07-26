@@ -22,9 +22,9 @@ function NavbarDashboard({titlePage}) {
           <title>{titlePage!==null ? titlePage : 'OPo'}</title>
         </Helmet>
       </HelmetProvider>
-      <Navbar bg="white" expand="md" className='w-100'>
+      <Navbar expand="md" className='w-100 bg-color-2 shadow-md'>
           <Container>
-            <Navbar.Brand href="/home/dashboard" className="logo-txt-blue">
+            <Navbar.Brand href="/home/dashboard" className="color-text-2 fs-4 fw-bold">
               OurPocket
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -32,10 +32,10 @@ function NavbarDashboard({titlePage}) {
               <Nav className="ms-auto d-flex flex-column flex-sm-row gap-3 align-items-center bell-notification py-4">
                 <Link
                   to="/home/profile"
-                  className="d-flex d-sm-flex flex-column flex-sm-row gap-3 align-items-center"
+                  className="d-flex d-sm-flex flex-column flex-sm-row gap-3 align-items-center link-rm-line"
                 >
                   <Image src={UserPhoto} />
-                  <div className="d-flex flex-column">
+                  <div className="d-flex flex-column color-text-2">
                     <span className="fw-bold">Robert Chandler</span>
                     <span className="fw-light">+62 8139 3877 7946</span>
                   </div>
@@ -43,7 +43,7 @@ function NavbarDashboard({titlePage}) {
                 
                 <DropdownButton
                   align="end"
-                  title={<FiBell size={24} className="bg-grey-light icon-btn" />}
+                  title={<FiBell size={24} className="color-text-2 icon-btn" />}
                   id="dropdown-menu-align-end"
                   variant="none border-0"
                 >

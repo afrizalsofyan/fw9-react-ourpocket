@@ -16,14 +16,14 @@ function TopUp() {
             child={
               <>
                 <div>
-                  <span className="fw-bold">How To Top Up</span>
+                  <span className="fw-bold color-text-2 fs-4">How To Top Up</span>
                 </div>
                 <div>
                   <ol className="mv-marker">
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             Go to the nearest ATM or you can use E-Banking.
                           </span>
                         </li>
@@ -32,7 +32,7 @@ function TopUp() {
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             Type your security number on the ATM or E-Banking.
                           </span>
                         </li>
@@ -41,7 +41,7 @@ function TopUp() {
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             Select “Transfer” in the menu.
                           </span>
                         </li>
@@ -50,7 +50,7 @@ function TopUp() {
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             Type the virtual account number that we provide you
                             at the top.
                           </span>
@@ -60,7 +60,7 @@ function TopUp() {
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             Type the amount of the money you want to top up.
                           </span>
                         </li>
@@ -69,7 +69,7 @@ function TopUp() {
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             Read the summary details.
                           </span>
                         </li>
@@ -78,14 +78,14 @@ function TopUp() {
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">Press transfer / top up.</span>
+                          <span className="fnt-desc color-text-6">Press transfer / top up.</span>
                         </li>
                       </div>
                     </div>
                     <div className="card border-0 shadow-sm mt-4 ps-2">
                       <div className="card-body px-4 py-4">
                         <li className="num-mark">
-                          <span className="fnt-desc">
+                          <span className="fnt-desc color-text-6">
                             You can see your money in Zwallet within 3 hours.
                           </span>
                         </li>

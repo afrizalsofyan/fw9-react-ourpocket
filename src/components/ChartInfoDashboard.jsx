@@ -7,8 +7,8 @@ function ChartInfoDashboard() {
     return (
         <Col sm={12} md={6} className="mb-md-0">
             <div className="d-flex flex-column justify-content-between bg-white p-5 gap-4 rounded-5 h-100">
-                <div className="d-flex flex-column gap-3 gap-sm-0 flex-sm-row justify-content-between align-items-center text-center text-sm-start">
-                    <div className="d-flex fex-row gap-3 gap-sm-0 flex-sm-column">
+                <div className="d-flex flex-column gap-3 gap-sm-0 flex-sm-row justify-content-between align-items-center text-center text-sm-start color-text-primary">
+                    <div className="d-flex fex-row gap-3 gap-sm-0 flex-sm-column color-text-6">
                         <FiArrowDown
                             size={24}
                             className="color-green mx-auto mx-sm-0"
@@ -16,8 +16,8 @@ function ChartInfoDashboard() {
                         <span className="fs-6">Income</span>
                         <span className="fs-6">Rp2.120.000</span>
                     </div>
-                    <div className="d-flex flex-row gap-3 gap-sm-0 flex-sm-column">
-                        <FiArrowUp className="color-red mx-auto mx-sm-0" />
+                    <div className="d-flex flex-row gap-3 gap-sm-0 flex-sm-column color-text-6">
+                        <FiArrowUp size={24} className="color-red mx-auto mx-sm-0" />
                         <span className="fs-6">Expense</span>
                         <span className="fs-6">Rp1.560.000</span>
                     </div>

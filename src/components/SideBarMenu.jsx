@@ -71,7 +71,7 @@ function SideBarMenu() {
     const {id} = useParams();
     return (
         <Col sm={12} lg={3} as="aside" className="mb-5 mb-lg-0 d-none d-sm-flex">
-            <div className="w-100 d-flex flex-column justify-content-between bg-white ps-3 pe-5 py-5 rounded-5 shadow-sm">
+            <div className="w-100 d-flex flex-column justify-content-between bg-color-3 ps-3 pe-5 py-5 rounded-5 shadow-sm">
                 <ul className="d-flex flex-column nav nav-tabs border-0 pe-5 gap-4">
                     <li className="nav-item">
                         <Link

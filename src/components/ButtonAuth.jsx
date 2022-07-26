@@ -21,7 +21,7 @@ export const ButtonMenuProfile = ({menuName, suffixIcon, to}) => {
 export const ButtonSubmit = ({textButton}) => {
   return(
     <div className="d-grid">
-      <Button className="btn btn-primary btn-lg fw-bold text-white btn-cstm color-blue-pm" type="submit">{textButton}</Button>
+      <Button className="btn btn-lg fw-bold btn-prim-1" type="submit">{textButton}</Button>
     </div>
   )
 }
@@ -29,7 +29,7 @@ export const ButtonSubmit = ({textButton}) => {
 function ButtonAuth({ textButton, link, type }) {
   return (
     <div className="d-grid">
-      <Link to={link} className="btn btn-primary btn-lg fw-bold text-white btn-cstm color-blue-pm" type={type}>{textButton}</Link>
+      <Link to={link} className="btn btn-lg fw-bold btn-prim-1" type={type}>{textButton}</Link>
     </div>
   )
 }
