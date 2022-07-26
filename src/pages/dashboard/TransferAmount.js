@@ -22,7 +22,7 @@ function TransferAmount() {
               <>
                 <div className="d-flex flex-column gap-4">
                   <div className="d-flex flex-row justify-content-between">
-                    <span className="fw-bold fs-5">Transfer Money</span>
+                    <span className="fw-bold fs-5 color-text-2">Transfer Money</span>
                   </div>
                   <UserCard
                     url={"/home/transfer/3"}
@@ -31,7 +31,7 @@ function TransferAmount() {
                     phone={"+62 813-8492-9994"}
                   />
                   <div className="text-desc-layout">
-                    <span className="bg-grey-light">
+                    <span className="color-text-2">
                       Type the amount you want to transfer and then press
                       continue to the next steps.
                     </span>
@@ -44,14 +44,14 @@ function TransferAmount() {
                             <Form.Control type="number"  placeholder="0.00" className="form-control border-0 text-center fs-1 amount-input bg-transparent fw-bold"/>
                           </InputGroup>
                         </Form.Group>
-                        <div className="d-flex flex-column flex-sm-row align-items-center">
+                        <div className="d-flex flex-column flex-sm-row align-items-center color-text-6">
                           <span className="fs-6 fw-bold">Rp. 120.000</span>
                           <span className="fs-6 fw-bold"> Available</span>
                         </div>
                         <Form.Group className="form-group mt-2 w-100 border-5">
                           <InputGroup className="search-input">
-                            <span className="icon-input"><FiEdit2 size={24} className='icon-grey-light'/></span>
-                            <Form.Control type="text"  className="ps-5 py-3 notes-custom" placeholder="Add some notes"/>
+                            <span className="icon-input"><FiEdit2 size={24} className='color-text-6'/></span>
+                            <Form.Control type="text"  className="ps-5 py-3 notes-custom color-text-6" placeholder="Add some notes"/>
                           </InputGroup>
                         </Form.Group>
                       </div>
@@ -59,7 +59,7 @@ function TransferAmount() {
                     <div className="d-flex flex-row justify-content-end mt-5 me-5">
                       <Link
                         to={`/home/transfer/${id}/tranferConfirmation`}
-                        className="btn btn-primary px-4 py-2 color-blue-pm btn-cstm"
+                        className="btn px-4 py-2 btn-md btn-prim-1"
                       >
                         Continue
                       </Link>

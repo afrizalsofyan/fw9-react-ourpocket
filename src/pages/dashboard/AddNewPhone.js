@@ -17,15 +17,15 @@ function AddNewPhone() {
                 <InputField
                   icon={
                     <>
-                      <FiPhone size={24} className="txt-color-blue" />
-                      <span className="ms-2 fw-bold">+62</span>
+                      <FiPhone size={24} className="color-text-6" />
+                      <span className="ms-2 fw-bold color-text-6">+62</span>
                     </>
                   }
                   placeholder="Enter your phone number"
                   type="number"
                 />
                 <div className='d-grid px-5 my-5'>
-                <Link to="/home/profile" className="btn border-0 btn-primary px-4 py-2 color-blue-pm btn-cstm">
+                <Link to="/home/profile" className="btn border-0 px-4 py-2 btn-prim-1">
                     <span>Add Phone Number</span>
                 </Link>
                 </div>

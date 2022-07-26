@@ -24,7 +24,7 @@ function TransferConfirmation() {
           <ContentLayout
             child={
               <>
-                <div className="d-flex flex-column gap-5">
+                <div className="d-flex flex-column gap-5 color-text-2">
                     <div>
                     <span className="fs-5 fw-bold">Transfer To</span>
                     </div>
@@ -37,13 +37,13 @@ function TransferConfirmation() {
                     />
                     {/* Title Detail */}
                     <div>
-                    <span className="fw-semibold">Details</span>
+                    <span className="fw-bold">Details</span>
                         {/* List */}
                         <DetailTransferList/>
                         {/* Button Modal */}
                         <div className='w-25 ms-auto mt-5 me-auto me-sm-0 d-grid'>
                             <Button
-                            className="btn btn-primary color-blue-pm btn-cstm py-2"
+                            className="btn btn-prim-1 py-2"
                             onClick={openModal}
                             >
                             Continue

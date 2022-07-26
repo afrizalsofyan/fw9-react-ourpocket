@@ -12,7 +12,7 @@ import { ButtonMenuProfile } from "../../components/ButtonAuth";
 export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
   return (
     <>
-      <div className="d-flex flex-column align-items-center gap-2">
+      <div className="d-flex flex-column align-items-center gap-3">
         <img className="img-fluid" src={imgUrl} alt={alt} />
         <Link to={to} className="link-rm-line link-text bg-grey-light">
           <FiEdit2 />
@@ -20,8 +20,8 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
         </Link>
       </div>
       <div className="d-flex flex-column align-items-center">
-        <span className="fw-semibold fs-5">{name}</span>
-        <span className="fw-light bg-grey-light">{phone}</span>
+        <span className="fw-semibold fs-5 color-text-6">{name}</span>
+        <span className="fw-light color-text-6">{phone}</span>
       </div>
     </>
   );

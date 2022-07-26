@@ -35,7 +35,7 @@ function SuccessTransfer() {
                     </div>
                     {/* User Card */}
                     <div className='d-flex flex-column gap 3 ps-2 gap-3'>
-                      <span className="fs-6 fw-bold">Transfer To</span>
+                      <span className="fs-6 fw-bold color-text-2">Transfer To</span>
                       <UserCard
                       url={"/home/transfer/3"}
                       img_path={Img3}
@@ -45,13 +45,13 @@ function SuccessTransfer() {
                     </div>
                     <div className="d-flex flex-column flex-md-row justify-content-end mt-5 me-5 gap-3 w-100">
                         <Button type="submit" className="btn btn-primary px-4 py-2 btn-download-pdf btn-cstm">
-                            <FiShare2 size={18} className="text-dark" />
+                            <FiShare2 size={18} className="color-text-2" />
                         </Button>
-                        <Button type="submit" className="btn btn-primary px-4 py-2 btn-download-pdf btn-cstm">
-                        <FiDownload size={18} className="txt-color-blue me-3"/>
-                            <span className="txt-color-blue fw-bold">Download PDF</span>
+                        <Button type="submit" className="btn btn-primary px-4 py-2 btn-download-pdf btn-cstm color-text-2">
+                        <FiDownload size={18} className=" me-3"/>
+                            <span className="fw-bold ">Download PDF</span>
                         </Button>
-                        <Link to="/home/dashboard" className="btn btn-primary px-4 py-2 color-blue-pm btn-cstm fw-bold">Back to Home</Link>
+                        <Link to="/home/dashboard" className="btn px-4 py-2 btn-prim-1 fw-bold">Back to Home</Link>
                     </div>
                 </div>
               </>

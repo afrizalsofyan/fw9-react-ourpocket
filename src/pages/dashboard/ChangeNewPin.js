@@ -20,7 +20,7 @@ function ChangeNewPin() {
               <InputPin />
             </div>
           <div className='d-grid px-5 mb-5 w-75 mx-auto'>
-              <Link to="../../details" className="btn border-0 btn-primary px-4 py-2 color-blue-pm btn-cstm">
+              <Link to="../../details" className="btn border-0 px-4 py-2 btn-prim-1">
                   <span>Confirm</span>
               </Link>
           </div>
