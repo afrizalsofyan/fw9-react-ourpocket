@@ -76,7 +76,7 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
 function Register() {
   const redirect = useNavigate()
   const submitRegister = () => {
-    redirect('/auth/createPin');
+    redirect('/auth/create-pin');
   }
   return (
     <>

@@ -30,32 +30,32 @@ function App() {
       <Route path='/auth'>
         <Route path='login' element={<Login/>}></Route>
         <Route path='register' element={<Register/>}></Route>
-        <Route path='forgetPassword' element={<ForgetPassword/>}></Route>
-        <Route path='addNewPassword' element={<NewPassword/>}></Route>
-        <Route path='createPin' element={<CreatePin/>}></Route>
-        <Route path='createPinSuccess' element={<CreatePinSuccess/>}></Route>
+        <Route path='forget-password' element={<ForgetPassword/>}></Route>
+        <Route path='add-new-password' element={<NewPassword/>}></Route>
+        <Route path='create-pin' element={<CreatePin/>}></Route>
+        <Route path='create-pin-success' element={<CreatePinSuccess/>}></Route>
       </Route>
       <Route path='/home'>
         <Route path='dashboard' element={<Dashboard/>}></Route>
         <Route path='history' element={<History/>}></Route>
         <Route path='transfer' element={<Transfer/>}></Route>
         <Route path='transfer/:id' element={<TransferAmount/>}></Route>
-        <Route path='transfer/:id/tranferConfirmation' element={<TransferConfirmation/>}></Route>
-        <Route path='transfer/:id/tranferConfirmation/success' element={<SuccessTransfer />}></Route>
-        <Route path='transfer/:id/tranferConfirmation/failed' element={<FailedTransfer />}></Route>
+        <Route path='transfer/:id/tranfer-confirmation' element={<TransferConfirmation/>}></Route>
+        <Route path='transfer/:id/tranfer-confirmation/success' element={<SuccessTransfer />}></Route>
+        <Route path='transfer/:id/tranfer-confirmation/failed' element={<FailedTransfer />}></Route>
         <Route path='topup' element={<TopUp/>}></Route>
         <Route path='profile'>
           <Route index element={<Profile/>}/>
-          <Route path='changePassword' element={<ChangePassword/>}></Route>
-          <Route path='changePin'>
+          <Route path='change-password' element={<ChangePassword/>}></Route>
+          <Route path='change-pin'>
             <Route index element={<ChangePin/>}></Route>
-            <Route path='newPin' element={<ChangeNewPin/>}></Route>
+            <Route path='new-pin' element={<ChangeNewPin/>}></Route>
           </Route>
           <Route path='details' >
             <Route index element={<DetailProfile/>}/>
-            <Route path='managePhone' >
+            <Route path='manage-phone' >
               <Route index element={<ManagePhone />}/>
-              <Route path='addPhone' element={<AddNewPhone />}/>
+              <Route path='add-phone' element={<AddNewPhone />}/>
             </Route>
           </Route>
         </Route>

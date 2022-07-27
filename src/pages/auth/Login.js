@@ -51,7 +51,7 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
         }
       />
       <div className="text-end my-3">
-        <Link to="/auth/forgetPassword" className="link-secondary link-rm-line">
+        <Link to="/auth/forget-password" className="link-secondary link-rm-line">
           Forgot password?
         </Link>
       </div>

@@ -4,7 +4,7 @@ import { FiLock, FiEyeOff } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
-import ButtonAuth, { ButtonSubmit } from "../../components/ButtonAuth";
+import { ButtonSubmit } from "../../components/ButtonAuth";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import * as Yup from "yup";
 import { Formik } from "formik";

@@ -41,7 +41,7 @@ export const AuthForgetPass = ({ errors, handleSubmit, handleChange }) => {
 function ForgetPassword() {
   const redirect = useNavigate();
   const redirectPage = () => {
-    redirect('/auth/addNewPassword')
+    redirect('/auth/add-new-password')
   }
   return (
     <>

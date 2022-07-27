@@ -129,7 +129,7 @@ function CreatePin() {
   const submitPin = (value) => {
     const joinPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6;
     console.log(joinPin);
-    redirect("/auth/createPinSuccess")
+    redirect("/auth/create-pin-success")
   }
   return (
     <>
