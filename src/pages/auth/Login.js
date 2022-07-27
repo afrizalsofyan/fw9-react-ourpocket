@@ -73,15 +73,17 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
 function Login() {
   const redirect = useNavigate()
   const [values, setValues] = React.useState({email: 'risna@mail.com', password: '1503'})
-  const testLogin = (value) => {
-    
-    if(value.email === values.email && value.password === values.password){
-      redirect('/home/dashboard')
-      // setLogin(true)
-    } else {
-      window.alert('login failed')
-      // setLogin(false)
-    }
+  const testLogin = () => {
+    localStorage.setItem("auth", "randomToken")
+    redirect('/home/dashboard')
+    // if(value.email === values.email && value.password === values.password){
+    //   localStorage.setItem("auth", "randomTokenData")
+    //   redirect('/home/dashboard')
+    //   // setLogin(true)
+    // } else {
+    //   window.alert('login failed')
+    //   // setLogin(false)
+    // }
   }
   console.log(values);
   return (

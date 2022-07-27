@@ -69,6 +69,9 @@ export const MenuNavbar = () => {
 function SideBarMenu() {
     const pathUrl = useLocation().pathname;
     const {id} = useParams();
+    const onLogout = () => {
+        localStorage.removeItem("auth")
+    }
     return (
         <Col sm={12} lg={3} as="aside" className="mb-5 mb-lg-0 d-none d-sm-flex">
             <div className="w-100 d-flex flex-column justify-content-between bg-white ps-3 pe-5 py-5 rounded-5 shadow-sm">
@@ -118,6 +121,7 @@ function SideBarMenu() {
                     <Link
                         to="/auth/login"
                         className='nav-link not-act border-0 d-flex flex-row gap-4 align-items-center'
+                        onClick={onLogout}
                     >
                         <FiLogOut size={24} />
                         <span className="fs-5">Log out</span>

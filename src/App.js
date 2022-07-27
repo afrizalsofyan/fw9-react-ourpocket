@@ -1,5 +1,6 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
+import PrivateRoute, { PrivateAuthRoute } from './components/PrivateRoute'
 import CreatePin from './pages/auth/CreatePin'
 import CreatePinSuccess from './pages/auth/CreatePinSuccess'
 import ForgetPassword from './pages/auth/ForgetPassword'
@@ -26,9 +27,9 @@ import LandingPage from './pages/LandingPage'
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<LandingPage/>}></Route>
+      <Route path='/' element={<PrivateAuthRoute><LandingPage/></PrivateAuthRoute>}></Route>
       <Route path='/auth'>
-        <Route path='login' element={<Login/>}></Route>
+        <Route path='login' element={<PrivateAuthRoute><Login/></PrivateAuthRoute>}></Route>
         <Route path='register' element={<Register/>}></Route>
         <Route path='forget-password' element={<ForgetPassword/>}></Route>
         <Route path='add-new-password' element={<NewPassword/>}></Route>
@@ -36,9 +37,9 @@ function App() {
         <Route path='create-pin-success' element={<CreatePinSuccess/>}></Route>
       </Route>
       <Route path='/home'>
-        <Route path='dashboard' element={<Dashboard/>}></Route>
-        <Route path='history' element={<History/>}></Route>
-        <Route path='transfer' element={<Transfer/>}></Route>
+        <Route path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
+        <Route path='history' element={<PrivateRoute><History/></PrivateRoute>}></Route>
+        <Route path='transfer' element={<PrivateRoute><Transfer/></PrivateRoute>}></Route>
         <Route path='transfer/:id' element={<TransferAmount/>}></Route>
         <Route path='transfer/:id/tranfer-confirmation' element={<TransferConfirmation/>}></Route>
         <Route path='transfer/:id/tranfer-confirmation/success' element={<SuccessTransfer />}></Route>
