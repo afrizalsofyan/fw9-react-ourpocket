@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
-import ButtonAuth, { ButtonSubmit } from "../../components/ButtonAuth";
+import { ButtonSubmit } from "../../components/ButtonAuth";
 import { InputPin } from "../../components/InputField";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
