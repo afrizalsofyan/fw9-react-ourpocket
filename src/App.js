@@ -41,9 +41,9 @@ function App() {
         <Route path='history' element={<PrivateRoute><History/></PrivateRoute>}></Route>
         <Route path='transfer' element={<PrivateRoute><Transfer/></PrivateRoute>}></Route>
         <Route path='transfer/:id' element={<TransferAmount/>}></Route>
-        <Route path='transfer/:id/tranfer-confirmation' element={<TransferConfirmation/>}></Route>
-        <Route path='transfer/:id/tranfer-confirmation/success' element={<SuccessTransfer />}></Route>
-        <Route path='transfer/:id/tranfer-confirmation/failed' element={<FailedTransfer />}></Route>
+        <Route path='transfer/:id/transfer-confirmation' element={<TransferConfirmation/>}></Route>
+        <Route path='transfer/:id/transfer-confirmation/success' element={<SuccessTransfer />}></Route>
+        <Route path='transfer/:id/transfer-confirmation/failed' element={<FailedTransfer />}></Route>
         <Route path='topup' element={<TopUp/>}></Route>
         <Route path='profile'>
           <Route index element={<Profile/>}/>

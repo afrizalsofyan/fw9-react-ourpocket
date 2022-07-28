@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Form } from "react-bootstrap";
-import { FiLock, FiEyeOff } from "react-icons/fi";
+import { FiLock, FiEyeOff, FiEye } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
@@ -12,14 +12,24 @@ import { useNavigate } from "react-router-dom";
 
 const newPassSheme = Yup.object().shape({
   password: Yup.string().min(4).required(),
-  confirmPassword: Yup.string().min(4).required()
+  confirmPassword: Yup.string().min(4).required(),
 });
 
-export const NewPass = ({errors, handleSubmit, handleChange, matchedFeedback}) => {
+export const NewPass = ({
+  errors,
+  handleSubmit,
+  handleChange,
+  matchedFeedback,
+}) => {
   const [showPass, setShowPass] = React.useState(false);
   const [showConfirmPass, setShowConfirmPass] = React.useState(false);
   return (
-     <Form className="d-flex flex-column gap-5" noValidate onSubmit={handleSubmit} onChange={handleChange}>
+    <Form
+      className="d-flex flex-column gap-5"
+      noValidate
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+    >
       <InputField
         icon={<FiLock size={24} className="bg-grey-light" />}
         name="password"
@@ -27,11 +37,19 @@ export const NewPass = ({errors, handleSubmit, handleChange, matchedFeedback}) =
         placeholder={"Create new password"}
         isInvalid={!!errors.password}
         suffixIcon={
-          <FiEyeOff
-            size={24}
-            className="bg-grey-light"
-            onClick={() => setShowPass(!showPass)}
-          />
+          showPass ? (
+            <FiEyeOff
+              size={24}
+              className="bg-grey-light"
+              onClick={() => setShowPass(!showPass)}
+            />
+          ) : (
+            <FiEye
+              size={24}
+              className="bg-grey-light"
+              onClick={() => setShowPass(!showPass)}
+            />
+          )
         }
         validation={
           <Form.Control.Feedback type="invalid">
@@ -46,11 +64,19 @@ export const NewPass = ({errors, handleSubmit, handleChange, matchedFeedback}) =
         placeholder={"Confirm new password"}
         isInvalid={!!errors.confirmPassword}
         suffixIcon={
-          <FiEyeOff
-            size={24}
-            className="bg-grey-light"
-            onClick={() => setShowConfirmPass(!showConfirmPass)}
-          />
+          showConfirmPass ? (
+            <FiEyeOff
+              size={24}
+              className="bg-grey-light"
+              onClick={() => setShowConfirmPass(!showConfirmPass)}
+            />
+          ) : (
+            <FiEye
+              size={24}
+              className="bg-grey-light"
+              onClick={() => setShowConfirmPass(!showConfirmPass)}
+            />
+          )
         }
         validation={
           <Form.Control.Feedback type="invalid">
@@ -58,20 +84,20 @@ export const NewPass = ({errors, handleSubmit, handleChange, matchedFeedback}) =
           </Form.Control.Feedback>
         }
       />
-      <ButtonSubmit textButton={'Reset Password'}/>
+      <ButtonSubmit textButton={"Reset Password"} />
     </Form>
   );
 };
 
 function NewPassword() {
-  const redirect = useNavigate()
+  const redirect = useNavigate();
   const submitNewPass = (values) => {
-    if(values.password === values.confirmPassword){
-      redirect('/auth/login')
+    if (values.password === values.confirmPassword) {
+      redirect("/auth/login");
     } else {
-      window.alert('Confirm password incorrect')
+      window.alert("Confirm password incorrect");
     }
-  }
+  };
   return (
     <>
       <HelmetProvider>

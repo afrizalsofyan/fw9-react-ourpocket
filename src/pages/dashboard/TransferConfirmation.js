@@ -11,6 +11,7 @@ import DetailTransferList from "../../components/DetailTransferList";
 import ModalTransferConfirmation from "../../components/ModalTransferConfirmation";
 
 function TransferConfirmation() {
+  
   const [showModal, setShowModal] = React.useState(false);
   const closeModal = () => setShowModal(false);
   const openModal = () => setShowModal(true);

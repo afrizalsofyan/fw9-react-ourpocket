@@ -9,55 +9,48 @@ import { ButtonSubmit } from "../../components/ButtonAuth";
 
 const changePinSchema = Yup.object().shape({
   pin: Yup.array().of(
-    Yup.string().matches(/[0-9]{1}/, "Must number value").required('Pin is required'),
-    // Yup.object().shape({
-    //   0: 
-    //   2: Yup.string().min(1).max(1).matches(/[0-9]{1}/, "Must number value").required(),
-    //   3: Yup.string().min(1).max(1).matches(/[0-9]{1}/, "Must number value").required(),
-    //   4: Yup.string().min(1).max(1).matches(/[0-9]{1}/, "Must number value").required(),
-    //   5: Yup.string().min(1).max(1).matches(/[0-9]{1}/, "Must number value").required(),
-    // })
-  )
+    Yup.string()
+      .matches(/[0-9]{1}/, "Must number value")
+      .required("Pin is required")
+  ),
 });
 
-const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
+const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
   return (
-    <Form noValidate onSubmit={handleSubmit} onChange={handleChange}>
-      <div className="d-flex flex-row pin-wrapper gap-2 gap-md-2 gap-lg-4 justify-content-center my-5">
-      <InputPin  
-                name={`pin[${0}]`}
-                type="text"
-                // isInvalid={!!errors.pin}
-              />
-              <InputPin
-                name={`pin[${1}]`}
-                type="text"
-                // isInvalid={!!errors.pin}
-              />
-              <InputPin
-                name={`pin[${2}]`}
-                type="text"
-                // isInvalid={!!errors.pin}
-              />
-              <InputPin
-                name={`pin[${3}]`}
-                type="text"
-                // isInvalid={!!errors.pin}
-              />
-              <InputPin
-                name={`pin[${4}]`}
-                type="text"
-                // isInvalid={!!errors.pin}
-              />
-              <InputPin
-                name={`pin[${5}]`}
-                type="text"
-                // isInvalid={!!errors.pin}
-              />
+    <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column gap-4'>
+      <div className="d-flex flex-row pin-wrapper gap-2 gap-md-2 gap-lg-4 justify-content-center">
+        <InputPin
+          name={`pin[${0}]`}
+          type="text"
+          // isInvalid={!!errors.pin}
+        />
+        <InputPin
+          name={`pin[${1}]`}
+          type="text"
+          // isInvalid={!!errors.pin}
+        />
+        <InputPin
+          name={`pin[${2}]`}
+          type="text"
+          // isInvalid={!!errors.pin}
+        />
+        <InputPin
+          name={`pin[${3}]`}
+          type="text"
+          // isInvalid={!!errors.pin}
+        />
+        <InputPin
+          name={`pin[${4}]`}
+          type="text"
+          // isInvalid={!!errors.pin}
+        />
+        <InputPin
+          name={`pin[${5}]`}
+          type="text"
+          // isInvalid={!!errors.pin}
+        />
       </div>
-      <span className="fs-1 py-5">
-        {errors.pin}
-      </span>
+      <span className="fs-6 text-danger">{errors.pin}</span>
       <ButtonSubmit textButton="Confirm" />
       {/* <div className="d-grid px-5 mb-5 w-75 mx-auto">
               <Link
@@ -72,12 +65,12 @@ const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
 };
 
 function ChangePin() {
-  const redirect = useNavigate()
+  const redirect = useNavigate();
   const onSubmitPin = (val) => {
-    const finalPin = val.pin.join('')
-    console.log(finalPin)
-    redirect('new-pin')
-  }
+    const finalPin = val.pin.join("");
+    console.log(finalPin);
+    redirect("new-pin");
+  };
   return (
     <>
       <ProfileLayout
@@ -88,9 +81,8 @@ function ChangePin() {
             <Formik
               onSubmit={onSubmitPin}
               initialValues={{
-                pin: [''],
+                pin: [""],
               }}
-              
               validationSchema={changePinSchema}
             >
               {(props) => <ChangePinForm {...props} />}

@@ -1,20 +1,20 @@
 import React from "react";
 import { ProfileLayout } from "../../components/ContentLayout";
 import { useNavigate } from "react-router-dom";
-import { FiEyeOff, FiLock } from "react-icons/fi";
+import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import { Form } from "react-bootstrap";
 import { Formik } from "formik";
-import * as Yup from "yup"
+import * as Yup from "yup";
 import { ButtonSubmit } from "../../components/ButtonAuth";
 
 const changePasswordSchema = Yup.object().shape({
   currentPass: Yup.string().min(4).required(),
   newPass: Yup.string().min(4).required(),
-  confirmPass: Yup.string().min(4).required()
-})
+  confirmPass: Yup.string().min(4).required(),
+});
 
-export const ChangePasswordForm = ({errors, handleSubmit, handleChange}) => {
+export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
   const [showPass, setShowPass] = React.useState(false);
   const [showNewPass, setShowNewPass] = React.useState(false);
   const [showConfirmPass, setShowConfirmPass] = React.useState(false);
@@ -28,11 +28,19 @@ export const ChangePasswordForm = ({errors, handleSubmit, handleChange}) => {
             type={showPass ? "text" : "password"}
             placeholder={"Current password"}
             suffixIcon={
-              <FiEyeOff
-                size={24}
-                className="color-text-6"
-                onClick={() => setShowPass(!showPass)}
-              />
+              showPass ? (
+                <FiEyeOff
+                  size={24}
+                  className="bg-grey-light"
+                  onClick={() => setShowPass(!showPass)}
+                />
+              ) : (
+                <FiEye
+                  size={24}
+                  className="bg-grey-light"
+                  onClick={() => setShowPass(!showPass)}
+                />
+              )
             }
             isInvalid={!!errors.currentPass}
             validation={
@@ -47,11 +55,19 @@ export const ChangePasswordForm = ({errors, handleSubmit, handleChange}) => {
             type={showNewPass ? "text" : "password"}
             placeholder={"New password"}
             suffixIcon={
-              <FiEyeOff
-                size={24}
-                className="color-text-6"
-                onClick={() => setShowNewPass(!showNewPass)}
-              />
+              showNewPass ? (
+                <FiEyeOff
+                  size={24}
+                  className="bg-grey-light"
+                  onClick={() => setShowNewPass(!showNewPass)}
+                />
+              ) : (
+                <FiEye
+                  size={24}
+                  className="bg-grey-light"
+                  onClick={() => setShowNewPass(!showNewPass)}
+                />
+              )
             }
             isInvalid={!!errors.newPass}
             validation={
@@ -66,11 +82,19 @@ export const ChangePasswordForm = ({errors, handleSubmit, handleChange}) => {
             type={showConfirmPass ? "text" : "password"}
             placeholder={"Repeat new password"}
             suffixIcon={
-              <FiEyeOff
-                size={24}
-                className="color-text-6"
-                onClick={() => setShowConfirmPass(!showConfirmPass)}
-              />
+              showConfirmPass ? (
+                <FiEyeOff
+                  size={24}
+                  className="bg-grey-light"
+                  onClick={() => setShowConfirmPass(!showConfirmPass)}
+                />
+              ) : (
+                <FiEye
+                  size={24}
+                  className="bg-grey-light"
+                  onClick={() => setShowConfirmPass(!showConfirmPass)}
+                />
+              )
             }
             isInvalid={!!errors.confirmPass}
             validation={
@@ -82,7 +106,7 @@ export const ChangePasswordForm = ({errors, handleSubmit, handleChange}) => {
         </div>
       </div>
       <div className="d-grid px-5 my-5">
-        <ButtonSubmit textButton="Add Phone Number" buttonType={"sm"}/>
+        <ButtonSubmit textButton="Add Phone Number" buttonType={"sm"} />
       </div>
       {/* <div className="d-grid px-5 my-5">
         <Link to="../details" className="btn border-0 px-4 py-2 btn-prim-1">
@@ -94,14 +118,14 @@ export const ChangePasswordForm = ({errors, handleSubmit, handleChange}) => {
 };
 
 function ChangePassword() {
-  const redirect = useNavigate()
+  const redirect = useNavigate();
   const onSubmitPassword = (val) => {
-    if(val.newPass !== val.confirmPass) {
-      window.alert("Repeat password is incorrect")
+    if (val.newPass !== val.confirmPass) {
+      window.alert("Repeat password is incorrect");
     } else {
-      redirect('../details')
+      redirect("../details");
     }
-  }
+  };
   return (
     <>
       <ProfileLayout

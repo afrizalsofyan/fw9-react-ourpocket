@@ -13,7 +13,7 @@
             "id": 131,
             "time_transaction": "2022-07-12T14:04:02.000Z",
             "notes": "beli minum",
-            "type_name": 14,
+            "type_name": "transfer",
             "recipient_name": "Justin Kol",
             "sender_name": "Holand Cree",
             "amount": 100000,

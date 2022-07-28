@@ -62,14 +62,6 @@ function AddNewPhone() {
                 >
                   {(props) => <PhoneForm {...props} />}
                 </Formik>
-                {/* <div className="d-grid px-5 my-5">
-                  <Link
-                    to="/home/profile"
-                    className="btn border-0 px-4 py-2 btn-prim-1"
-                  >
-                    <span>Add Phone Number</span>
-                  </Link>
-                </div> */}
               </div>
             </div>
           </>

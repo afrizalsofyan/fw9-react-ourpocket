@@ -23,8 +23,8 @@ const changePinSchema = Yup.object().shape({
 
 const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
   return (
-    <Form noValidate onSubmit={handleSubmit} onChange={handleChange}>
-      <div className="d-flex flex-row pin-wrapper gap-2 gap-md-2 gap-lg-4 justify-content-center my-5">
+    <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column gap-4'>
+      <div className="d-flex flex-row pin-wrapper gap-2 gap-md-2 gap-lg-4 justify-content-center">
       <InputPin  
                 name={`pin[${0}]`}
                 type="text"
@@ -56,7 +56,7 @@ const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
                 // isInvalid={!!errors.pin}
               />
       </div>
-      <span className="fs-1 py-5">
+      <span className="fs-6 text-danger">
         {errors.pin}
       </span>
       <ButtonSubmit textButton="Confirm" />

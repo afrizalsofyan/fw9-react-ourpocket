@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Form } from "react-bootstrap";
-import { FiMail, FiLock, FiEyeOff, FiUser } from "react-icons/fi";
+import { FiMail, FiLock, FiEyeOff, FiUser, FiEye } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
@@ -56,11 +56,19 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
         placeholder="Enter your password"
         isInvalid={!!errors.password}
         suffixIcon={
-          <FiEyeOff
-            size={24}
-            className="bg-grey-light"
-            onClick={() => setShowPass(!showPass)}
-          />
+          showPass ? (
+            <FiEyeOff
+              size={24}
+              className="bg-grey-light"
+              onClick={() => setShowPass(!showPass)}
+            />
+          ) : (
+            <FiEye
+              size={24}
+              className="bg-grey-light"
+              onClick={() => setShowPass(!showPass)}
+            />
+          )
         }
         validation={
           <Form.Control.Feedback type="invalid">
@@ -68,16 +76,16 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
           </Form.Control.Feedback>
         }
       />
-      <ButtonSubmit textButton="Sign Up"/>
+      <ButtonSubmit textButton="Sign Up" />
     </Form>
   );
 };
 
 function Register() {
-  const redirect = useNavigate()
+  const redirect = useNavigate();
   const submitRegister = () => {
-    redirect('/auth/create-pin');
-  }
+    redirect("/auth/create-pin");
+  };
   return (
     <>
       <HelmetProvider>
@@ -101,14 +109,21 @@ function Register() {
                 "Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!"
               }
             />
-            <Formik onSubmit={submitRegister} initialValues={{username: '', email: '', password: ''}} validationSchema={registerScheme}>
-              {(props)=><AuthRegister {...props}/>}
+            <Formik
+              onSubmit={submitRegister}
+              initialValues={{ username: "", email: "", password: "" }}
+              validationSchema={registerScheme}
+            >
+              {(props) => <AuthRegister {...props} />}
             </Formik>
           </div>
           <div className="text-center">
-            <span> 
+            <span>
               Already have an account? Let's{" "}
-              <Link to="/auth/login" className="link-rm-line fw-bold color-text-primary">
+              <Link
+                to="/auth/login"
+                className="link-rm-line fw-bold color-text-primary"
+              >
                 Login
               </Link>
             </span>

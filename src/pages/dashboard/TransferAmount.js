@@ -11,6 +11,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { ButtonSubmit } from "../../components/ButtonAuth";
+import { useDispatch } from "react-redux/es/exports";
+import { addAmount, addNote } from "../../redux/reducers/input";
 
 const amountSchema = Yup.object().shape({
   amount: Yup.number().typeError("Field must number!!!").min(10000).required(),
@@ -59,9 +61,17 @@ export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
 function TransferAmount() {
   const { id } = useParams();
   const redirect = useNavigate()
+  const dispatch = useDispatch()
   const onSubmitAmountNote = (val) => {
-    if(val.amount){
-      redirect(`/home/transfer/${id}/tranfer-Confirmation`)
+    console.log(val.note)
+    
+    if(val.note === ''){
+      val.note = '-'
+      dispatch(addAmount(val.amount))
+      redirect(`/home/transfer/${id}/transfer-confirmation`)
+    } else {
+      dispatch(addNote(val.note))
+      redirect(`/home/transfer/${id}/transfer-confirmation`)
     }
   };
   return (

@@ -20,8 +20,8 @@ export const CardHistoryDashboard = ({imgUrl, name, type, amount}) => {
               </div>
           </div>
           <div>
-              <span className="fw-bold fs-5 color-green">
-                  {amount}
+              <span className={`fw-bold fs-5 ${type === 'transfer' || type === 'subcription' ? 'color-red' : 'color-green'}`}>
+                  {type === 'transfer' || type === 'subcription' ? `- ${amount}` : `+ ${amount}`}
               </span>
           </div>
       </div>

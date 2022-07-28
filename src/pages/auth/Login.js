@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Form, Alert } from "react-bootstrap";
-import { FiMail, FiLock, FiEyeOff } from "react-icons/fi";
+import { FiMail, FiLock, FiEyeOff, FiEye } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
@@ -38,11 +38,15 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
         placeholder={"Enter your password"}
         isInvalid={!!errors.password}
         suffixIcon={
-          <FiEyeOff
+          showPass ? <FiEyeOff
             size={24}
             className="bg-grey-light"
             onClick={() => setShowPass(!showPass)}
-          />
+          /> : <FiEye
+          size={24}
+          className="bg-grey-light"
+          onClick={() => setShowPass(!showPass)}
+        />
         }
         validation={
           <Form.Control.Feedback type="invalid">
