@@ -167,7 +167,7 @@ function CreatePin() {
               validationSchema={createPinSchema}
             >
               {(props) => <CreatePinForm {...props}/>}
-            </Formik>
+            </Formik> 
           </div>
         </Col>
       </Row>

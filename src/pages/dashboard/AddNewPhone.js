@@ -1,6 +1,6 @@
 import React from "react";
 import { ProfileLayout } from "../../components/ContentLayout";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FiPhone } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import { Formik } from "formik";

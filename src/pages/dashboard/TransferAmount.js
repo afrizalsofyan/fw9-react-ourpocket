@@ -7,7 +7,7 @@ import ContentLayout from "../../components/ContentLayout";
 import { UserCard } from "../../components/UserCard";
 import Img3 from "../../assets/images/img/img3.png";
 import { FiEdit2 } from "react-icons/fi";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { ButtonSubmit } from "../../components/ButtonAuth";
