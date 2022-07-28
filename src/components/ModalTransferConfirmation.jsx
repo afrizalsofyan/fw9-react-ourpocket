@@ -55,11 +55,11 @@ function ModalTransferConfirmation({ show, onHide, id }) {
             </Modal.Body>
             <Modal.Footer className="border-0 modal-footer-position">
                 <div className="d-flex flex-column justify-content-center flex-sm-row gap-3">
-                    <Link to={`/home/transfer/${id}/tranferConfirmation/failed`} className="btn btn-danger py-2 px-4 border-2 btn-modal-footer">
+                    <Link to={`/home/transfer/${id}/tranfer-confirmation/failed`} className="btn btn-danger py-2 px-4 border-2 btn-modal-footer">
                         Cancel
                     </Link>
                     <Link
-                        to={`/home/transfer/${id}/tranferConfirmation/success`}
+                        to={`/home/transfer/${id}/tranfer-confirmation/success`}
                         className="btn px-4 py-2 btn-prim-1"
                     >
                         Continue

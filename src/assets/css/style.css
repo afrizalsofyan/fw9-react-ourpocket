@@ -575,6 +575,10 @@ input::-webkit-inner-spin-button {
 .amount-input:focus {
     box-shadow: none !important;
 }
+.form-control.amount-input.is-invalid{
+    padding-right: unset !important;
+    background-size: 0.5em;
+}
 .notes-custom{
     border: unset;
     border-bottom: 1px solid #A9A9A9CC;

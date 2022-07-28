@@ -15,7 +15,7 @@ function PrivateRoute({children}) {
   return authCheck ? (
     children
   ) : (
-    <Navigate to="/auth/login" replace state={{errorMsg: "You are not login!!! please login first for access this page!!!"}}/>
+    <Navigate to="/auth/login" replace state={{errorMsg: "You are not Login. Please Login first for access this page!!!"}}/>
   )
 }
 

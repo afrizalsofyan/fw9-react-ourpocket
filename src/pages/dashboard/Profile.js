@@ -63,7 +63,7 @@ function Profile() {
                         />
                         <ButtonMenuProfile
                           menuName="Change Password"
-                          to="changePassword"
+                          to="change-password"
                           suffixIcon={
                             <FiArrowRight
                               size={24}
@@ -73,7 +73,7 @@ function Profile() {
                         />
                         <ButtonMenuProfile
                           menuName="Change PIN"
-                          to="changePin"
+                          to="change-pin"
                           suffixIcon={
                             <FiArrowRight
                               size={24}

@@ -1,11 +1,11 @@
 import React from "react";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form, Alert } from "react-bootstrap";
 import { FiMail, FiLock, FiEyeOff } from "react-icons/fi";
 import InputField from "../../components/InputField";
 import AuthBanner from "../../components/AuthBanner";
 import TitleAuthForm from "../../components/TitleAuthForm";
 import {ButtonSubmit} from "../../components/ButtonAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -71,21 +71,32 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
 };
 
 function Login() {
+  const location = useLocation()
   const redirect = useNavigate()
   const [values, setValues] = React.useState({email: 'risna@mail.com', password: '1503'})
-  const testLogin = () => {
-    localStorage.setItem("auth", "randomToken")
-    redirect('/home/dashboard')
-    // if(value.email === values.email && value.password === values.password){
-    //   localStorage.setItem("auth", "randomTokenData")
-    //   redirect('/home/dashboard')
-    //   // setLogin(true)
-    // } else {
-    //   window.alert('login failed')
-    //   // setLogin(false)
-    // }
+  const [visible, setVisible] = React.useState(false)
+  const handleVisible = () => {
+    setVisible(true)
+    setTimeout(()=>{
+      setVisible(false)
+    }, 4000)
   }
-  console.log(values);
+  const testLogin = (value) => {
+    // localStorage.setItem("auth", "randomToken")
+    // redirect('/home/dashboard')
+    if(value.email === values.email && value.password === values.password){
+      localStorage.setItem("auth", "randomTokenData")
+      redirect('/home/dashboard')
+      // setLogin(true)
+    } else {
+      window.alert('login failed')
+      // setLogin(false)
+    }
+  }
+
+  React.useEffect(()=>{
+    return handleVisible();
+  })
   return (
     <>
       <HelmetProvider>
@@ -101,6 +112,9 @@ function Login() {
           className="px-5 py-5 d-flex flex-column justify-content-center bg-white gap-5"
         >
           <div className="d-flex flex-column gap-5">
+            {location.state?.errorMsg && (
+              <Alert show={visible} variant="danger">{location.state.errorMsg}</Alert>
+            )}
             <TitleAuthForm
               title={
                 "Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users"

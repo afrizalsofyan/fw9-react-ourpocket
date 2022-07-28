@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputGroup, Form } from 'react-bootstrap'
 
-export const InputPin = ({type, isInvalid, validation, name}) => {
+export const InputPin = ({type, onChange, isInvalid, validation, name}) => {
   return (
     <div className="d-flex flex-column align-items-center box-pin-border p-2">
       <InputGroup className='box-pin'>

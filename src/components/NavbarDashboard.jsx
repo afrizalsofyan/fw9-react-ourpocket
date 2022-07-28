@@ -4,17 +4,28 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import UserPhoto from "../assets/images/img/img3.png";
 import { FiBell, FiArrowDown, FiArrowUp } from "react-icons/fi";
-import { DropdownButton, Image } from "react-bootstrap";
+import { Alert, DropdownButton, Image } from "react-bootstrap";
 import {
   NotificationCardHeader,
   NotificationCardItem,
 } from "./NotificationCard";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { MenuNavbar } from './SideBarMenu';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 function NavbarDashboard({titlePage}) {
+  const location = useLocation();
+  const [visible, setVisible] = React.useState(false)
+  const handleVisible = () => {
+    setVisible(true)
+    setTimeout(()=>{
+      setVisible(false)
+    }, 1500)
+  }
+  React.useEffect(()=>{
+    return handleVisible()
+  })
   return (
     <>
       <HelmetProvider>
@@ -22,6 +33,9 @@ function NavbarDashboard({titlePage}) {
           <title>{titlePage!==null ? titlePage : 'OPo'}</title>
         </Helmet>
       </HelmetProvider>
+      {location.state?.errorMsg && (
+        <Alert show={visible} variant="danger" >{location.state.errorMsg}</Alert>
+      )}
       <Navbar expand="md" className='w-100 bg-color-2 shadow-md'>
           <Container>
             <Navbar.Brand href="/home/dashboard" className="color-text-2 fs-4 fw-bold">

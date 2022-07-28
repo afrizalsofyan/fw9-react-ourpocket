@@ -22,7 +22,7 @@ function DetailProfile() {
               content="Chandler"
               cardButton={
                 <div>
-                  <Link to="managePhone" className="link-rm-line color-text-1">
+                  <Link to="manage-phone" className="link-rm-line color-text-1">
                     Manage
                   </Link>
                 </div>

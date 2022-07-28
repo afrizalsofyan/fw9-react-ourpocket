@@ -1,16 +1,69 @@
 import React from "react";
 import NavbarDashboard from "../../components/NavbarDashboard";
-import { Container, Form, Row, InputGroup } from "react-bootstrap";
+import { Container, Form, Row, InputGroup, Button } from "react-bootstrap";
 import SideBarMenu from "../../components/SideBarMenu";
 import FooterDashboard from "../../components/FooterDashboard";
 import ContentLayout from "../../components/ContentLayout";
 import { UserCard } from "../../components/UserCard";
 import Img3 from "../../assets/images/img/img3.png";
 import { FiEdit2 } from "react-icons/fi";
-import {Link, useParams} from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { ButtonSubmit } from "../../components/ButtonAuth";
+
+const amountSchema = Yup.object().shape({
+  amount: Yup.number().typeError("Field must number!!!").min(10000).required(),
+  notes: Yup.string()
+});
+
+export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
+  return (
+    <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className="d-flex flex-column align-items-center">
+      <Form.Group className="form-group d-flex flex-column align-items-center gap-4 w-75">
+        <InputGroup className="input-group">
+          <Form.Control
+            name="amount"
+            type="number"
+            placeholder="0.00"
+            isInvalid={!!errors.amount}
+            className="form-control border-0 text-center fs-1 amount-input bg-transparent fw-bold"
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors.amount}
+          </Form.Control.Feedback>
+        </InputGroup>
+        <div className="d-flex flex-column flex-sm-row align-items-center color-text-6">
+          <span className="fs-6 fw-bold">Rp. 120.000</span>
+          <span className="fs-6 fw-bold"> Available</span>
+        </div>
+        <InputGroup className="search-input">
+          <span className="icon-input">
+            <FiEdit2 size={24} className="color-text-6" />
+          </span>
+          <Form.Control
+            name="note"
+            type="text"
+            className="ps-5 py-3 notes-custom color-text-6"
+            placeholder="Add some notes"
+          />
+        </InputGroup>
+      </Form.Group>
+      <div className="ms-auto mt-5 ">
+        <ButtonSubmit textButton={"Continue"} />
+      </div>
+    </Form>
+  );
+};
 
 function TransferAmount() {
-  const {id} = useParams();
+  const { id } = useParams();
+  const redirect = useNavigate()
+  const onSubmitAmountNote = (val) => {
+    if(val.amount){
+      redirect(`/home/transfer/${id}/tranfer-Confirmation`)
+    }
+  };
   return (
     <>
       <NavbarDashboard />
@@ -22,7 +75,9 @@ function TransferAmount() {
               <>
                 <div className="d-flex flex-column gap-4">
                   <div className="d-flex flex-row justify-content-between">
-                    <span className="fw-bold fs-5 color-text-2">Transfer Money</span>
+                    <span className="fw-bold fs-5 color-text-2">
+                      Transfer Money
+                    </span>
                   </div>
                   <UserCard
                     url={"/home/transfer/3"}
@@ -36,26 +91,19 @@ function TransferAmount() {
                       continue to the next steps.
                     </span>
                   </div>
-                  <Form>
-                    <div className="d-flex flex-row justify-content-center">
-                      <div className="d-flex flex-column align-items-center gap-4">
-                        <Form.Group className="form-group">
-                          <InputGroup className="input-group">
-                            <Form.Control type="number"  placeholder="0.00" className="form-control border-0 text-center fs-1 amount-input bg-transparent fw-bold"/>
-                          </InputGroup>
-                        </Form.Group>
-                        <div className="d-flex flex-column flex-sm-row align-items-center color-text-6">
-                          <span className="fs-6 fw-bold">Rp. 120.000</span>
-                          <span className="fs-6 fw-bold"> Available</span>
-                        </div>
-                        <Form.Group className="form-group mt-2 w-100 border-5">
-                          <InputGroup className="search-input">
-                            <span className="icon-input"><FiEdit2 size={24} className='color-text-6'/></span>
-                            <Form.Control type="text"  className="ps-5 py-3 notes-custom color-text-6" placeholder="Add some notes"/>
-                          </InputGroup>
-                        </Form.Group>
+                  <div className="d-flex flex-row justify-content-center">
+                      <div className="w-100">
+                        <Formik
+                          onSubmit={onSubmitAmountNote}
+                          initialValues={{ amount: "", note: "" }}
+                          validationSchema={amountSchema}
+                        >
+                          {(props) => <AmountForm {...props} />}
+                        </Formik>
                       </div>
                     </div>
+                  {/* <Form>
+                    
                     <div className="d-flex flex-row justify-content-end mt-5 me-5">
                       <Link
                         to={`/home/transfer/${id}/tranferConfirmation`}
@@ -64,7 +112,7 @@ function TransferAmount() {
                         Continue
                       </Link>
                     </div>
-                  </Form>
+                  </Form> */}
                 </div>
               </>
             }

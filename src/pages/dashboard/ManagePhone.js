@@ -23,7 +23,7 @@ function ManagePhone() {
               </div>
             </div>
             <div className='d-grid px-5 my-5'>
-              <Link to="addPhone" className="btn border-0 px-4 py-2 btn-prim-1">
+              <Link to="add-phone" className="btn border-0 px-4 py-2 btn-prim-1">
                 <span>Add new phone</span>
               </Link>
             </div>
