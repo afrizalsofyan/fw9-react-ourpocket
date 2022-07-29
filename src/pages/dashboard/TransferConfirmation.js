@@ -1,14 +1,14 @@
-import React from "react";
-import { Button, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import ContentLayout from "../../components/ContentLayout";
-import FooterDashboard from "../../components/FooterDashboard";
-import NavbarDashboard from "../../components/NavbarDashboard";
-import SideBarMenu from "../../components/SideBarMenu";
-import { UserCard } from "../../components/UserCard";
-import Img3 from "../../assets/images/img/img3.png";
-import DetailTransferList from "../../components/DetailTransferList";
-import ModalTransferConfirmation from "../../components/ModalTransferConfirmation";
+import React from 'react';
+import { Button, Container, Row } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import ContentLayout from '../../components/ContentLayout';
+import FooterDashboard from '../../components/FooterDashboard';
+import NavbarDashboard from '../../components/NavbarDashboard';
+import SideBarMenu from '../../components/SideBarMenu';
+import { UserCard } from '../../components/UserCard';
+import Img3 from '../../assets/images/img/img3.png';
+import DetailTransferList from '../../components/DetailTransferList';
+import ModalTransferConfirmation from '../../components/ModalTransferConfirmation';
 
 function TransferConfirmation() {
   
@@ -19,39 +19,39 @@ function TransferConfirmation() {
   return (
     <>
       <NavbarDashboard />
-      <Container as="section" className="g-0">
-        <Row className="pt-5 gx-0 gx-md-3">
+      <Container as='section' className='g-0'>
+        <Row className='pt-5 gx-0 gx-md-3'>
           <SideBarMenu />
           <ContentLayout
             child={
               <>
-                <div className="d-flex flex-column gap-5 color-text-2">
-                    <div>
-                    <span className="fs-5 fw-bold">Transfer To</span>
-                    </div>
-                    {/* User Card */}
-                    <UserCard
-                    url={"/home/transfer/3"}
+                <div className='d-flex flex-column gap-5 color-text-2'>
+                  <div>
+                    <span className='fs-5 fw-bold'>Transfer To</span>
+                  </div>
+                  {/* User Card */}
+                  <UserCard
+                    url={'/home/transfer/3'}
                     img_path={Img3}
-                    name="Samuel Suhi"
-                    phone={"+62 813-8492-9994"}
-                    />
-                    {/* Title Detail */}
-                    <div>
-                    <span className="fw-bold">Details</span>
-                        {/* List */}
-                        <DetailTransferList/>
-                        {/* Button Modal */}
-                        <div className='w-25 ms-auto mt-5 me-auto me-sm-0 d-grid'>
-                            <Button
-                            className="btn btn-prim-1 py-2"
-                            onClick={openModal}
-                            >
+                    name='Samuel Suhi'
+                    phone={'+62 813-8492-9994'}
+                  />
+                  {/* Title Detail */}
+                  <div>
+                    <span className='fw-bold'>Details</span>
+                    {/* List */}
+                    <DetailTransferList/>
+                    {/* Button Modal */}
+                    <div className='w-25 ms-auto mt-5 me-auto me-sm-0 d-grid'>
+                      <Button
+                        className='btn btn-prim-1 py-2'
+                        onClick={openModal}
+                      >
                             Continue
-                            </Button>
-                        </div>
-                        <ModalTransferConfirmation show={showModal} onHide={closeModal} id={id}/>
+                      </Button>
                     </div>
+                    <ModalTransferConfirmation show={showModal} onHide={closeModal} id={id}/>
+                  </div>
                 </div>
               </>
             }

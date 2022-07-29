@@ -1,12 +1,12 @@
-import React from "react";
-import { ProfileLayout } from "../../components/ContentLayout";
-import { useNavigate } from "react-router-dom";
-import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
-import InputField from "../../components/InputField";
-import { Form } from "react-bootstrap";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { ButtonSubmit } from "../../components/ButtonAuth";
+import React from 'react';
+import { ProfileLayout } from '../../components/ContentLayout';
+import { useNavigate } from 'react-router-dom';
+import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
+import InputField from '../../components/InputField';
+import { Form } from 'react-bootstrap';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { ButtonSubmit } from '../../components/ButtonAuth';
 
 const changePasswordSchema = Yup.object().shape({
   currentPass: Yup.string().min(4).required(),
@@ -20,93 +20,93 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
   const [showConfirmPass, setShowConfirmPass] = React.useState(false);
   return (
     <Form noValidate onSubmit={handleSubmit} onChange={handleChange}>
-      <div className="d-flex flex-row justify-content-center py-2">
-        <div className="d-flex flex-column justify-content-center gap-4 w-75">
+      <div className='d-flex flex-row justify-content-center py-2'>
+        <div className='d-flex flex-column justify-content-center gap-4 w-75'>
           <InputField
-            name="currentPass"
-            icon={<FiLock size={24} className="color-text-6" />}
-            type={showPass ? "text" : "password"}
-            placeholder={"Current password"}
+            name='currentPass'
+            icon={<FiLock size={24} className='color-text-6' />}
+            type={showPass ? 'text' : 'password'}
+            placeholder={'Current password'}
             suffixIcon={
               showPass ? (
                 <FiEyeOff
                   size={24}
-                  className="bg-grey-light"
+                  className='bg-grey-light'
                   onClick={() => setShowPass(!showPass)}
                 />
               ) : (
                 <FiEye
                   size={24}
-                  className="bg-grey-light"
+                  className='bg-grey-light'
                   onClick={() => setShowPass(!showPass)}
                 />
               )
             }
             isInvalid={!!errors.currentPass}
             validation={
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type='invalid'>
                 {errors.currentPass}
               </Form.Control.Feedback>
             }
           />
           <InputField
-            name="newPass"
-            icon={<FiLock size={24} className="color-text-6" />}
-            type={showNewPass ? "text" : "password"}
-            placeholder={"New password"}
+            name='newPass'
+            icon={<FiLock size={24} className='color-text-6' />}
+            type={showNewPass ? 'text' : 'password'}
+            placeholder={'New password'}
             suffixIcon={
               showNewPass ? (
                 <FiEyeOff
                   size={24}
-                  className="bg-grey-light"
+                  className='bg-grey-light'
                   onClick={() => setShowNewPass(!showNewPass)}
                 />
               ) : (
                 <FiEye
                   size={24}
-                  className="bg-grey-light"
+                  className='bg-grey-light'
                   onClick={() => setShowNewPass(!showNewPass)}
                 />
               )
             }
             isInvalid={!!errors.newPass}
             validation={
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type='invalid'>
                 {errors.newPass}
               </Form.Control.Feedback>
             }
           />
           <InputField
-            name="confirmPass"
-            icon={<FiLock size={24} className="color-text-6" />}
-            type={showConfirmPass ? "text" : "password"}
-            placeholder={"Repeat new password"}
+            name='confirmPass'
+            icon={<FiLock size={24} className='color-text-6' />}
+            type={showConfirmPass ? 'text' : 'password'}
+            placeholder={'Repeat new password'}
             suffixIcon={
               showConfirmPass ? (
                 <FiEyeOff
                   size={24}
-                  className="bg-grey-light"
+                  className='bg-grey-light'
                   onClick={() => setShowConfirmPass(!showConfirmPass)}
                 />
               ) : (
                 <FiEye
                   size={24}
-                  className="bg-grey-light"
+                  className='bg-grey-light'
                   onClick={() => setShowConfirmPass(!showConfirmPass)}
                 />
               )
             }
             isInvalid={!!errors.confirmPass}
             validation={
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type='invalid'>
                 {errors.confirmPass}
               </Form.Control.Feedback>
             }
           />
         </div>
       </div>
-      <div className="d-grid px-5 my-5">
-        <ButtonSubmit textButton="Add Phone Number" buttonType={"sm"} />
+      <div className='d-grid px-5 my-5'>
+        <ButtonSubmit textButton='Add Phone Number' buttonType={'sm'} />
       </div>
       {/* <div className="d-grid px-5 my-5">
         <Link to="../details" className="btn border-0 px-4 py-2 btn-prim-1">
@@ -121,21 +121,21 @@ function ChangePassword() {
   const redirect = useNavigate();
   const onSubmitPassword = (val) => {
     if (val.newPass !== val.confirmPass) {
-      window.alert("Repeat password is incorrect");
+      window.alert('Repeat password is incorrect');
     } else {
-      redirect("../details");
+      redirect('../details');
     }
   };
   return (
     <>
       <ProfileLayout
-        headerText="Change Password"
-        subtitleText="You must enter your current password and then type your new password twice."
+        headerText='Change Password'
+        subtitleText='You must enter your current password and then type your new password twice.'
         child={
           <>
             <Formik
               onSubmit={onSubmitPassword}
-              initialValues={{ currentPass: "", newPass: "", confirmPass: "" }}
+              initialValues={{ currentPass: '', newPass: '', confirmPass: '' }}
               validationSchema={changePasswordSchema}
             >
               {(props) => <ChangePasswordForm {...props} />}

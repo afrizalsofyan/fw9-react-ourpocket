@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    amount: 0,
-    note: '-'
-}
+  amount: 0,
+  note: '-'
+};
 
 export const counterSlice = createSlice({
-    name: "input",
-    initialState,
-    reducers:{
-        addAmount: (state, action) => {
-            state.amount = parseInt(action.payload, 10)
-        },
-        addNote: (state, action) => {
-            state.note = action.payload
-        }
+  name: 'input',
+  initialState,
+  reducers:{
+    addAmount: (state, action) => {
+      state.amount = parseInt(action.payload, 10);
+    },
+    addNote: (state, action) => {
+      state.note = action.payload;
     }
-})
+  }
+});
 
-export const {addAmount, addNote} = counterSlice.actions
+export const {addAmount, addNote} = counterSlice.actions;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;

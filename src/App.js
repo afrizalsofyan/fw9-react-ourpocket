@@ -1,29 +1,29 @@
-import React from 'react'
-import {Routes, Route} from 'react-router-dom'
-import PrivateRoute, { PrivateAuthRoute } from './components/PrivateRoute'
-import CreatePin from './pages/auth/CreatePin'
-import CreatePinSuccess from './pages/auth/CreatePinSuccess'
-import ForgetPassword from './pages/auth/ForgetPassword'
-import Login from './pages/auth/Login'
-import NewPassword from './pages/auth/NewPassword'
-import Register from './pages/auth/Register'
-import AddNewPhone from './pages/dashboard/AddNewPhone'
-import ChangeNewPin from './pages/dashboard/ChangeNewPin'
-import ChangePassword from './pages/dashboard/ChangePassword'
-import ChangePin from './pages/dashboard/ChangePin'
-import Dashboard from './pages/dashboard/Dashboard'
-import DetailProfile from './pages/dashboard/DetailProfile'
-import EditProfile from './pages/dashboard/EditProfile'
-import FailedTransfer from './pages/dashboard/FailedTransfer'
-import History from './pages/dashboard/History'
-import ManagePhone from './pages/dashboard/ManagePhone'
-import Profile from './pages/dashboard/Profile'
-import SuccessTransfer from './pages/dashboard/SuccessTransfer'
-import TopUp from './pages/dashboard/TopUp'
-import Transfer from './pages/dashboard/Transfer'
-import TransferAmount from './pages/dashboard/TransferAmount'
-import TransferConfirmation from './pages/dashboard/TransferConfirmation'
-import LandingPage from './pages/LandingPage'
+import React from 'react';
+import {Routes, Route} from 'react-router-dom';
+import PrivateRoute, { PrivateAuthRoute } from './components/PrivateRoute';
+import CreatePin from './pages/auth/CreatePin';
+import CreatePinSuccess from './pages/auth/CreatePinSuccess';
+import ForgetPassword from './pages/auth/ForgetPassword';
+import Login from './pages/auth/Login';
+import NewPassword from './pages/auth/NewPassword';
+import Register from './pages/auth/Register';
+import AddNewPhone from './pages/dashboard/AddNewPhone';
+import ChangeNewPin from './pages/dashboard/ChangeNewPin';
+import ChangePassword from './pages/dashboard/ChangePassword';
+import ChangePin from './pages/dashboard/ChangePin';
+import Dashboard from './pages/dashboard/Dashboard';
+import DetailProfile from './pages/dashboard/DetailProfile';
+import EditProfile from './pages/dashboard/EditProfile';
+import FailedTransfer from './pages/dashboard/FailedTransfer';
+import History from './pages/dashboard/History';
+import ManagePhone from './pages/dashboard/ManagePhone';
+import Profile from './pages/dashboard/Profile';
+import SuccessTransfer from './pages/dashboard/SuccessTransfer';
+import TopUp from './pages/dashboard/TopUp';
+import Transfer from './pages/dashboard/Transfer';
+import TransferAmount from './pages/dashboard/TransferAmount';
+import TransferConfirmation from './pages/dashboard/TransferConfirmation';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
@@ -65,7 +65,7 @@ function App() {
         
       </Route>
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
