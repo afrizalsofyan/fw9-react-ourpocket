@@ -5,14 +5,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { InputPin } from './InputField'
 import * as Yup from 'yup'
 import { ButtonSubmit } from './ButtonAuth';
+import { useSelector } from 'react-redux/es/exports';
 
-const changePinSchema = Yup.object().shape({
-    pin: Yup.array().of(
-        Yup.string()
-            .matches(/[0-9]{1}/, "Must number value")
-            .required("Pin is required")
-    ),
-});
+// const changePinSchema = Yup.object().shape({
+//     pin: Yup.array().of(
+//         Yup.string()
+//             .matches(/[0-9]{1}/, "Must number val")
+//             .required("Pin is required")
+//     ),
+// });
 
 const ChangePinForm = ({ errors, handleChange, handleSubmit, show, hide }) => {
     return (
@@ -86,15 +87,23 @@ const ChangePinForm = ({ errors, handleChange, handleSubmit, show, hide }) => {
 
 function ModalTransferConfirmation({ show, onHide, id }) {
     const redirect = useNavigate();
-    const dummyPin = 123456
+    const checkPin = useSelector((state)=>state.user.pin)
+    console.log(checkPin)
     const onSubmitPin = (val) => {
-        const finalPin = val.pin.join("");
-        if (parseInt(finalPin) === dummyPin) { 
-            redirect(`/home/transfer/${id}/transfer-confirmation/success`)
-        } else { 
-            redirect(`/home/transfer/${id}/transfer-confirmation/failed`)
-         }
-
+        if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
+            window.alert('Value is required')
+          } else {
+            if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
+                const finalPin = val.pin.join("");
+                if (parseInt(finalPin) === checkPin) { 
+                    redirect(`/home/transfer/${id}/transfer-confirmation/success`)
+                } else { 
+                    redirect(`/home/transfer/${id}/transfer-confirmation/failed`)
+                }
+            } else {
+                window.alert('Please input with only number !!!')
+            }
+          }
     };
     return (
         <Formik
@@ -102,7 +111,7 @@ function ModalTransferConfirmation({ show, onHide, id }) {
             initialValues={{
                 pin: [""],
             }}
-            validationSchema={changePinSchema}
+            // validationSchema={changePinSchema}
         >
             {(props) => <ChangePinForm {...props} show={show} hide={onHide} />}
         </Formik>

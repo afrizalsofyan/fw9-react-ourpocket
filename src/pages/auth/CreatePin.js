@@ -8,15 +8,17 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { createPin } from "../../redux/reducers/user";
 
-const createPinSchema = Yup.object().shape({
-  pin1: Yup.number().typeError('Pin1 must be a Number').min(0).max(9).required(),
-  pin2: Yup.number().typeError('Pin2 must be a Number').min(0).max(9).required(),
-  pin3: Yup.number().typeError('Pin3 must be a Number').min(0).max(9).required(),
-  pin4: Yup.number().typeError('Pin4 must be a Number').min(0).max(9).required(),
-  pin5: Yup.number().typeError('Pin5 must be a Number').min(0).max(9).required(),
-  pin6: Yup.number().typeError('Pin6 must be a Number').min(0).max(9).required(),
-});
+// const createPinSchema = Yup.object().shape({
+//   pin1: Yup.number().typeError('Pin1 must be a 'number'').min(0).max(9).required(),
+//   pin2: Yup.number().typeError('Pin2 must be a 'number'').min(0).max(9).required(),
+//   pin3: Yup.number().typeError('Pin3 must be a 'number'').min(0).max(9).required(),
+//   pin4: Yup.number().typeError('Pin4 must be a 'number'').min(0).max(9).required(),
+//   pin5: Yup.number().typeError('Pin5 must be a 'number'').min(0).max(9).required(),
+//   pin6: Yup.number().typeError('Pin6 must be a 'number'').min(0).max(9).required(),
+// });
 
 const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
   const arrError = [0,1,2,3,4,5]
@@ -31,35 +33,35 @@ const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
         <InputPin
           name="pin1"
           type="text"
-          isInvalid={!!errors.pin1}
+          // isInvalid={!!errors.pin1}
         />
         <InputPin
           name="pin2"
           type="text"
-          isInvalid={!!errors.pin2}
+          // isInvalid={!!errors.pin2}
         />
         <InputPin
           name="pin3"
           type="text"
-          isInvalid={!!errors.pin3}
+          // isInvalid={!!errors.pin3}
         />
         <InputPin
           name="pin4"
           type="text"
-          isInvalid={!!errors.pin4}
+          // isInvalid={!!errors.pin4}
         />
         <InputPin
           name="pin5"
           type="text"
-          isInvalid={!!errors.pin5}
+          // isInvalid={!!errors.pin5}
         />
         <InputPin
           name="pin6"
           type="text"
-          isInvalid={!!errors.pin6}
+          // isInvalid={!!errors.pin6}
         />
       </div>
-      {arrError.map((el, index)=>{
+      {/* {arrError.map((el, index)=>{
          switch (index) {
           case 0:
             if(errors.pin1 !== undefined){
@@ -118,18 +120,28 @@ const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
           default:
             break;
         } 
-      })}
+      })} */}
       <ButtonSubmit textButton={"Confirm"} />
     </Form>
   );
 };
 
 function CreatePin() {
+  const dispatch = useDispatch()
   const redirect = useNavigate()
   const submitPin = (value) => {
-    const joinPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6;
-    console.log(joinPin);
-    redirect("/auth/create-pin-success")
+    if(value.pin1 === '' || value.pin2 === '' || value.pin3 === '' || value.pin4 === '' || value.pin5 === '' || value.pin6 === ''){
+      window.alert('Value is required')
+    } else {
+      if (isNaN(parseInt(value.pin1)) === false && isNaN(parseInt(value.pin2)) === false && isNaN(parseInt(value.pin3)) === false && isNaN(parseInt(value.pin4)) === false && isNaN(parseInt(value.pin5)) === false && isNaN(parseInt(value.pin6)) === false){
+        const joinPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6;
+        dispatch(createPin(parseInt(joinPin)))
+        redirect("/auth/create-pin-success")
+      } else {
+        window.alert('Please input with only number !!!')
+      }
+    }
+    
   }
   return (
     <>
@@ -164,7 +176,7 @@ function CreatePin() {
                 pin5: "",
                 pin6: "",
               }}
-              validationSchema={createPinSchema}
+              // validationSchema={createPinSchema}
             >
               {(props) => <CreatePinForm {...props}/>}
             </Formik> 

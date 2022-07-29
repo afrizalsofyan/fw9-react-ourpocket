@@ -6,14 +6,15 @@ import { ProfileLayout } from "../../components/ContentLayout";
 import { InputPin } from "../../components/InputField";
 import * as Yup from "yup";
 import { ButtonSubmit } from "../../components/ButtonAuth";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 
-const changePinSchema = Yup.object().shape({
-  pin: Yup.array().of(
-    Yup.string()
-      .matches(/[0-9]{1}/, "Must number value")
-      .required("Pin is required")
-  ),
-});
+// const changePinSchema = Yup.object().shape({
+//   pin: Yup.array().of(
+//     Yup.string()
+//       .matches(/[0-9]{1}/, "Must number value")
+//       .required("Pin is required")
+//   ),
+// });
 
 const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
   return (
@@ -65,11 +66,23 @@ const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
 };
 
 function ChangePin() {
+  const pinData = useSelector((state)=> state.user.pin)
   const redirect = useNavigate();
   const onSubmitPin = (val) => {
-    const finalPin = val.pin.join("");
-    console.log(finalPin);
-    redirect("new-pin");
+    if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
+      window.alert('Value is required')
+    } else {
+      if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
+        const finalPin = val.pin.join("");  
+        if(parseInt(finalPin) === pinData){
+          redirect("new-pin");         
+        }else{
+           window.alert("Pin not match with your pin now !!!")
+        }
+      } else {
+          window.alert('Please input with only number !!!')
+      }
+    }
   };
   return (
     <>
@@ -83,7 +96,7 @@ function ChangePin() {
               initialValues={{
                 pin: [""],
               }}
-              validationSchema={changePinSchema}
+              // validationSchema={changePinSchema}
             >
               {(props) => <ChangePinForm {...props} />}
             </Formik>
