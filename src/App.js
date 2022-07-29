@@ -13,6 +13,7 @@ import ChangePassword from './pages/dashboard/ChangePassword'
 import ChangePin from './pages/dashboard/ChangePin'
 import Dashboard from './pages/dashboard/Dashboard'
 import DetailProfile from './pages/dashboard/DetailProfile'
+import EditProfile from './pages/dashboard/EditProfile'
 import FailedTransfer from './pages/dashboard/FailedTransfer'
 import History from './pages/dashboard/History'
 import ManagePhone from './pages/dashboard/ManagePhone'
@@ -47,6 +48,7 @@ function App() {
         <Route path='topup' element={<TopUp/>}></Route>
         <Route path='profile'>
           <Route index element={<Profile/>}/>
+          <Route path='edit-profile' element={<EditProfile/>}></Route>
           <Route path='change-password' element={<ChangePassword/>}></Route>
           <Route path='change-pin'>
             <Route index element={<ChangePin/>}></Route>

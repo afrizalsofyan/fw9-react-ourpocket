@@ -14,7 +14,7 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
     <>
       <div className="d-flex flex-column align-items-center gap-3">
         <img className="img-fluid" src={imgUrl} alt={alt} />
-        <Link to={to} className="link-rm-line link-text bg-grey-light">
+        <Link to='/home/profile/edit-profile' className="link-rm-line link-text bg-grey-light">
           <FiEdit2 />
           <span className="fw-light">Edit</span>
         </Link>
