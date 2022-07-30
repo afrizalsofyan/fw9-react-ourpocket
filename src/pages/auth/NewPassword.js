@@ -84,7 +84,7 @@ export const NewPass = ({
           </Form.Control.Feedback>
         }
       />
-      <ButtonSubmit textButton={'Reset Password'} />
+      <ButtonSubmit textButton={'Reset Password'} disable={Object.keys(errors).length === 0 ? false : true } />
     </Form>
   );
 };

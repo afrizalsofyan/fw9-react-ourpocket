@@ -7,6 +7,18 @@ body{
     font-style: normal !important;
     background: #EFFFFD;
 }
+.img-profile-box{
+    width: 8em;
+    height: 8em;
+}
+.img-profile-navbar-box{
+    width: 4em;
+    height: 4em;
+}
+.cstm-navbar{
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
 .nav-link.not-act.active{
     background-color: transparent !important;
 }

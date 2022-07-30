@@ -10,8 +10,16 @@ import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { createPin } from '../../redux/reducers/user';
 
+// const createPinSchema = Yup.object().shape({
+//   pin1: Yup.number().typeError('Pin1 must be a number').min(0).max(9).required(),
+//   pin2: Yup.number().typeError('Pin2 must be a number').min(0).max(9).required(),
+//   pin3: Yup.number().typeError('Pin3 must be a number').min(0).max(9).required(),
+//   pin4: Yup.number().typeError('Pin4 must be a number').min(0).max(9).required(),
+//   pin5: Yup.number().typeError('Pin5 must be a number').min(0).max(9).required(),
+//   pin6: Yup.number().typeError('Pin6 must be a number').min(0).max(9).required(),
+// });
+
 const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
-  // const arrError = [0,1,2,3,4,5];
   return (
     <Form
       className='d-flex flex-column gap-5'
@@ -51,7 +59,7 @@ const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
           // isInvalid={!!errors.pin6}
         />
       </div>
-      <ButtonSubmit textButton={'Confirm'} />
+      <ButtonSubmit textButton={'Confirm'}/>
     </Form>
   );
 };

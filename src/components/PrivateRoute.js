@@ -11,7 +11,7 @@ export const PrivateAuthRoute = ({children}) => {
 };
 
 function PrivateRoute({children}) {
-  const authCheck = localStorage.getItem('auth');
+  const authCheck = localStorage.getItem('auth-token');
   return authCheck ? (
     children
   ) : (

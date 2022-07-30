@@ -34,7 +34,7 @@ export const AuthForgetPass = ({ errors, handleSubmit, handleChange }) => {
           </Form.Control.Feedback>
         }
       />
-      <ButtonSubmit textButton={'Confirm'} />
+      <ButtonSubmit textButton={'Confirm'} disable={Object.keys(errors).length === 0 ? false : true } />
     </Form>
   );
 };

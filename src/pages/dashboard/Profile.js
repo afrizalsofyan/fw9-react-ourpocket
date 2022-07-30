@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ContentLayout from '../../components/ContentLayout';
 import NavbarDashboard from '../../components/NavbarDashboard';
@@ -8,12 +8,17 @@ import FooterDashboard from '../../components/FooterDashboard';
 import Img1 from '../../assets/images/img/img3.png';
 import { FiArrowRight, FiEdit2 } from 'react-icons/fi';
 import { ButtonMenuProfile } from '../../components/ButtonAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../redux/actionAsync/profile';
+
 
 export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
   return (
     <>
       <div className='d-flex flex-column align-items-center gap-3'>
-        <img className='img-fluid' src={imgUrl} alt={alt} />
+        <div className='d-flex img-profile-box'>
+          <Image src={imgUrl} alt={alt} fluid thumbnail/>
+        </div>
         <Link to='/home/profile/edit-profile' className='link-rm-line link-text bg-grey-light'>
           <FiEdit2 />
           <span className='fw-light'>Edit</span>
@@ -28,6 +33,13 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
 };
 
 function Profile() {
+  const dispatch = useDispatch();
+  const response = useSelector((state)=> state.profile.result);
+
+  React.useEffect(()=>{
+    dispatch(getProfile());
+  }, []);
+  const fullNameUser = `${response?.data?.result.first_name} ${response?.data?.result.last_name}`;
   return (
     <>
       <NavbarDashboard titlePage='OPo - profile'/>
@@ -40,9 +52,9 @@ function Profile() {
                 <div className='d-flex flex-column gap-3'>
                   <HeaderProfile
                     alt={'imgProfile'}
-                    imgUrl={Img1}
-                    name='Samuel Suhi'
-                    phone='+62 813-8492-9994'
+                    imgUrl={`http://${response?.data?.result.photo_url}`}
+                    name={fullNameUser}
+                    phone={response?.data?.result.phone_number[0]}
                     to='/home/profile'
                   />
                   <Row>

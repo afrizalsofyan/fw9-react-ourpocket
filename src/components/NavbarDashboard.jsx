@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import UserPhoto from '../assets/images/img/img3.png';
+import {FaRegUser} from 'react-icons/fa';
 import { FiBell, FiArrowDown, FiArrowUp } from 'react-icons/fi';
 import { Alert, DropdownButton, Image } from 'react-bootstrap';
 import {
@@ -12,20 +13,29 @@ import {
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { MenuNavbar } from './SideBarMenu';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../redux/actionAsync/profile';
 
 
 function NavbarDashboard({titlePage}) {
+  const dispatch = useDispatch();
+  const response = useSelector((state)=> state.profile.result);
   const location = useLocation();
   const [visible, setVisible] = React.useState(false);
+  
   const handleVisible = () => {
     setVisible(true);
     setTimeout(()=>{
       setVisible(false);
     }, 1500);
   };
+  //willmount just render when first load
   React.useEffect(()=>{
+    dispatch(getProfile());
     return handleVisible();
-  });
+  }, [dispatch]);
+  //data response
+  const fullNameUser = `${response?.data?.result.first_name} ${response?.data?.result.last_name}`;
   return (
     <>
       <HelmetProvider>
@@ -36,7 +46,7 @@ function NavbarDashboard({titlePage}) {
       {location.state?.errorMsg && (
         <Alert show={visible} variant='danger' >{location.state.errorMsg}</Alert>
       )}
-      <Navbar expand='md' className='w-100 bg-color-2 shadow-md'>
+      <Navbar expand='md' className='w-100 bg-color-2 shadow-md cstm-navbar'>
         <Container>
           <Navbar.Brand href='/home/dashboard' className='color-text-2 fs-4 fw-bold'>
               OurPocket
@@ -48,10 +58,12 @@ function NavbarDashboard({titlePage}) {
                 to='/home/profile'
                 className='d-flex d-sm-flex flex-column flex-sm-row gap-3 align-items-center link-rm-line'
               >
-                <Image src={UserPhoto} />
+                <div  className='d-flex img-profile-navbar-box'>
+                  <Image src={`http://${response?.data?.result.photo_url}`} alt={fullNameUser} fluid thumbnail width={100}/>
+                </div>
                 <div className='d-flex flex-column color-text-2'>
-                  <span className='fw-bold'>Robert Chandler</span>
-                  <span className='fw-light'>+62 8139 3877 7946</span>
+                  <span className='fw-bold'>{fullNameUser}</span>
+                  <span className='fw-light'>{response?.data?.result.phone_number[0]}</span>
                 </div>
               </Link>
                 

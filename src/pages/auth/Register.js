@@ -76,7 +76,7 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
           </Form.Control.Feedback>
         }
       />
-      <ButtonSubmit textButton='Sign Up' />
+      <ButtonSubmit textButton='Sign Up' disable={Object.keys(errors).length === 0 ? false : true } />
     </Form>
   );
 };
