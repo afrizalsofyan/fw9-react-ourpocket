@@ -9,6 +9,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/actionAsync/auth';
 
 const loginSheme = Yup.object().shape({
   email: Yup.string().email('invalid email address format').required(),
@@ -16,9 +18,13 @@ const loginSheme = Yup.object().shape({
 });
 
 const AuthForm = ({errors, handleSubmit, handleChange}) => {
+  const successMsg = useSelector((state)=> state.auth.successMsg);
+  const errorMsg = useSelector((state)=> state.auth.errorMsg);
   const [showPass, setShowPass] = React.useState(false);
   return (
     <Form className='d-flex flex-column gap-5' noValidate onSubmit={handleSubmit} onChange={handleChange}>
+      {successMsg && <Alert variant='success'>{successMsg}</Alert>}
+      {errorMsg && <Alert variant='danger'>{errorMsg}</Alert>}
       <InputField
         icon={<FiMail size={24} className='bg-grey-light' />}
         name='email'
@@ -77,30 +83,39 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
 function Login() {
   const location = useLocation();
   const redirect = useNavigate();
-  const values = {email: 'risna@mail.com', password: '1503'};
+  // const values = {email: 'risna@mail.com', password: '1503'};
+  const dispatch = useDispatch();
+  const token = useSelector((state)=> state.auth.token);
+  
   const [visible, setVisible] = React.useState(false);
+
   const handleVisible = () => {
     setVisible(true);
     setTimeout(()=>{
       setVisible(false);
     }, 4000);
   };
+
   const testLogin = (value) => {
-    // localStorage.setItem("auth", "randomToken")
-    // redirect('/home/dashboard')
-    if(value.email === values.email && value.password === values.password){
-      localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODQsImVtYWlsIjoidXNlcmJhcnVAbWFpbC5jb20iLCJ1c2VybmFtZSI6InVzZXIgYmFydSIsImlhdCI6MTY1OTE3MDM0OCwiZXhwIjoxNjU5MjU2NzQ4fQ.vUTvTtxh5e-22GtdY3jKOUJPAzX6G6o9-T2H5cULdoc');
-      redirect('/home/dashboard');
-      // setLogin(true)
-    } else {
-      window.alert('login failed');
-      // setLogin(false)
-    }
+    const data = {email: value.email, password: value.password};
+    dispatch(login(data));
+    // if(value.email === values.email && value.password === values.password){
+    //   localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODQsImVtYWlsIjoidXNlcmJhcnVAbWFpbC5jb20iLCJ1c2VybmFtZSI6InVzZXIgYmFydSIsImlhdCI6MTY1OTE3MDM0OCwiZXhwIjoxNjU5MjU2NzQ4fQ.vUTvTtxh5e-22GtdY3jKOUJPAzX6G6o9-T2H5cULdoc');
+    //   redirect('/home/dashboard');
+  
+    // } else {
+    //   window.alert('login failed');
+  
+    // }
   };
 
   React.useEffect(()=>{
-    return handleVisible();
-  });
+    if(token){
+      redirect('/home/dashboard');
+    }
+    handleVisible();
+  }, [redirect, token]);
+
   return (
     <>
       <HelmetProvider>

@@ -4,13 +4,20 @@ import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { ProfileLayout } from '../../components/ContentLayout';
+import { getProfile } from '../../redux/actionAsync/profile';
+import { useDispatch, useSelector } from 'react-redux';
 
 const EditProfileForm = ({handleSubmit, handleChange}) => {
-  const [dataFirstName, setDataFirstName] = React.useState('Robert');
-  const [dataLastName, setDataLastName] = React.useState('Chandler');
-  const [dataEmail, setDataEmail] = React.useState('pewdiepie1@gmail.com');
-  const [dataPhoneNumber, setDataPhoneNumber] = React.useState('+62 822 3232 3232');
-
+  const dispatch = useDispatch();
+  const token = useSelector((state)=>state.auth.token);
+  const profile = useSelector((state)=>state.profile.result);
+  const [dataFirstName, setDataFirstName] = React.useState(profile.first_name);
+  const [dataLastName, setDataLastName] = React.useState(profile.last_name);
+  const [dataEmail, setDataEmail] = React.useState(profile.email);
+  const [dataPhoneNumber, setDataPhoneNumber] = React.useState(profile.phone_number);
+  React.useEffect(()=>{
+    dispatch(getProfile(token));
+  }, [dispatch, token]);
   return (
     <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='w-100 d-flex flex-column gap-4'>
       <Form.Group className='d-flex flex-row justify-content-between align-items-center shadow-sm rounded-4 px-4 py-3'>
@@ -105,6 +112,7 @@ const EditProfileForm = ({handleSubmit, handleChange}) => {
 function EditProfile() {
   const redirect = useNavigate();
   const onSubmitEditProfile = (val) => {
+    console.log(val);
     redirect('../');
   };
   return (

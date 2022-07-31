@@ -17,11 +17,11 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
     <>
       <div className='d-flex flex-column align-items-center gap-3'>
         <div className='d-flex img-profile-box'>
-          <Image src={imgUrl} alt={alt} fluid thumbnail/>
+          <Image src={imgUrl} alt={alt} fluid className='rounded-4'/>
         </div>
-        <Link to='/home/profile/edit-profile' className='link-rm-line link-text bg-grey-light'>
-          <FiEdit2 />
-          <span className='fw-light'>Edit</span>
+        <Link to='/home/profile/edit-profile' className='link-rm-line link-text bg-grey-light d-flex gap-2 align-items-center'>
+          <FiEdit2 size={20}/>
+          <span className='fw-normal'>Edit</span>
         </Link>
       </div>
       <div className='d-flex flex-column align-items-center'>
@@ -34,12 +34,13 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
 
 function Profile() {
   const dispatch = useDispatch();
-  const response = useSelector((state)=> state.profile.result);
+  const token = useSelector((state)=> state.auth.token);
+  const profile = useSelector((state)=> state.profile.result);
 
   React.useEffect(()=>{
-    dispatch(getProfile());
-  }, []);
-  const fullNameUser = `${response?.data?.result.first_name} ${response?.data?.result.last_name}`;
+    dispatch(getProfile(token));
+  }, [dispatch, token]);
+  const fullNameUser = `${profile.first_name} ${profile.last_name}`;
   return (
     <>
       <NavbarDashboard titlePage='OPo - profile'/>
@@ -52,9 +53,9 @@ function Profile() {
                 <div className='d-flex flex-column gap-3'>
                   <HeaderProfile
                     alt={'imgProfile'}
-                    imgUrl={`http://${response?.data?.result.photo_url}`}
+                    imgUrl={`http://${profile.photo_url}`}
                     name={fullNameUser}
-                    phone={response?.data?.result.phone_number[0]}
+                    phone={profile.phone_number}
                     to='/home/profile'
                   />
                   <Row>

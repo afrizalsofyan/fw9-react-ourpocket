@@ -1,17 +1,27 @@
 import React from 'react';
 import { FiArrowUp, FiPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../redux/actionAsync/profile';
+import { convertMoney } from './DetailTransferList';
 
 function DashboardBalanceInfo() {
+  const dispatch = useDispatch();
+  const token = useSelector((state)=> state.auth.token);
+  const profile = useSelector((state)=> state.profile.result);
+  React.useEffect(()=>{
+    dispatch(getProfile(token));
+  }, [dispatch, token]);
+
   return (
     <div className='d-flex flex-column justify-content-between'>
       <div className='d-flex flex-column flex-sm-row justify-content-between bg-blue rounded-5 shadow-sm pb-4 pb-sm-0'>
         <div className='d-flex flex-row justify-content-center'>
           <div className='d-flex flex-column gap-3 p-4 text-center text-sm-start'>
             <span className='color-text-4 fw-light'>Balance</span>
-            <span className='color-text-4 fs-3 fw-bold'>Rp120.000</span>
+            <span className='color-text-4 fs-3 fw-bold'>{convertMoney(profile?.balance)}</span>
             <span className='color-text-4 fw-lighter'>
-                            +62 813-9387-7946
+              {profile?.phone_number}
             </span>
           </div>
         </div>
