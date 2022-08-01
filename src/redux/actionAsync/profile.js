@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import http from '../../helpers/http';
 
 export const getProfile = createAsyncThunk('profile/getProfile', async(token)=>{

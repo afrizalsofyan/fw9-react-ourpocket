@@ -33,13 +33,13 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
 };
 
 function Profile() {
-  const dispatch = useDispatch();
-  const token = useSelector((state)=> state.auth.token);
+  // const dispatch = useDispatch();
+  // const token = useSelector((state)=> state.auth.token);
   const profile = useSelector((state)=> state.profile.result);
 
-  React.useEffect(()=>{
-    dispatch(getProfile(token));
-  }, [dispatch, token]);
+  // React.useEffect(()=>{
+  //   dispatch(getProfile(token));
+  // }, [dispatch, token]);
   const fullNameUser = `${profile.first_name} ${profile.last_name}`;
   return (
     <>

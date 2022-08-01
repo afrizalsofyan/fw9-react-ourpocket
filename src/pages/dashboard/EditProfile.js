@@ -8,16 +8,16 @@ import { getProfile } from '../../redux/actionAsync/profile';
 import { useDispatch, useSelector } from 'react-redux';
 
 const EditProfileForm = ({handleSubmit, handleChange}) => {
-  const dispatch = useDispatch();
-  const token = useSelector((state)=>state.auth.token);
+  // const dispatch = useDispatch();
+  // const token = useSelector((state)=>state.auth.token);
   const profile = useSelector((state)=>state.profile.result);
   const [dataFirstName, setDataFirstName] = React.useState(profile.first_name);
   const [dataLastName, setDataLastName] = React.useState(profile.last_name);
   const [dataEmail, setDataEmail] = React.useState(profile.email);
   const [dataPhoneNumber, setDataPhoneNumber] = React.useState(profile.phone_number);
-  React.useEffect(()=>{
-    dispatch(getProfile(token));
-  }, [dispatch, token]);
+  // React.useEffect(()=>{
+  //   dispatch(getProfile(token));
+  // }, [dispatch, token]);
   return (
     <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='w-100 d-flex flex-column gap-4'>
       <Form.Group className='d-flex flex-row justify-content-between align-items-center shadow-sm rounded-4 px-4 py-3'>
