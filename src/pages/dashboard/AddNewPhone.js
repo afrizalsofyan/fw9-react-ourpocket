@@ -8,6 +8,8 @@ import { Form } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import  'yup-phone';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPhoneNumber } from '../../redux/actionAsync/profile';
 
 // const phoneSchema = Yup.object().shape({
 //   phone: Yup.string().matches(/([8]{1})/, "Input with first number phone is 8").matches(/(([11]{2}|[12]{2}|[13]{2}|[15]{2}|[19]{2}|[21]{2}|[22]{2}|[2&3]{2}|[52]{2}|[96]{2}|[98]{2}|[99]{2}]{3}))/, "Please input code for Indonesia phone number").required().length(11),
@@ -27,7 +29,7 @@ export const PhoneForm = ({errors, handleSubmit, handleChange}) => {
         }
         placeholder='Enter your phone number'
         type='text'
-        name='phone'
+        name='phoneNumber'
         isInvalid={!!errors.phone}
         validation={
           <Form.Control.Feedback type='invalid'>
@@ -44,16 +46,18 @@ export const PhoneForm = ({errors, handleSubmit, handleChange}) => {
 
 function AddNewPhone() {
   const redirect = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector((state)=> state.auth.token);
   const onSubmitPhone = async (val) => {
-    console.log(val);
     if(val.phone === ''){
       window.alert('Field is required !!!');
     } else {
-      const validPhone = await phoneSchema.isValid(val.phone);
+      const validPhone = await phoneSchema.isValid(val.phoneNumber);
       if(!validPhone){
         window.alert('Your phone is not from Indonesian zone !!!');
       } else {
-        window.alert('Your phone has been added.');
+        const data = {token: token, phoneNumber: val.phoneNumber};
+        dispatch(addPhoneNumber(data));
         redirect('/home/profile');
       }
     }
@@ -69,7 +73,7 @@ function AddNewPhone() {
               <div className='d-flex flex-column justify-content-center gap-5 w-75'>
                 <Formik
                   onSubmit={onSubmitPhone}
-                  initialValues={{ phone: '' }}
+                  initialValues={{ phoneNumber: '' }}
                   validationSchema={phoneSchema}
                 >
                   {(props) => <PhoneForm {...props} />}

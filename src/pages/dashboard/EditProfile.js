@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { ProfileLayout } from '../../components/ContentLayout';
-import { getProfile } from '../../redux/actionAsync/profile';
+import { getProfile, updateProfile } from '../../redux/actionAsync/profile';
 import { useDispatch, useSelector } from 'react-redux';
 
 const EditProfileForm = ({handleSubmit, handleChange}) => {
@@ -111,9 +111,12 @@ const EditProfileForm = ({handleSubmit, handleChange}) => {
 
 function EditProfile() {
   const redirect = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector((state)=>state.auth.token);
   const onSubmitEditProfile = (val) => {
-    console.log(val);
-    redirect('../');
+    const data = {token: token, firstName: val.firstName, lastName: val.lastName, phoneNumber: val.phoneNumber};
+    dispatch(updateProfile(data));
+    redirect('/home/profile/details');
   };
   return (
     <>

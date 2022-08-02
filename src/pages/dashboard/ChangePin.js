@@ -8,13 +8,6 @@ import { InputPin } from '../../components/InputField';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { useSelector } from 'react-redux/es/exports';
 
-// const changePinSchema = Yup.object().shape({
-//   pin: Yup.array().of(
-//     Yup.string()
-//       .matches(/[0-9]{1}/, "Must number value")
-//       .required("Pin is required")
-//   ),
-// });
 
 const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
   return (
@@ -58,15 +51,15 @@ const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
 };
 
 function ChangePin() {
-  const pinData = useSelector((state)=> state.user.pin);
   const redirect = useNavigate();
+  const profile = useSelector((state)=> state.profile.result);
   const onSubmitPin = (val) => {
     if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
       window.alert('Value is required');
     } else {
       if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
         const finalPin = val.pin.join('');  
-        if(parseInt(finalPin) === pinData){
+        if(parseInt(finalPin) === profile.pin_number){
           redirect('new-pin');         
         }else{
           window.alert('Pin not match with your pin now !!!');

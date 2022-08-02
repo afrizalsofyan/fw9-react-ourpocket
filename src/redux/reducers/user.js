@@ -1,26 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllUser } from '../actionAsync/user';
 
 const initialState = {
-  // username,
-  email: '',
-  password: '',
-  pin: null
+  result: {}
 };
 
-export const userSlice = createSlice({
+export const user = createSlice({
   name: 'user',
   initialState,
   reducers: { 
-    createPin: (state, action) => {
-      state.pin = action.payload;
-    },
-    testLogin: (state, action) => {
-      state.email = action.payload;
-      state.password = action.payload;
-    }
+    // createPin: (state, action) => {
+    //   state.pin = action.payload;
+    // },
+    // testLogin: (state, action) => {
+    //   state.email = action.payload;
+    //   state.password = action.payload;
+    // }
+  },
+  extraReducers: (build) => {
+    build.addCase(getAllUser.fulfilled, (state, action)=>{
+      state.result = action.payload?.result;
+    });
   }
 });
 
-export const {createPin} = userSlice.actions;
+export {getAllUser};
 
-export default userSlice.reducer;
+export default user.reducer;

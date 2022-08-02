@@ -11,12 +11,20 @@ import Img2 from '../../assets/images/img/img2.png';
 import Img3 from '../../assets/images/img/img3.png';
 import Img4 from '../../assets/images/img/img4.png';
 import { FiSearch } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUser } from '../../redux/actionAsync/user';
 
 function Transfer() {
+  const users = useSelector((state)=> state.user.result);
+  const token = useSelector((state)=> state.auth.token);
+  const dispatch = useDispatch();
+
+  React.useEffect(()=>{
+    dispatch(getAllUser(token));
+  }, [dispatch, token]);
   return (
     <>
       <NavbarDashboard titlePage='OPo - transfer'/>
-
       <Container as='section' className='g-0 '>
         <Row className='pt-5 gx-0 gx-md-3'>
           <SideBarMenu />
@@ -32,31 +40,22 @@ function Transfer() {
                   </span>
                   <Form.Control type='text' className='ps-5 border-0 bg-grey-input rounded-3 py-3 color-text-6' placeholder='Search receiver here'/>
                 </InputGroup>
-                <div className='d-flex flex-column gap-5 py-4 overflow-auto h-75 pe-4'>
-                  <UserCard
-                    url={'/home/transfer/1'}
-                    img_path={Img1}
-                    name='Jessica Keen'
-                    phone={'+62 811-3452-5252'}
-                  />
-                  <UserCard
-                    url={'/home/transfer/2'}
-                    img_path={Img2}
-                    name='Michael Le'
-                    phone={'+62 810-4224-4613'}
-                  />
-                  <UserCard
-                    url={'/home/transfer/3'}
-                    img_path={Img3}
-                    name='Samuel Suhi'
-                    phone={'+62 813-8492-9994'}
-                  />
-                  <UserCard
-                    url={'/home/transfer/4'}
-                    img_path={Img4}
-                    name='Momo Taro'
-                    phone={'+62 812-4343-6731'}
-                  />
+                {/* img_path={Img1} */}
+                <div className='d-flex flex-column gap-5 py-4'>
+                  {users?.map((el)=>{
+                    return(
+                      <div key={el.id}>
+                        <UserCard
+                          url={`/home/transfer/${el.id}`}
+                          img_path={Img1}
+                          name={`${el.first_name} ${el.last_name}`}
+                          phone={'+62 811-3452-5252'}
+                        />
+                      </div>
+                    );
+                  })}
+                  
+                  
                 </div>
               </>
             }

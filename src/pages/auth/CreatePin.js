@@ -7,8 +7,9 @@ import { InputPin } from '../../components/InputField';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { createPin } from '../../redux/reducers/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../redux/actionAsync/profile';
+import { createPin } from '../../redux/actionAsync/auth';
 
 // const createPinSchema = Yup.object().shape({
 //   pin1: Yup.number().typeError('Pin1 must be a number').min(0).max(9).required(),
@@ -67,20 +68,33 @@ const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
 function CreatePin() {
   const dispatch = useDispatch();
   const redirect = useNavigate();
+  const successMsg = useSelector((state)=>state.auth.successMsg);
+  const token = useSelector((state) => state.auth.token);
+  const profile = useSelector((state)=> state.profile.result);
+  React.useEffect(() => {
+    dispatch(getProfile(token));
+  }, [dispatch, token]);
   const submitPin = (value) => {
-    if(value.pin1 === '' || value.pin2 === '' || value.pin3 === '' || value.pin4 === '' || value.pin5 === '' || value.pin6 === ''){
-      window.alert('Value is required');
-    } else {
-      if (isNaN(parseInt(value.pin1)) === false && isNaN(parseInt(value.pin2)) === false && isNaN(parseInt(value.pin3)) === false && isNaN(parseInt(value.pin4)) === false && isNaN(parseInt(value.pin5)) === false && isNaN(parseInt(value.pin6)) === false){
-        const joinPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6;
-        dispatch(createPin(parseInt(joinPin)));
-        redirect('/auth/create-pin-success');
+    if(profile.pin_number === null){
+      if(value.pin1 === '' || value.pin2 === '' || value.pin3 === '' || value.pin4 === '' || value.pin5 === '' || value.pin6 === ''){
+        window.alert('Value is required');
       } else {
-        window.alert('Please input with only number !!!');
+        if (isNaN(parseInt(value.pin1)) === false && isNaN(parseInt(value.pin2)) === false && isNaN(parseInt(value.pin3)) === false && isNaN(parseInt(value.pin4)) === false && isNaN(parseInt(value.pin5)) === false && isNaN(parseInt(value.pin6)) === false){
+          const joinPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6;
+          console.log(typeof joinPin);
+          const data = {email: profile.email, pin: joinPin};
+          dispatch(createPin(data));
+        } else {
+          window.alert('Please input with only number !!!');
+        }
       }
     }
-    
   };
+  React.useEffect(()=>{
+    if(successMsg){
+      redirect('/auth/create-pin-success');  
+    }
+  }, [redirect, successMsg]);
   return (
     <>
       <HelmetProvider>

@@ -7,11 +7,13 @@ import { Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { ButtonSubmit } from '../../components/ButtonAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { changePassword } from '../../redux/actionAsync/profile';
 
 const changePasswordSchema = Yup.object().shape({
-  currentPass: Yup.string().min(4).required(),
-  newPass: Yup.string().min(4).required(),
-  confirmPass: Yup.string().min(4).required(),
+  currentPassword: Yup.string().min(4).required(),
+  newPassword: Yup.string().min(4).required(),
+  repeatPassword: Yup.string().min(4).required(),
 });
 
 export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
@@ -23,7 +25,7 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
       <div className='d-flex flex-row justify-content-center py-2'>
         <div className='d-flex flex-column justify-content-center gap-4 w-75'>
           <InputField
-            name='currentPass'
+            name='currentPassword'
             icon={<FiLock size={24} className='color-text-6' />}
             type={showPass ? 'text' : 'password'}
             placeholder={'Current password'}
@@ -50,7 +52,7 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
             }
           />
           <InputField
-            name='newPass'
+            name='newPassword'
             icon={<FiLock size={24} className='color-text-6' />}
             type={showNewPass ? 'text' : 'password'}
             placeholder={'New password'}
@@ -77,7 +79,7 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
             }
           />
           <InputField
-            name='confirmPass'
+            name='repeatPassword'
             icon={<FiLock size={24} className='color-text-6' />}
             type={showConfirmPass ? 'text' : 'password'}
             placeholder={'Repeat new password'}
@@ -106,7 +108,7 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
         </div>
       </div>
       <div className='d-grid px-5 my-5'>
-        <ButtonSubmit textButton='Add Phone Number' buttonType={'sm'} />
+        <ButtonSubmit textButton='Change Password' buttonType={'sm'} />
       </div>
       {/* <div className="d-grid px-5 my-5">
         <Link to="../details" className="btn border-0 px-4 py-2 btn-prim-1">
@@ -119,11 +121,15 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
 
 function ChangePassword() {
   const redirect = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector((state)=>state.auth.token);
   const onSubmitPassword = (val) => {
-    if (val.newPass !== val.confirmPass) {
+    if (val.newPassword !== val.repeatPassword) {
       window.alert('Repeat password is incorrect');
     } else {
-      redirect('../details');
+      const data = {token: token, currentPassword: val.currentPassword, newPassword: val.newPassword, repeatPassword: val.repeatPassword};
+      dispatch(changePassword(data));
+      redirect('/home/profile/details');
     }
   };
   return (
@@ -135,7 +141,7 @@ function ChangePassword() {
           <>
             <Formik
               onSubmit={onSubmitPassword}
-              initialValues={{ currentPass: '', newPass: '', confirmPass: '' }}
+              initialValues={{ currentPassword: '', newPassword: '', repeatPassword: '' }}
               validationSchema={changePasswordSchema}
             >
               {(props) => <ChangePasswordForm {...props} />}

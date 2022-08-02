@@ -28,37 +28,37 @@ import LandingPage from './pages/LandingPage';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<PrivateAuthRoute><LandingPage/></PrivateAuthRoute>}></Route>
+      <Route path='/' element={<LandingPage/>}></Route>
       <Route path='/auth'>
-        <Route path='login' element={<PrivateAuthRoute><Login/></PrivateAuthRoute>}></Route>
+        <Route path='login' element={<Login/>}></Route>
         <Route path='register' element={<Register/>}></Route>
         <Route path='forget-password' element={<ForgetPassword/>}></Route>
         <Route path='add-new-password' element={<NewPassword/>}></Route>
-        <Route path='create-pin' element={<CreatePin/>}></Route>
+        <Route path='create-pin' element={<PrivateRoute><CreatePin/></PrivateRoute>}></Route>
         <Route path='create-pin-success' element={<CreatePinSuccess/>}></Route>
       </Route>
       <Route path='/home'>
         <Route path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
         <Route path='history' element={<PrivateRoute><History/></PrivateRoute>}></Route>
         <Route path='transfer' element={<PrivateRoute><Transfer/></PrivateRoute>}></Route>
-        <Route path='transfer/:id' element={<TransferAmount/>}></Route>
-        <Route path='transfer/:id/transfer-confirmation' element={<TransferConfirmation/>}></Route>
-        <Route path='transfer/:id/transfer-confirmation/success' element={<SuccessTransfer />}></Route>
-        <Route path='transfer/:id/transfer-confirmation/failed' element={<FailedTransfer />}></Route>
-        <Route path='topup' element={<TopUp/>}></Route>
+        <Route path='transfer/:id' element={<PrivateRoute><TransferAmount/></PrivateRoute>}></Route>
+        <Route path='transfer/:id/transfer-confirmation' element={<PrivateRoute><TransferConfirmation/></PrivateRoute>}></Route>
+        <Route path='transfer/:id/transfer-confirmation/success' element={<PrivateRoute><SuccessTransfer /></PrivateRoute>}></Route>
+        <Route path='transfer/:id/transfer-confirmation/failed' element={<PrivateRoute><FailedTransfer /></PrivateRoute>}></Route>
+        <Route path='topup' element={<PrivateRoute><TopUp/></PrivateRoute>}></Route>
         <Route path='profile'>
-          <Route index element={<Profile/>}/>
-          <Route path='edit-profile' element={<EditProfile/>}></Route>
-          <Route path='change-password' element={<ChangePassword/>}></Route>
+          <Route index element={<PrivateRoute><Profile/></PrivateRoute>}/>
+          <Route path='edit-profile' element={<PrivateRoute><EditProfile/></PrivateRoute>}></Route>
+          <Route path='change-password' element={<PrivateRoute><ChangePassword/></PrivateRoute>}></Route>
           <Route path='change-pin'>
-            <Route index element={<ChangePin/>}></Route>
-            <Route path='new-pin' element={<ChangeNewPin/>}></Route>
+            <Route index element={<PrivateRoute><ChangePin/></PrivateRoute>}></Route>
+            <Route path='new-pin' element={<PrivateRoute><ChangeNewPin/></PrivateRoute>}></Route>
           </Route>
           <Route path='details' >
-            <Route index element={<DetailProfile/>}/>
+            <Route index element={<PrivateRoute><DetailProfile/></PrivateRoute>}/>
             <Route path='manage-phone' >
-              <Route index element={<ManagePhone />}/>
-              <Route path='add-phone' element={<AddNewPhone />}/>
+              <Route index element={<PrivateRoute><ManagePhone /></PrivateRoute>}/>
+              <Route path='add-phone' element={<PrivateRoute><AddNewPhone /></PrivateRoute>}/>
             </Route>
           </Route>
         </Route>

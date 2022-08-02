@@ -99,14 +99,6 @@ function Login() {
   const testLogin = (value) => {
     const data = {email: value.email, password: value.password};
     dispatch(login(data));
-    // if(value.email === values.email && value.password === values.password){
-    //   localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODQsImVtYWlsIjoidXNlcmJhcnVAbWFpbC5jb20iLCJ1c2VybmFtZSI6InVzZXIgYmFydSIsImlhdCI6MTY1OTE3MDM0OCwiZXhwIjoxNjU5MjU2NzQ4fQ.vUTvTtxh5e-22GtdY3jKOUJPAzX6G6o9-T2H5cULdoc');
-    //   redirect('/home/dashboard');
-  
-    // } else {
-    //   window.alert('login failed');
-  
-    // }
   };
 
   React.useEffect(()=>{

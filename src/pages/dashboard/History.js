@@ -21,9 +21,9 @@ function History() {
   const historyData = transaction?.result;
   const infoData = transaction?.info;
   const [keyword, setKeyword] = React.useState('');
-  const [searchBy, setSearchBy] = React.useState(1);
-  const [sortBy, setSortBy] = React.useState(1);
-  const [sortType, setSortType] = React.useState(1);
+  const [searchBy, setSearchBy] = React.useState(0);
+  const [sortBy, setSortBy] = React.useState(0);
+  const [sortType, setSortType] = React.useState();
   const param = {token: token, page: 1};
   // let param = {token: token, page: page};
   const onNextPage = ()=>{
@@ -36,8 +36,33 @@ function History() {
     const param = {token: token, page: transaction.info.prevPage};
     dispatch(historyTransaction(param));
   };
-  const onSubmitForm = (val) =>{
-    console.log(val);
+  
+  const onSearchHistory = () =>{
+    let searchByKeyword = '';
+    let sortByKeyword = '';
+    if(searchBy === 1 ){
+      searchByKeyword = 'amount';
+    } else if(searchBy === 2 ){
+      searchByKeyword = 'recipient';
+    } else {
+      searchByKeyword = 'sender';
+    }
+    if(sortBy === 1 ){
+      sortByKeyword = 'amount';
+    } else {
+      sortByKeyword = 'time';
+    }
+    
+    const param = {token: token, page: transaction.info.currentPage, search: keyword, searchBy: searchByKeyword, sortBy: sortByKeyword, sortType: sortType};
+    // , sortBy: sortByKeyword, sortType: sortType
+    dispatch(historyTransaction(param));
+    console.log(searchByKeyword);
+    console.log(sortByKeyword);
+    console.log(typeof searchBy);
+  };
+  const onResetParam = () => {
+    const param = {token: token, page: 1, search: undefined, searchBy: undefined, sortBy: undefined, sortType: undefined};
+    dispatch(historyTransaction(param));
   };
   React.useEffect(()=>{
     dispatch(historyTransaction(param));
@@ -56,62 +81,72 @@ function History() {
                   <h1 className='fw-bold fs-4 color-text-2'>Transaction History</h1>
                   <div className='d-flex flex-column gap-3 overflow-auto px-md-4 color-text-6'>
                     {/* <span className='bg-grey-light fw-bold color-text-6'>This Week</span> */}
-                    <div className='d-flex gap-5'>
-                      <DropdownButton
-                        as={ButtonGroup}
-                        size='ms'
-                        variant={'info'}
-                        title={'Search By'}
-                        onSelect={(eventKey)=>{
-                          setSearchBy(parseInt(eventKey));
-                          // console.log(typeof eventKey);
-                        }}
-                      >
-                        <Dropdown.Item eventKey='1' active={searchBy===1? true : false}>amount</Dropdown.Item>
-                        <Dropdown.Item eventKey='2' active={searchBy===2? true : false}>recipient</Dropdown.Item>
-                        <Dropdown.Item eventKey='3' active={searchBy===3? true : false}>sender</Dropdown.Item>
-                      </DropdownButton>
-                      <Form.Control
-                        name='search'
-                        className='cstm-border2 text-center rounded-0 color-text-6'
-                        type='text'
-                        placeholder='Search history'
-                      />
-                      <div className='d-flex flex-column gap-2'>
-                        <DropdownButton
-                          as={ButtonGroup}
-                          size='sm'
-                          variant={'info'}
-                          title={'Sort By'}
-                          onSelect={(eventKey)=>{
-                            setSortBy(parseInt(eventKey));
+                    <div className='d-flex flex-column gap-3'>
+                      <div className='d-flex'>
+                        <Form.Control
+                          name='search'
+                          className='cstm-border2 text-center rounded-0 color-text-6'
+                          type='text'
+                          value={keyword}
+                          onChange={(e)=>setKeyword(e.target.value)}
+                          disabled={searchBy===0}
+                          placeholder='Search history'
+                        />
+                        <div>
+                          <Button className='bg-color-1 border-0' onClick={onSearchHistory}><FiSearch/></Button>
+                        </div>
+                      </div>
+                      <div className='d-flex justify-content-between'>
+                        <div className='d-flex flex-row gap-3'>
+                          <DropdownButton
+                            as={ButtonGroup}
+                            size='sm'
+                            variant={'info'}
+                            title={'Search By'}
+                            onSelect={(eventKey)=>{
+                              setSearchBy(parseInt(eventKey));
                             // console.log(typeof eventKey);
-                          }}
-                        >
-                          <Dropdown.Item eventKey='1' active={sortBy===1? true : false}>amount</Dropdown.Item>
-                          <Dropdown.Item eventKey='2' active={sortBy===2? true : false}>time</Dropdown.Item>
-                        </DropdownButton>
-                        <DropdownButton
-                          as={ButtonGroup}
-                          size='sm'
-                          // variant={'info'}
-                          title={'Sort Type'}
-                          onSelect={(eventKey)=>{
-                            setSortType(parseInt(eventKey));
+                            }}
+                          >
+                            <Dropdown.Item eventKey='1' active={searchBy===1? true : false}>amount</Dropdown.Item>
+                            <Dropdown.Item eventKey='2' active={searchBy===2? true : false}>recipient</Dropdown.Item>
+                            <Dropdown.Item eventKey='3' active={searchBy===3? true : false}>sender</Dropdown.Item>
+                          </DropdownButton>
+                          <DropdownButton
+                            as={ButtonGroup}
+                            size='sm'
+                            variant={'info'}
+                            title={'Sort By'}
+                            onSelect={(eventKey)=>{
+                              setSortBy(parseInt(eventKey));
                             // console.log(typeof eventKey);
-                          }}
-                        >
-                          <Dropdown.Item eventKey='1' active={sortType===1? true : false}>asc</Dropdown.Item>
-                          <Dropdown.Item eventKey='2' active={sortType===2? true : false}>desc</Dropdown.Item>
-                        </DropdownButton>
+                            }}
+                          >
+                            <Dropdown.Item eventKey='1' active={sortBy===1? true : false}>amount</Dropdown.Item>
+                            <Dropdown.Item eventKey='2' active={sortBy===2? true : false}>time</Dropdown.Item>
+                          </DropdownButton>
+                          <DropdownButton
+                            as={ButtonGroup}
+                            size='sm'
+                            variant={'info'}
+                            title={'Sort Type'}
+                            onSelect={(eventKey)=>{
+                              setSortType(parseInt(eventKey));
+                            // console.log(typeof eventKey);
+                            }}
+                          >
+                            <Dropdown.Item eventKey='0' active={sortType===1? true : false}>asc</Dropdown.Item>
+                            <Dropdown.Item eventKey='1' active={sortType===2? true : false}>desc</Dropdown.Item>
+                          </DropdownButton>
+                        </div>
+                        <Button className='btn bg-color-1 color-text-4' onClick={onResetParam}>Reset</Button>
                       </div>
                     </div>
-                    
                     {historyData?.map((data)=>{
                       return(
                         <>
                           <div key={data?.id}>
-                            {data.type === 'payment' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' name={data.id}   type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
+                            {data.type === 'payment' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={data.sender}  nameRecipient={data.recipient} type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
                           </div>
                         </>
                       );

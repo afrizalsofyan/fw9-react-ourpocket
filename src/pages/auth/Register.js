@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form } from 'react-bootstrap';
+import { Row, Col, Form, Alert } from 'react-bootstrap';
 import { FiMail, FiLock, FiEyeOff, FiUser, FiEye } from 'react-icons/fi';
 import InputField from '../../components/InputField';
 import AuthBanner from '../../components/AuthBanner';
@@ -9,6 +9,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, register } from '../../redux/actionAsync/auth';
 
 const registerScheme = Yup.object().shape({
   username: Yup.string().min(6).required(),
@@ -83,9 +85,25 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
 
 function Register() {
   const redirect = useNavigate();
-  const submitRegister = () => {
-    redirect('/auth/create-pin');
+  const dispatch = useDispatch();
+  const successMsg = useSelector((state)=>state.auth.successMsg);
+  const errorMsg = useSelector((state)=>state.auth.errorMsg);
+  const token = useSelector((state)=>state.auth.token);
+  const submitRegister = (val) => {
+    const dataNewUse ={email: val.email, password: val.password};
+    dispatch(register(val));
+    dispatch(login(dataNewUse));
   };
+  // React.useEffect(()=>{
+  //   if(successMsg){
+  //     redirect('/auth/create-pin');  
+  //   }
+  // }, [redirect, successMsg]);
+  React.useEffect(()=>{
+    if(token){
+      redirect('/auth/create-pin');
+    }
+  }, [redirect, token]);
   return (
     <>
       <HelmetProvider>
@@ -109,6 +127,7 @@ function Register() {
                 'Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!'
               }
             />
+            {errorMsg && <Alert variant='danger'>{errorMsg}</Alert>}
             <Formik
               onSubmit={submitRegister}
               initialValues={{ username: '', email: '', password: '' }}

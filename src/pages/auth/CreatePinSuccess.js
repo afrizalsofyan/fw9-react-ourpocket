@@ -1,11 +1,19 @@
 import React from 'react';
-import { Row, Col, Image } from 'react-bootstrap';
+import { Row, Col, Image, Button } from 'react-bootstrap';
 import AuthBanner from '../../components/AuthBanner';
 import TitleAuthForm from '../../components/TitleAuthForm';
-import ButtonAuth from '../../components/ButtonAuth';
 import SuccessIcon from '../../assets/images/icons/success.png';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/reducers/auth';
+import { useNavigate } from 'react-router-dom';
 
 function CreatePinSuccess() {
+  const dispatch = useDispatch();
+  const redirect = useNavigate();
+  const onLogout = () => {
+    dispatch(logout());
+    redirect('/auth/login');
+  };
   return (
     <Row className='gx-0'>
       <AuthBanner />
@@ -25,7 +33,7 @@ function CreatePinSuccess() {
             }
           />
         </div>
-        <ButtonAuth link={'/auth/login'} textButton={'Login Now'} />
+        <Button onClick={onLogout} className='btn bg-color-1 border-0 py-2'>Login Now</Button>
       </Col>
     </Row>
   );

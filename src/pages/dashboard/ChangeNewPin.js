@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { ProfileLayout } from '../../components/ContentLayout';
 import { InputPin } from '../../components/InputField';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { createPin } from '../../redux/reducers/user';
+import { changePin } from '../../redux/actionAsync/profile';
 
 const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
   return (
@@ -60,16 +61,19 @@ const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
 };
 
 function ChangeNewPin() {
-  const dispatch = useDispatch();
   const redirect = useNavigate();
+  const dispatch = useDispatch();
+  const profile = useSelector((state)=> state.profile.result);
+  const token = useSelector((state)=> state.auth.token);
   const onSubmitPin = (val) => {
     if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
       window.alert('Value is required');
     } else {
       if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
         const finalPin = val.pin.join('');  
-        dispatch(createPin(parseInt(finalPin)));
-        redirect('../../details');
+        const data = {token: token, newPin: finalPin, currentPin: profile.pin_number};
+        dispatch(changePin(data));
+        redirect('/home/profile/details');
       } else {
         window.alert('Please input with only number !!!');
       }
