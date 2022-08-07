@@ -25,6 +25,10 @@ export const updateProfile = createAsyncThunk('/profile/updateProfile', async(re
     formData.append('firstName', request.firstName);
     formData.append('lastName', request.lastName);
     formData.append('phoneNumber', request.phoneNumber);
+    formData.append('picture', request.picture);
+    // if(request.picture !== undefined){
+    //   formData.append('picture', request.picture);
+    // }
     const {data} = await http(token).patch('/profile', formData, {
       headers: {
         'content-type' : 'multipart/form-data'

@@ -88,7 +88,10 @@ const ChangePinForm = ({ errors, handleChange, handleSubmit, show, hide }) => {
 function ModalTransferConfirmation({ show, onHide, id }) {
   const redirect = useNavigate();
   const checkPin = useSelector((state)=>state.user.pin);
-  console.log(checkPin);
+  const amount = useSelector((state)=> state.inputAmount.amount);
+  const note = useSelector((state)=> state.inputAmount.note);
+  const transferId = useSelector((state)=>state.inputAmount.type_id);
+  // const data = {note: note, amount: amount, type_id: transferId, recipient_id: id,  sender_id: }
   const onSubmitPin = (val) => {
     if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
       window.alert('Value is required');

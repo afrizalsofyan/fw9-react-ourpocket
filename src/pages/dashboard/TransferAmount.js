@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavbarDashboard from '../../components/NavbarDashboard';
 import { Container, Form, Row, InputGroup } from 'react-bootstrap';
 import SideBarMenu from '../../components/SideBarMenu';
@@ -11,8 +11,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { ButtonSubmit } from '../../components/ButtonAuth';
-import { useDispatch } from 'react-redux/es/exports';
-import { addAmount, addNote } from '../../redux/reducers/input';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { addAmount, addNote, addTime, addTypeTransaction } from '../../redux/reducers/input';
+import { getProfile } from '../../redux/actionAsync/profile';
+import { convertMoney } from '../../components/DetailTransferList';
+import { getUser } from '../../redux/actionAsync/user';
+
 
 const amountSchema = Yup.object().shape({
   amount: Yup.number().typeError('Field must number!!!').min(10000).required(),
@@ -20,6 +24,15 @@ const amountSchema = Yup.object().shape({
 });
 
 export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state)=>state.auth.token);
+  const profile = useSelector((state)=>state.profile.result);
+  
+  React.useEffect(()=>{
+    dispatch(getProfile(token));
+  }, [dispatch, token]);
+
+  console.log(profile);
   return (
     <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column align-items-center'>
       <Form.Group className='form-group d-flex flex-column align-items-center gap-4 w-75'>
@@ -36,8 +49,7 @@ export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
           </Form.Control.Feedback>
         </InputGroup>
         <div className='d-flex flex-column flex-sm-row align-items-center color-text-6'>
-          <span className='fs-6 fw-bold'>Rp. 120.000</span>
-          <span className='fs-6 fw-bold'> Available</span>
+          <span className='fs-6 fw-bold'>{`${convertMoney(profile?.balance)} Available`}</span>
         </div>
         <InputGroup className='search-input'>
           <span className='icon-input'>
@@ -62,18 +74,30 @@ function TransferAmount() {
   const { id } = useParams();
   const redirect = useNavigate();
   const dispatch = useDispatch();
+  const token = useSelector((state)=>state.auth.token);
+  const recipient = useSelector((state)=>state.user.dataUser);
+  const data = {id: id, token: token};
+  React.useEffect(()=>{
+    dispatch(getUser(data));
+  }, [dispatch, token]);
+
   const onSubmitAmountNote = (val) => {
-    console.log(val.note);
-    
+    const time = new Date().toLocaleString();
+    const typeTransaction = 'transfer';
+    if(typeTransaction==='transfer'){
+      dispatch(addTypeTransaction(17));
+    }
     if(val.note === ''){
       val.note = '-';
       dispatch(addAmount(val.amount));
+      dispatch(addTime(time));
       redirect(`/home/transfer/${id}/transfer-confirmation`);
     } else {
       dispatch(addNote(val.note));
       redirect(`/home/transfer/${id}/transfer-confirmation`);
     }
   };
+  console.log(recipient);
   return (
     <>
       <NavbarDashboard />
@@ -92,8 +116,8 @@ function TransferAmount() {
                   <UserCard
                     url={'/home/transfer/3'}
                     img_path={Img3}
-                    name='Samuel Suhi'
-                    phone={'+62 813-8492-9994'}
+                    name={`${recipient?.first_name} ${recipient?.last_name}`}
+                    phone={recipient?.phone_number[0]}
                   />
                   <div className='text-desc-layout'>
                     <span className='color-text-2'>

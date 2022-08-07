@@ -14,6 +14,9 @@ function CreatePinSuccess() {
     dispatch(logout());
     redirect('/auth/login');
   };
+  const onDashboard = () => {
+    redirect('/home/dashboard');
+  };
   return (
     <Row className='gx-0'>
       <AuthBanner />
@@ -33,7 +36,8 @@ function CreatePinSuccess() {
             }
           />
         </div>
-        <Button onClick={onLogout} className='btn bg-color-1 border-0 py-2'>Login Now</Button>
+        <Button onClick={onLogout} className='btn bg-color-1 border-0 py-2'>Back to Login</Button>
+        <Button onClick={onDashboard} className='btn bg-color-1 border-0 py-2'>Go to Dashboard</Button>
       </Col>
     </Row>
   );

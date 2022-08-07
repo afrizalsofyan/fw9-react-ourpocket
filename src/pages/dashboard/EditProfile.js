@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Image } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { ProfileLayout } from '../../components/ContentLayout';
@@ -20,6 +20,17 @@ const EditProfileForm = ({handleSubmit, handleChange}) => {
   // }, [dispatch, token]);
   return (
     <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='w-100 d-flex flex-column gap-4'>
+      <div className='d-flex justify-content-center'>
+        <div className='d-flex flex-column align-items-center'>
+          <div className='w-25'>
+            <Image src={`http://${profile.photo_url}`} alt={profile.first_name} fluid className='rounded-4'/>
+          </div>
+          <Form.Group controlId='formFile' className='my-3  text-center'>
+            <Form.Label className='color-text-2'>Update Photo</Form.Label>
+            <Form.Control type='file' name='picture'/>
+          </Form.Group>
+        </div>
+      </div>
       <Form.Group className='d-flex flex-row justify-content-between align-items-center shadow-sm rounded-4 px-4 py-3'>
         <div className='d-flex flex-column w-100'>
           <Form.Label className='fnt-desc2'>
@@ -113,8 +124,10 @@ function EditProfile() {
   const redirect = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state)=>state.auth.token);
+  const profile = useSelector((state)=>state.profile.result);
   const onSubmitEditProfile = (val) => {
-    const data = {token: token, firstName: val.firstName, lastName: val.lastName, phoneNumber: val.phoneNumber};
+    console.log(val.picture);
+    const data = {token: token, firstName: val.firstName === '' ? profile.first_name : val.firstName, lastName: val.lastName === '' ? profile.last_name : val.lastName, phoneNumber: val.phoneNumber === '' ? profile.phone_number : val.phoneNumber, picture: val.picture};
     dispatch(updateProfile(data));
     redirect('/home/profile/details');
   };
@@ -125,6 +138,7 @@ function EditProfile() {
         subtitleText="Here you can edit or update your personal information data's. Just click in the field and edit your data's."
         child={
           <div className='d-flex flex-column gap-4'>
+           
             <Formik onSubmit={onSubmitEditProfile} initialValues={{firstName: '', lastName: '', email: '', phoneNumber: ''}}>
               {(props) => <EditProfileForm {...props} />}
             </Formik>

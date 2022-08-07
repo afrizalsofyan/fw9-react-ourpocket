@@ -68,7 +68,7 @@ const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
 function CreatePin() {
   const dispatch = useDispatch();
   const redirect = useNavigate();
-  const successMsg = useSelector((state)=>state.auth.successMsg);
+  // const successMsg = useSelector((state)=>state.auth.successMsg);
   const token = useSelector((state) => state.auth.token);
   const profile = useSelector((state)=> state.profile.result);
   React.useEffect(() => {
@@ -90,11 +90,11 @@ function CreatePin() {
       }
     }
   };
-  React.useEffect(()=>{
-    if(successMsg){
-      redirect('/auth/create-pin-success');  
-    }
-  }, [redirect, successMsg]);
+  // React.useEffect(()=>{
+  //   if(successMsg){
+  //     redirect('/auth/create-pin-success');  
+  //   }
+  // }, [redirect, successMsg]);
   return (
     <>
       <HelmetProvider>

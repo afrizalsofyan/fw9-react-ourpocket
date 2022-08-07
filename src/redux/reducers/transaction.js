@@ -2,7 +2,8 @@ import {createSlice} from '@reduxjs/toolkit';
 import { historyTransaction } from '../actionAsync/transaction';
 
 const initialState = {
-  result: {}
+  result: {},
+  
 };
 
 const transaction = createSlice({

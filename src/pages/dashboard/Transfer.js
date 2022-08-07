@@ -22,6 +22,7 @@ function Transfer() {
   React.useEffect(()=>{
     dispatch(getAllUser(token));
   }, [dispatch, token]);
+  console.log(users);
   return (
     <>
       <NavbarDashboard titlePage='OPo - transfer'/>
@@ -42,7 +43,7 @@ function Transfer() {
                 </InputGroup>
                 {/* img_path={Img1} */}
                 <div className='d-flex flex-column gap-5 py-4'>
-                  {users?.map((el)=>{
+                  {users && users.map((el)=>{
                     return(
                       <div key={el.id}>
                         <UserCard
@@ -54,8 +55,6 @@ function Transfer() {
                       </div>
                     );
                   })}
-                  
-                  
                 </div>
               </>
             }

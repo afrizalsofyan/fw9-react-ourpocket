@@ -9,6 +9,8 @@ import { UserCard } from '../../components/UserCard';
 import Img3 from '../../assets/images/img/img3.png';
 import DetailTransferList from '../../components/DetailTransferList';
 import ModalTransferConfirmation from '../../components/ModalTransferConfirmation';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../redux/actionAsync/user';
 
 function TransferConfirmation() {
   
@@ -16,6 +18,7 @@ function TransferConfirmation() {
   const closeModal = () => setShowModal(false);
   const openModal = () => setShowModal(true);
   const {id} = useParams();
+  const recipient = useSelector((state)=>state.user.dataUser);
   return (
     <>
       <NavbarDashboard />
@@ -33,8 +36,8 @@ function TransferConfirmation() {
                   <UserCard
                     url={'/home/transfer/3'}
                     img_path={Img3}
-                    name='Samuel Suhi'
-                    phone={'+62 813-8492-9994'}
+                    name={`${recipient?.first_name} ${recipient?.last_name}`}
+                    phone={recipient?.phone_number}
                   />
                   {/* Title Detail */}
                   <div>

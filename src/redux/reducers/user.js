@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllUser } from '../actionAsync/user';
+import { getAllUser, getUser } from '../actionAsync/user';
 
 const initialState = {
-  result: {}
+  result: [],
+  dataUser: null
 };
 
 export const user = createSlice({
@@ -20,6 +21,9 @@ export const user = createSlice({
   extraReducers: (build) => {
     build.addCase(getAllUser.fulfilled, (state, action)=>{
       state.result = action.payload?.result;
+    });
+    build.addCase(getUser.fulfilled, (state, action)=>{
+      state.dataUser = action.payload?.result;
     });
   }
 });

@@ -23,23 +23,13 @@ function History() {
   const [keyword, setKeyword] = React.useState('');
   const [searchBy, setSearchBy] = React.useState(0);
   const [sortBy, setSortBy] = React.useState(0);
-  const [sortType, setSortType] = React.useState();
+  const [sortType, setSortType] = React.useState(0);
   const param = {token: token, page: 1};
   // let param = {token: token, page: page};
   const onNextPage = ()=>{
-    // setPage(infoData?.nextPage);
-    const param = {token: token, page: transaction.info.nextPage};
-    dispatch(historyTransaction(param));
-  };
-  const onPrevPage = ()=>{
-    // setPage(infoData?.prevPage);
-    const param = {token: token, page: transaction.info.prevPage};
-    dispatch(historyTransaction(param));
-  };
-  
-  const onSearchHistory = () =>{
     let searchByKeyword = '';
     let sortByKeyword = '';
+    let sortTypeKeyword;
     if(searchBy === 1 ){
       searchByKeyword = 'amount';
     } else if(searchBy === 2 ){
@@ -52,8 +42,61 @@ function History() {
     } else {
       sortByKeyword = 'time';
     }
-    
-    const param = {token: token, page: transaction.info.currentPage, search: keyword, searchBy: searchByKeyword, sortBy: sortByKeyword, sortType: sortType};
+    if(sortType === 1) {
+      sortTypeKeyword = 0;
+    } else {
+      sortTypeKeyword=1;
+    }
+    const param = {token: token, page: transaction.info.nextPage, search: keyword, searchBy: searchByKeyword, sortBy: sortByKeyword, sortType: sortTypeKeyword};
+    dispatch(historyTransaction(param));
+  };
+  const onPrevPage = ()=>{
+    let searchByKeyword = '';
+    let sortByKeyword = '';
+    let sortTypeKeyword;
+    if(searchBy === 1 ){
+      searchByKeyword = 'amount';
+    } else if(searchBy === 2 ){
+      searchByKeyword = 'recipient';
+    } else {
+      searchByKeyword = 'sender';
+    }
+    if(sortBy === 1 ){
+      sortByKeyword = 'amount';
+    } else {
+      sortByKeyword = 'time';
+    }
+    if(sortType === 1) {
+      sortTypeKeyword = 0;
+    } else {
+      sortTypeKeyword=1;
+    }
+    const param = {token: token, page: transaction.info.prevPage, search: keyword, searchBy: searchByKeyword, sortBy: sortByKeyword, sortType: sortTypeKeyword};
+    dispatch(historyTransaction(param));
+  };
+  
+  const onSearchHistory = () =>{
+    let searchByKeyword = '';
+    let sortByKeyword = '';
+    let sortTypeKeyword;
+    if(searchBy === 1 ){
+      searchByKeyword = 'amount';
+    } else if(searchBy === 2 ){
+      searchByKeyword = 'recipient';
+    } else {
+      searchByKeyword = 'sender';
+    }
+    if(sortBy === 1 ){
+      sortByKeyword = 'amount';
+    } else {
+      sortByKeyword = 'time';
+    }
+    if(sortType === 1) {
+      sortTypeKeyword = 0;
+    } else {
+      sortTypeKeyword=1;
+    }
+    const param = {token: token, page: transaction.info.currentPage, search: keyword, searchBy: searchByKeyword, sortBy: sortByKeyword, sortType: sortTypeKeyword};
     // , sortBy: sortByKeyword, sortType: sortType
     dispatch(historyTransaction(param));
     console.log(searchByKeyword);
@@ -93,15 +136,15 @@ function History() {
                           placeholder='Search history'
                         />
                         <div>
-                          <Button className='bg-color-1 border-0' onClick={onSearchHistory}><FiSearch/></Button>
+                          <Button className='bg-color-1 border-0 d-flex flex-column align-items-center py-3 px-3' onClick={onSearchHistory}><FiSearch/></Button>
                         </div>
                       </div>
-                      <div className='d-flex justify-content-between'>
-                        <div className='d-flex flex-row gap-3'>
+                      <div className='d-flex flex-column flex-md-row gap-4 gap-md-0 justify-content-between'>
+                        <div className='d-flex flex-column flex-md-row gap-3'>
                           <DropdownButton
                             as={ButtonGroup}
                             size='sm'
-                            variant={'info'}
+                            variant={'info py-2 bg-color-1 color-text-4'}
                             title={'Search By'}
                             onSelect={(eventKey)=>{
                               setSearchBy(parseInt(eventKey));
@@ -115,7 +158,7 @@ function History() {
                           <DropdownButton
                             as={ButtonGroup}
                             size='sm'
-                            variant={'info'}
+                            variant={'info py-2 bg-color-1 color-text-4'}
                             title={'Sort By'}
                             onSelect={(eventKey)=>{
                               setSortBy(parseInt(eventKey));
@@ -128,18 +171,18 @@ function History() {
                           <DropdownButton
                             as={ButtonGroup}
                             size='sm'
-                            variant={'info'}
+                            variant={'info py-2 bg-color-1 color-text-4'}
                             title={'Sort Type'}
                             onSelect={(eventKey)=>{
                               setSortType(parseInt(eventKey));
                             // console.log(typeof eventKey);
                             }}
                           >
-                            <Dropdown.Item eventKey='0' active={sortType===1? true : false}>asc</Dropdown.Item>
-                            <Dropdown.Item eventKey='1' active={sortType===2? true : false}>desc</Dropdown.Item>
+                            <Dropdown.Item eventKey='1' active={sortType===1? true : false}>asc</Dropdown.Item>
+                            <Dropdown.Item eventKey='2' active={sortType===2? true : false}>desc</Dropdown.Item>
                           </DropdownButton>
                         </div>
-                        <Button className='btn bg-color-1 color-text-4' onClick={onResetParam}>Reset</Button>
+                        <Button className='btn bg-color-1 color-text-4 border-0' onClick={onResetParam}>Reset</Button>
                       </div>
                     </div>
                     {historyData?.map((data)=>{
