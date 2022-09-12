@@ -1,20 +1,26 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Spinner } from 'react-bootstrap';
 import Img1 from '../assets/images/img/img3.png';
 import Img2 from '../assets/images/icons/logo.png';
 import Img3 from '../assets/images/img/img3.png';
 import { Link } from 'react-router-dom';
 import { CardHistoryDashboard } from './CardDetailList';
 import Datadummy from '../helpers/dummydata.json';
+import { getSomeTransaction } from '../redux/actionAsync/transaction';
+import { connect } from 'react-redux';
 
-export default class TransactionInfoDashboard extends React.Component {
-  state = {
-    data: Datadummy.result
-  };    
+class TransactionInfoDashboard extends React.Component {
+  componentDidMount() {
+    this.props.getSomeTransaction();
+  }
+  // componentDidUpdate() {
+  //   this.props.getSomeTransaction();
+  //   console.log(this.props.history);
+  // }
   render() {
-    const img = [Img1, Img2, Img3];
+    const data = this.props.history;
     return (
-      <Col sm={12} md={6} className='ps-md-3'>
+      <Col sm={12} md={6} className='ps-md-3 height-historyDashboard'>
         <div className='d-flex flex-column bg-white p-4 gap-4 rounded-5 h-100 color-text-6'>
           <div className='d-flex flex-row justify-content-between'>
             <span className='fw-bold fs-6'>Transaction History</span>
@@ -23,12 +29,12 @@ export default class TransactionInfoDashboard extends React.Component {
             </Link>
           </div>
           {/* item max 3 */}
-          <div className='d-flex flex-column gap-5'>
-            {this.state.data!== undefined && this.state.data.map((el, index)=>{
+          <div className='d-flex flex-column gap-3'>
+            {data != null ? data.map((el, index)=>{
               return(
-                <CardHistoryDashboard imgUrl={img[index]} type={el.type_name} amount={el.amount} name={el.recipient_name} key={el.id}/>
+                <CardHistoryDashboard imgUrl={`${el.image_recipient}`} type={el.type} amount={el.amount} name={el.recipient} key={el.id} photo={el.image_recipient ? true : false}/>
               );
-            })}
+            }) : <Spinner animation='grow' variant='info' />}
           </div>
         </div>
       </Col>
@@ -36,36 +42,15 @@ export default class TransactionInfoDashboard extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  history: state.transaction.someResult
+  // token: state.token.
+});
 
-// function TransactionInfoDashboard() {
-// const img = [Img1, Img2, Img3];
-    
-// const [data, setData] = React.useState();
-    
-// React.useEffect(()=>{
-// setData(Datadummy.result)
-// }, [])
-    
-// return (
-// <Col sm={12} md={6} className="ps-md-3">
-// <div className="d-flex flex-column bg-white p-4 gap-4 rounded-5 h-100 color-text-6">
-// <div className="d-flex flex-row justify-content-between">
-//     <span className="fw-bold fs-6">Transaction History</span>
-//     <Link className="link-rm-line" to="/home/history">
-//         <span className="fw-light color-text-6">See all</span>
-//     </Link>
-// </div>
-// {/* item max 3 */}
-// <div className="d-flex flex-column gap-5">
-//     {data!== undefined && data.map((el, index)=>{
-//         return(
-//             <CardHistoryDashboard imgUrl={img[index]} type={el.type_name} amount={el.amount} name={el.recipient_name} key={index}/>
-//         )
-//     })}
-// </div>
-// </div>
-// </Col>
-// )
-// }
+const mapDispatchToProps = dispatch => ({
+  getSomeTransaction: () => {
+    dispatch(getSomeTransaction());
+  },
+});
 
-// export default TransactionInfoDashboard
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionInfoDashboard);

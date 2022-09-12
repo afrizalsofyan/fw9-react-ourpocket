@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import http from '../../helpers/http';
+import {http} from '../../helpers/http';
 import qs from 'qs';
 
 export const getProfile = createAsyncThunk('profile/getProfile', async(token)=>{
   const result = {};
   try {
-    const {data} = await http(token).get('/user/currentUser');
+    const {data} = await http().get('/user/currentUser');
     return data;
   } catch (error) {
     result.message = error.response.data?.message;

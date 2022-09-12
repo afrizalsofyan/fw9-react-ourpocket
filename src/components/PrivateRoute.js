@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { store } from '../redux/store';
 // export const PrivateAuthRoute = ({children}) => {
 //   const token = useSelector((state)=>state.auth.token);
 //   if(token){
@@ -10,8 +11,8 @@ import { useSelector } from 'react-redux';
 // };
 
 const PrivateRoute = ({children}) => {
-  const token = useSelector((state)=>state.auth.token);
-  if(token){
+  const token = useSelector(()=>store.getState().auth.token);
+  if(token != null){
     return children;
   }
   return <Navigate to='/auth/login' />;

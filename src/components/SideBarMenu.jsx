@@ -75,10 +75,7 @@ function SideBarMenu() {
   const pathUrl = useLocation().pathname;
   const {id} = useParams();
   const onLogout = () => {
-    dispatch(logout(()=>{
-      
-      redirect('/auth/login');
-    }));
+    dispatch(logout());
   };
   return (
     <Col sm={12} lg={3} as='aside' className='mb-5 mb-lg-0 d-none d-sm-flex'>

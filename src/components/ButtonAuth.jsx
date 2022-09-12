@@ -2,26 +2,38 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export const ButtonMenuProfile = ({menuName, suffixIcon, to}) => {
+export const ButtonMenuProfile = ({menuName, suffixIcon, to, logout}) => {
   return (
-    <Link
-      to={to}
-      className='btn bg-btn-profile px-4 py-3'
-    >
-      <div className='d-flex flex-row justify-content-between'>
-        <span className='color-btn-text-profile fw-semibold fs-6'>
-          {menuName}
-        </span>
-        {suffixIcon !== null ? suffixIcon : null}
-      </div>
-    </Link>
+    <>
+      {!logout ? <Link
+        to={to}
+        className='btn bg-btn-profile px-4 py-3'
+      >
+        <div className='d-flex flex-row justify-content-between'>
+          <span className='color-btn-text-profile fw-semibold fs-6'>
+            {menuName}
+          </span>
+          {suffixIcon !== null ? suffixIcon : null}
+        </div>
+      </Link> : <div
+        onClick={logout}
+        className='btn bg-btn-profile px-4 py-3'
+      >
+        <div className='d-flex flex-row justify-content-between'>
+          <span className='color-btn-text-profile fw-semibold fs-6'>
+            {menuName}
+          </span>
+          {suffixIcon !== null ? suffixIcon : null}
+        </div>
+      </div>}
+    </>
   );
 };
 
 export const ButtonSubmit = ({textButton, buttonType, disable}) => {
   return(
     <div className='d-grid'>
-      <Button disabled={disable ?? false} className={`${buttonType === 'sm' || buttonType !== null ? 'btn border-0 px-4 py-2 btn-prim-1' : 'btn btn-lg fw-bold btn-prim-1'}`} type='submit'>{textButton}</Button>
+      <Button disabled={disable ?? false} className={`${buttonType === 'sm' || buttonType !== null ? 'btn border-0 px-4 py-2 btn-prim-1 shadow-none' : 'btn btn-lg fw-bold btn-prim-1 shadow-none'}`} type='submit'>{textButton}</Button>
     </div>
   );
 };

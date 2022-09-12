@@ -12,6 +12,23 @@ export const InputPin = ({type, onChange, isInvalid, validation, name}) => {
   );
 };
 
+export const InputField2 = ({ icon, placeholder, type, suffixIcon, isInvalid, validation, name, value, onChange }) => {
+  return (
+    <InputGroup>
+      <InputGroup.Text className={`bg-input-group rounded-0 ${isInvalid === true ? 'border-danger' : null}`}>
+        {icon}
+      </InputGroup.Text>
+      <Form.Control className='cstm-border rounded-0 color-text-6' name={name} type={type} placeholder={placeholder} isInvalid={isInvalid !== null && isInvalid} value={value} onChange={onChange} />
+      {suffixIcon != null ?
+        <InputGroup.Text className={`bg-input-group rounded-0  ${isInvalid === true ? 'border-danger' : null}`}>
+          {suffixIcon}
+        </InputGroup.Text> : null
+      }
+      {validation !== null ? validation : null}
+    </InputGroup>
+  );
+};
+
 function InputField({ icon, placeholder, type, suffixIcon, isInvalid, validation, name }) {
   return (
     <InputGroup>

@@ -6,13 +6,7 @@ import { getProfile } from '../redux/actionAsync/profile';
 import { convertMoney } from './DetailTransferList';
 
 function DashboardBalanceInfo() {
-  // const dispatch = useDispatch();
-  // const token = useSelector((state)=> state.auth.token);
-  const profile = useSelector((state)=> state.profile.result);
-  // React.useEffect(()=>{
-  //   dispatch(getProfile(token));
-  // }, [dispatch, token]);
-
+  const profile = useSelector((state)=> state.user.profile);
   return (
     <div className='d-flex flex-column justify-content-between'>
       <div className='d-flex flex-column flex-sm-row justify-content-between bg-blue rounded-5 shadow-sm pb-4 pb-sm-0'>

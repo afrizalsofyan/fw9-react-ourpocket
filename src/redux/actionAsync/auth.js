@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import qs from 'qs';
-import http from '../../helpers/http';
+import {http} from '../../helpers/http';
 
 export const login = createAsyncThunk('auth/login', async (request) => {
   const result = {};
@@ -11,8 +11,7 @@ export const login = createAsyncThunk('auth/login', async (request) => {
         'content-type' : 'application/x-www-form-urlencoded'
       }
     });
-    result.token = data.result.token;
-    return result;
+    return data;
   } catch (error) {
     result.errorMsg = error.response.data.message;
     return result;

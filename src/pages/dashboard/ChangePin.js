@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Alert, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { ProfileLayout } from '../../components/ContentLayout';
 import { InputPin } from '../../components/InputField';
@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux/es/exports';
 
 const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
   return (
-    <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column gap-4'>
+    <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column gap-4 height-up-form justify-content-center'>
       <div className='d-flex flex-row pin-wrapper gap-2 gap-md-2 gap-lg-4 justify-content-center'>
         <InputPin
           name={`pin[${0}]`}
@@ -45,27 +45,42 @@ const ChangePinForm = ({ errors, handleChange, handleSubmit }) => {
         />
       </div>
       <span className='fs-6 text-danger'>{errors.pin}</span>
-      <ButtonSubmit textButton='Confirm' />
+      <div className='mt-5'>
+        <ButtonSubmit textButton='Confirm' />
+      </div>
     </Form>
   );
 };
 
 function ChangePin() {
   const redirect = useNavigate();
-  const profile = useSelector((state)=> state.profile.result);
+  const profile = useSelector((state)=> state.user.profile);
+  const [requiredField, setRequiredField] = React.useState(false);
+  const [numberField, setNumberField] = React.useState(false);
+  const [errorMatch, setErrorMatch] = React.useState(false);
   const onSubmitPin = (val) => {
     if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
-      window.alert('Value is required');
+      setRequiredField(true);
+      setTimeout(() => {
+        setRequiredField(false);
+      }, 1000);
     } else {
       if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
-        const finalPin = val.pin.join('');  
-        if(parseInt(finalPin) === profile.pin_number){
-          redirect('new-pin');         
+        const finalPin = parseInt(val.pin.join(''), 10);  
+        if(finalPin === profile.pin_number){
+          redirect('new-pin', {state: {pin: finalPin}});         
         }else{
-          window.alert('Pin not match with your pin now !!!');
+          setErrorMatch(true);
+          setTimeout(() => {
+            setErrorMatch(false);
+          }, 1000);
+          // window.alert('Pin not match with your pin now !!!');
         }
       } else {
-        window.alert('Please input with only number !!!');
+        setNumberField(true);
+        setTimeout(() => {
+          setNumberField(false);
+        }, 1000);
       }
     }
   };
@@ -76,6 +91,9 @@ function ChangePin() {
         subtitleText='Enter your current 6 digits OurPocket PIN below to continue to the next steps.'
         child={
           <>
+            {requiredField ? <Alert variant={'danger'}>Pin can't empty</Alert> : null}
+            {numberField ? <Alert variant={'danger'}>Field must be input with number only.</Alert> : null}
+            {errorMatch ? <Alert variant={'danger'}>Pin not match with your pin now !!!</Alert> : null}
             <Formik
               onSubmit={onSubmitPin}
               initialValues={{

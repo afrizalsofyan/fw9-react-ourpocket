@@ -1,6 +1,6 @@
 import React from 'react';
 import NavbarDashboard from '../../components/NavbarDashboard';
-import { Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import SideBarMenu from '../../components/SideBarMenu';
 import FooterDashboard from '../../components/FooterDashboard';
 import ContentLayout from '../../components/ContentLayout';
@@ -15,14 +15,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '../../redux/actionAsync/user';
 
 function Transfer() {
-  const users = useSelector((state)=> state.user.result);
+  const users = useSelector((state)=> state.user.results);
   const token = useSelector((state)=> state.auth.token);
+  const infoData = useSelector(state => state.user.infoData);
+  const errorMsg = useSelector(state => state.user.errorMsg);
+  const [page, setPage] = React.useState(1);
+  const [limit, setLimit] = React.useState(5);
+  const [keyword, setKeyword] = React.useState('');
+  const [sortType, setSortType] = React.useState('0');
   const dispatch = useDispatch();
 
+  const onPrevPage = () => {
+    if(infoData.prevPage != null) {
+      setPage(page-1);
+    }
+  };
+
+  const onNextPage = () => {
+    if (infoData.nextPage != null) {
+      setPage(page+1);
+    }
+  };
+
+  const onSearchRecipient = (e) => {
+    setKeyword(e.target.value);
+    if(e.target.value === '') {
+      setLimit(5);
+      setPage(1);
+    } else {
+      setLimit(5);
+      setPage(1);
+    }
+  };
+
+  const onSortType = (e) => {
+    setSortType(e.target.value);
+  };
+
   React.useEffect(()=>{
-    dispatch(getAllUser(token));
-  }, [dispatch, token]);
-  console.log(users);
+    dispatch(getAllUser({keywords: keyword,sortType: sortType, limit: limit, page: page}));
+  }, [dispatch, token, page, keyword, limit, sortType]);
+  console.log(sortType);
   return (
     <>
       <NavbarDashboard titlePage='OPo - transfer'/>
@@ -39,23 +72,39 @@ function Transfer() {
                   <span className='icon-input'>
                     <FiSearch size={24}/>
                   </span>
-                  <Form.Control type='text' className='ps-5 border-0 bg-grey-input rounded-3 py-3 color-text-6' placeholder='Search receiver here'/>
+                  <Form.Control type={'text'} className='ps-5 border-0 bg-grey-input rounded-3 py-3 color-text-6' value={keyword} onChange={onSearchRecipient} placeholder='Search receiver here'/>
                 </InputGroup>
                 {/* img_path={Img1} */}
-                <div className='d-flex flex-column gap-5 py-4'>
-                  {users && users.map((el)=>{
-                    return(
-                      <div key={el.id}>
-                        <UserCard
-                          url={`/home/transfer/${el.id}`}
-                          img_path={Img1}
-                          name={`${el.first_name} ${el.last_name}`}
-                          phone={'+62 811-3452-5252'}
-                        />
-                      </div>
-                    );
-                  })}
+                <Form.Select className='w-25 shadow-none' onChange={onSortType}>
+                  <option>Sort</option>
+                  <option value={'0'}>asc</option>
+                  <option value={'1'}>desc</option>
+                </Form.Select>
+                <div className='height-seacrh-layout'>
+                  <div className='d-flex flex-column gap-5 justify-content-start h-100 py-4'>
+                    {errorMsg == null ? <>
+                      {users && users.map((el)=>{
+                        return(
+                          <div key={el.id} >
+                            <UserCard
+                              url={`/home/transfer/${el.id}`}
+                              img_path={el.photo_url}
+                              name={el.first_name == null && el.last_name == null ? el.username : `${el.first_name} ${el.last_name}`}
+                              phone={el.phone_number}
+                            />
+                          </div>
+                        );})}
+                    </> : <div className='d-flex justify-content-center align-items-center h-100'>
+                      <span className='color-text-6 fs-4 fw-light'>{errorMsg}</span> </div>}
+                      
+                  </div>
                 </div>
+                {/* scondary */}
+                <div className='d-flex flex-row justify-content-center align-items-center gap-3'>
+                  <Button variant={`${infoData.prevPage === null ? 'secondary' : 'info'}`} disabled={infoData.prevPage === null ? true : false} className='text-white' onClick={onPrevPage}>Info</Button>
+                  <span className='border-0 border-bottom fw-bold color-text-6'>{infoData.currentPage}</span>
+                  <Button variant={`${infoData.nextPage === null ? 'secondary' : 'info'}`} disabled={infoData.nextPage === null ? true : false} className='text-white' onClick={onNextPage}>Info</Button>
+                </div> 
               </>
             }
           />

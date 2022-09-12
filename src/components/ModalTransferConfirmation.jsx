@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { InputPin } from './InputField';
 // import * as Yup from 'yup';
 import { ButtonSubmit } from './ButtonAuth';
-import { useSelector } from 'react-redux/es/exports';
+import { useDispatch, useSelector } from 'react-redux';
+import { transferAmountTransaction } from '../redux/actionAsync/transaction';
 
 // const changePinSchema = Yup.object().shape({
 //     pin: Yup.array().of(
@@ -87,11 +88,12 @@ const ChangePinForm = ({ errors, handleChange, handleSubmit, show, hide }) => {
 
 function ModalTransferConfirmation({ show, onHide, id }) {
   const redirect = useNavigate();
-  const checkPin = useSelector((state)=>state.user.pin);
+  const dispatch = useDispatch();
+  const checkPin = useSelector((state)=>state.user.profile.pin_number);
   const amount = useSelector((state)=> state.inputAmount.amount);
   const note = useSelector((state)=> state.inputAmount.note);
   const transferId = useSelector((state)=>state.inputAmount.type_id);
-  // const data = {note: note, amount: amount, type_id: transferId, recipient_id: id,  sender_id: }
+  const successMsg = useSelector(state => state.transaction.sucessMsg);
   const onSubmitPin = (val) => {
     if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
       window.alert('Value is required');
@@ -99,8 +101,13 @@ function ModalTransferConfirmation({ show, onHide, id }) {
       if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
         const finalPin = val.pin.join('');
         if (parseInt(finalPin) === checkPin) { 
-          redirect(`/home/transfer/${id}/transfer-confirmation/success`);
+          const data = {notes: note, amount: amount, type_id: transferId, recipient_id: parseInt(id, 10), pin: parseInt(finalPin, 10)};
+          dispatch(transferAmountTransaction(data));
+         
+          // console.log(parseInt(finalPin) === checkPin);
+          // console.log(data);
         } else { 
+          // console.log(parseInt(finalPin) === checkPin);
           redirect(`/home/transfer/${id}/transfer-confirmation/failed`);
         }
       } else {
@@ -108,6 +115,11 @@ function ModalTransferConfirmation({ show, onHide, id }) {
       }
     }
   };
+  React.useEffect(()=> {
+    if(successMsg) {
+      redirect(`/home/transfer/${id}/transfer-confirmation/success`);
+    };
+  }, [successMsg, id]);
   return (
     <Formik
       onSubmit={onSubmitPin}

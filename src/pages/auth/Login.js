@@ -11,13 +11,14 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actionAsync/auth';
+import { store } from '../../redux/store';
 
 const loginSheme = Yup.object().shape({
   email: Yup.string().email('invalid email address format').required(),
   password: Yup.string().min(4).required()
 });
 
-const AuthForm = ({errors, handleSubmit, handleChange}) => {
+const AuthForm = ({errors, handleSubmit, handleChange, isValid}) => {
   const successMsg = useSelector((state)=> state.auth.successMsg);
   const errorMsg = useSelector((state)=> state.auth.errorMsg);
   const [showPass, setShowPass] = React.useState(false);
@@ -66,7 +67,8 @@ const AuthForm = ({errors, handleSubmit, handleChange}) => {
         </Link>
       </div>
       {/* <Button variant="primary" type="submit"></Button> */}
-      <ButtonSubmit disable={Object.keys(errors).length === 0 ? false : true } textButton={'Login'}/>
+      {/* disable={Object.keys(errors).length === 0 ? false : true } */}
+      <ButtonSubmit disable={!isValid} textButton={'Login'}/>
       {/* <ButtonAuth link={"#"} textButton={"login"} type={'submit'}/> */}
       <div className='text-center'>
         <span className='color-text-secondary'>
@@ -85,7 +87,7 @@ function Login() {
   const redirect = useNavigate();
   // const values = {email: 'risna@mail.com', password: '1503'};
   const dispatch = useDispatch();
-  const token = useSelector((state)=> state.auth.token);
+  const token = useSelector((state)=> store.getState().auth.token);
   
   const [visible, setVisible] = React.useState(false);
 
@@ -102,7 +104,7 @@ function Login() {
   };
 
   React.useEffect(()=>{
-    if(token){
+    if(token != null){
       redirect('/home/dashboard');
     }
     handleVisible();

@@ -3,12 +3,13 @@ import { ProfileLayout } from '../../components/ContentLayout';
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
 import InputField from '../../components/InputField';
-import { Form } from 'react-bootstrap';
+import { Alert, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from '../../redux/actionAsync/profile';
+import { changePasswordUser } from '../../redux/actionAsync/user';
 
 const changePasswordSchema = Yup.object().shape({
   currentPassword: Yup.string().min(4).required(),
@@ -122,16 +123,39 @@ export const ChangePasswordForm = ({ errors, handleSubmit, handleChange }) => {
 function ChangePassword() {
   const redirect = useNavigate();
   const dispatch = useDispatch();
-  const token = useSelector((state)=>state.auth.token);
+  const successMsg = useSelector(state => state.user.successUpdateMsg);
+  const errorMsg = useSelector(state => state.user.errorUpdateMsg);
+  const [wrongRepeat, setWrongRepeat] = React.useState(false);
+  const [showMsg, setShowMsg] = React.useState(false);
   const onSubmitPassword = (val) => {
     if (val.newPassword !== val.repeatPassword) {
-      window.alert('Repeat password is incorrect');
+      // window.alert('Repeat password is incorrect');
+      setWrongRepeat(true);
+      setTimeout(() => {
+        setWrongRepeat(false);
+      }, 3000);
     } else {
-      const data = {token: token, currentPassword: val.currentPassword, newPassword: val.newPassword, repeatPassword: val.repeatPassword};
-      dispatch(changePassword(data));
-      redirect('/home/profile/details');
+      dispatch(changePasswordUser(val));
+      if(successMsg != null){
+        setShowMsg(true);
+        setTimeout(() => {
+          setShowMsg(false);
+        }, 3000);
+      } else if(errorMsg != null || errorMsg !== undefined){
+        setShowMsg(true);
+        setTimeout(() => {
+          setShowMsg(false);
+        }, 3000);
+      }
     }
   };
+  React.useEffect(()=>{
+    if(errorMsg == null && successMsg != null){
+      setTimeout(() => {
+        redirect('/home/profile');
+      }, 1500);
+    }
+  }, [errorMsg, successMsg, redirect]);
   return (
     <>
       <ProfileLayout
@@ -139,6 +163,9 @@ function ChangePassword() {
         subtitleText='You must enter your current password and then type your new password twice.'
         child={
           <>
+            {wrongRepeat ? <Alert variant={'danger'}>Repeat password not matches.</Alert> : null}
+            {showMsg && errorMsg ? <Alert variant={'danger'}>{errorMsg}</Alert> : null}
+            {showMsg && successMsg ? <Alert variant={'success'}>{successMsg}</Alert> : null}
             <Formik
               onSubmit={onSubmitPassword}
               initialValues={{ currentPassword: '', newPassword: '', repeatPassword: '' }}

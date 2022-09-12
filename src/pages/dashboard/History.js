@@ -17,6 +17,7 @@ import { ButtonSubmit } from '../../components/ButtonAuth';
 function History() {
   const dispatch = useDispatch();
   const token = useSelector((state)=>state.auth.token);
+  const profile = useSelector((state)=>state.user.profile);
   const transaction = useSelector((state)=>state.transaction.result);
   const historyData = transaction?.result;
   const infoData = transaction?.info;
@@ -189,7 +190,7 @@ function History() {
                       return(
                         <>
                           <div key={data?.id}>
-                            {data.type === 'payment' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={data.sender}  nameRecipient={data.recipient} type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
+                            {data.recipient != profile.username && data.sender != 'topup' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={data.sender}  nameRecipient={data.recipient} type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
                           </div>
                         </>
                       );

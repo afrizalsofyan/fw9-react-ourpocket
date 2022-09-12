@@ -17,16 +17,15 @@ import { getProfile } from '../../redux/actionAsync/profile';
 import { convertMoney } from '../../components/DetailTransferList';
 import { getUser } from '../../redux/actionAsync/user';
 
-
 const amountSchema = Yup.object().shape({
-  amount: Yup.number().typeError('Field must number!!!').min(10000).required(),
+  amount: Yup.number().typeError('Field must number!!!').min(10000, `Minimum trasfer is ${convertMoney(10000)}`).required(),
   notes: Yup.string()
 });
 
-export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
+export const AmountForm = ({ errors, handleSubmit, handleChange, isValid, values }) => {
   const dispatch = useDispatch();
   const token = useSelector((state)=>state.auth.token);
-  const profile = useSelector((state)=>state.profile.result);
+  const profile = useSelector((state)=>state.user.profile);
   
   React.useEffect(()=>{
     dispatch(getProfile(token));
@@ -48,6 +47,7 @@ export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
             {errors.amount}
           </Form.Control.Feedback>
         </InputGroup>
+        {values.amount > profile.balance ? <span className='text-left w-100 text-danger'>Please input with your limit balance</span> : null}
         <div className='d-flex flex-column flex-sm-row align-items-center color-text-6'>
           <span className='fs-6 fw-bold'>{`${convertMoney(profile?.balance)} Available`}</span>
         </div>
@@ -64,7 +64,7 @@ export const AmountForm = ({ errors, handleSubmit, handleChange }) => {
         </InputGroup>
       </Form.Group>
       <div className='ms-auto mt-5 '>
-        <ButtonSubmit textButton={'Continue'} />
+        <ButtonSubmit disable={!isValid || values.amount > profile.balance} textButton={'Continue'} />
       </div>
     </Form>
   );
@@ -76,16 +76,15 @@ function TransferAmount() {
   const dispatch = useDispatch();
   const token = useSelector((state)=>state.auth.token);
   const recipient = useSelector((state)=>state.user.dataUser);
-  const data = {id: id, token: token};
   React.useEffect(()=>{
-    dispatch(getUser(data));
-  }, [dispatch, token]);
+    dispatch(getUser({id: id}));
+  }, [dispatch, id]);
 
   const onSubmitAmountNote = (val) => {
     const time = new Date().toLocaleString();
     const typeTransaction = 'transfer';
     if(typeTransaction==='transfer'){
-      dispatch(addTypeTransaction(17));
+      dispatch(addTypeTransaction(14));
     }
     if(val.note === ''){
       val.note = '-';
@@ -93,6 +92,8 @@ function TransferAmount() {
       dispatch(addTime(time));
       redirect(`/home/transfer/${id}/transfer-confirmation`);
     } else {
+      dispatch(addAmount(val.amount));
+      dispatch(addTime(time));
       dispatch(addNote(val.note));
       redirect(`/home/transfer/${id}/transfer-confirmation`);
     }
@@ -107,7 +108,7 @@ function TransferAmount() {
           <ContentLayout
             child={
               <>
-                <div className='d-flex flex-column gap-4'>
+                <div className='d-flex flex-column gap-4 height-seacrh-layout'>
                   <div className='d-flex flex-row justify-content-between'>
                     <span className='fw-bold fs-5 color-text-2'>
                       Transfer Money
@@ -115,9 +116,9 @@ function TransferAmount() {
                   </div>
                   <UserCard
                     url={'/home/transfer/3'}
-                    img_path={Img3}
-                    name={`${recipient?.first_name} ${recipient?.last_name}`}
-                    phone={recipient?.phone_number[0]}
+                    img_path={recipient.image_recipient}
+                    name={recipient?.first_name == null && recipient?.last_name == null ? recipient.username : `${recipient?.first_name} ${recipient?.last_name}`}
+                    phone={recipient?.phone_number}
                   />
                   <div className='text-desc-layout'>
                     <span className='color-text-2'>
