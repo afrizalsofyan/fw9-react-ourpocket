@@ -10,6 +10,7 @@ import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../redux/actionAsync/profile';
 import { createPin } from '../../redux/actionAsync/auth';
+import { getProfileCurrentUser } from '../../redux/actionAsync/user';
 
 // const createPinSchema = Yup.object().shape({
 //   pin1: Yup.number().typeError('Pin1 must be a number').min(0).max(9).required(),
@@ -70,9 +71,9 @@ function CreatePin() {
   const redirect = useNavigate();
   // const successMsg = useSelector((state)=>state.auth.successMsg);
   const token = useSelector((state) => state.auth.token);
-  const profile = useSelector((state)=> state.profile.result);
+  const profile = useSelector((state)=> state.user.profile);
   React.useEffect(() => {
-    dispatch(getProfile(token));
+    dispatch(getProfileCurrentUser());
   }, [dispatch, token]);
   const submitPin = (value) => {
     if(profile.pin_number === null){

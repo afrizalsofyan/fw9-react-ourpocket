@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Image } from 'react-bootstrap';
 import FooterDashboard from './FooterDashboard';
 import NavbarDashboard from './NavbarDashboard';
 import SideBarMenu from './SideBarMenu';
@@ -32,6 +32,28 @@ export const ProfileLayout = ({headerText, subtitleText, child}) => {
     </>
   );
 };
+export const ProfileLayoutDetails = ({headerText, subtitleText, child}) => {
+  return (
+    <>
+      <NavbarDashboard />
+      <Container as='section' className='g-0'>
+        <Row className='pt-5 gx-0 gx-md-3'>
+          <SideBarMenu />
+          <ContentLayout
+            child={
+              <>
+                <div className='d-flex flex-column gap-5'>
+                  {child}
+                </div>
+              </>
+            }
+          />
+        </Row>
+      </Container>
+      <FooterDashboard />
+    </>
+  );
+};
 
 function ContentLayout({ child }) {
   return (
@@ -44,3 +66,4 @@ function ContentLayout({ child }) {
 }
 
 export default ContentLayout;
+

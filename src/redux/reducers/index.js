@@ -4,13 +4,15 @@ import transfer from './input';
 import auth from './auth';
 import transaction from './transaction';
 import user from './user';
+import notification from './notification';
 
 const reducer = combineReducers({
   inputAmount: transfer,
   // profile,
   auth,
   transaction,
-  user
+  user,
+  notification,
 });
 
 export default reducer;

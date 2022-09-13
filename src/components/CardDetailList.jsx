@@ -2,19 +2,21 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { FiArrowDown, FiUser } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { convertMoney } from './DetailTransferList';
 
-export const CardHistoryDashboard = ({imgUrl, name, type, amount, photo}) => {
+export const CardHistoryDashboard = ({imgUrl, name, type, amount, photo, navigationTo, param}) => {
   const profile = useSelector(state => state.user.profile);
+  const navigate = useNavigate();
   return (
-    <div className='d-flex flex-column gap-3 gap-sm-0 flex-sm-row justify-content-between shadow-sm p-3'>
+    <div className='d-flex flex-column gap-3 gap-sm-0 flex-sm-row justify-content-between align-items-center shadow-sm p-3 pointer-button' onClick={()=>navigate(navigationTo, {state: {param}})}>
       <div className='d-flex gap-3'>
         <div>
           {photo ? <img
             className='img-fluid we-3 rounded'
             src={imgUrl}
             alt='img1'
-          /> : <FiUser size={30} />}
+          /> : <FiUser size={40} />}
           
         </div>
         <div className='d-flex flex-column justify-content-center'>

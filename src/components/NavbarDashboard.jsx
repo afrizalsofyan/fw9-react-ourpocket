@@ -12,21 +12,25 @@ import {
 } from './NotificationCard';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { MenuNavbar } from './SideBarMenu';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileCurrentUser } from '../redux/actionAsync/user';
-
+import { getAllNotification, updateNotification } from '../redux/reducers/notification';
+import { convertMoney } from './DetailTransferList';
 
 function NavbarDashboard({ titlePage }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const profile = useSelector((state)=> state.user.profile);
+  const notification = useSelector((state)=> state.notification.results);
   const location = useLocation();
+  const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
 
   //willmount just render when first load
   React.useEffect(() => {
     dispatch(getProfileCurrentUser());
+    dispatch(getAllNotification());
     setVisible(true);
     setTimeout(() => {
       setVisible(false);
@@ -68,36 +72,41 @@ function NavbarDashboard({ titlePage }) {
 
               <DropdownButton
                 align='end'
-                title={<FiBell size={24} className='color-text-2 icon-btn' />}
+                title={
+                  <div className='d-flex position-relative'>
+                    <FiBell size={24} className='color-text-2 icon-btn' />
+                    {notification?.length >= 1 ? <div className='notif-indicator bg-color-6 position-absolute end-0 rounded-circle'></div> : null}
+                  </div>
+                }
                 id='dropdown-menu-align-end'
                 variant='none border-0'
               >
-                <NotificationCardHeader title='Today' />
-                <NotificationCardItem
-                  eventKey={'1'}
-                  icon={<FiArrowDown size={24} className='color-red' />}
-                  descTransction='Transfered from Joshua Lee'
-                  amount={'220.000'}
-                />
-                <NotificationCardItem
-                  eventKey={'2'}
-                  icon={<FiArrowDown size={24} className='color-red' />}
-                  descTransction='Netflix subscription'
-                  amount={'149.000'}
-                />
-                <NotificationCardHeader title='This Week' />
-                <NotificationCardItem
-                  eventKey={'3'}
-                  icon={<FiArrowDown size={24} className='color-red' />}
-                  descTransction='Transfer to Jessica Lee'
-                  amount={'Rp100.000'}
-                />
-                <NotificationCardItem
-                  eventKey={'4'}
-                  icon={<FiArrowUp size={24} className='color-green-light' />}
-                  descTransction='Top up from BNI E-Banking'
-                  amount={'300.000'}
-                />
+                <div className={`${notification?.length >= 1 ? 'notif-layout' : '' } overflow-auto`}>
+                  <NotificationCardHeader title={
+                    <div className='d-flex justify-content-between border-0 border-bottom w-100 pb-3'>
+                      <span>Your Notification</span>
+                      {notification?.length >= 1 ? <span className='pointer-button' onClick={()=>{
+                        notification && notification?.map(e => dispatch(updateNotification({id: e.id})));
+                        dispatch(getAllNotification());
+                      }}>Mark all as read</span> : null}
+                    </div>
+                  } />
+                  {notification?.length >= 1 ? notification?.map((e,i) => {
+                    return (
+                      <div key={i} onClick={() => {
+                        dispatch(updateNotification({id: e.id}));
+                        navigate('/home/notif-details', {state: {e}});
+                      }}>
+                        <NotificationCardItem
+                          eventKey={i}
+                          icon={e.recipient === profile?.username ? <FiArrowDown size={24} className='color-green' /> : <FiArrowUp size={24} className='color-red'/>}
+                          descTransction={e.recipient === profile?.username ? 'You recieved amount '+e.transfer_amount : `You transfered to ${e.recipient}`}
+                          amount={`${convertMoney(e.transfer_amount)}`}
+                        />
+                      </div>
+                    );
+                  }) : <span className='d-flex justify-content-center align-items-center h-100 py-5 notif-empty'>Notification Empty</span>}
+                </div>
               </DropdownButton>
               <MenuNavbar />
             </Nav>

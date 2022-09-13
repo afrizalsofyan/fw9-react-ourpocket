@@ -26,13 +26,13 @@ function Transfer() {
   const dispatch = useDispatch();
 
   const onPrevPage = () => {
-    if(infoData.prevPage != null) {
+    if(infoData?.prevPage != null) {
       setPage(page-1);
     }
   };
 
   const onNextPage = () => {
-    if (infoData.nextPage != null) {
+    if (infoData?.nextPage != null) {
       setPage(page+1);
     }
   };
@@ -101,9 +101,9 @@ function Transfer() {
                 </div>
                 {/* scondary */}
                 <div className='d-flex flex-row justify-content-center align-items-center gap-3'>
-                  <Button variant={`${infoData.prevPage === null ? 'secondary' : 'info'}`} disabled={infoData.prevPage === null ? true : false} className='text-white' onClick={onPrevPage}>Info</Button>
-                  <span className='border-0 border-bottom fw-bold color-text-6'>{infoData.currentPage}</span>
-                  <Button variant={`${infoData.nextPage === null ? 'secondary' : 'info'}`} disabled={infoData.nextPage === null ? true : false} className='text-white' onClick={onNextPage}>Info</Button>
+                  <Button variant={`${infoData?.prevPage === null ? 'secondary' : 'info'}`} disabled={infoData?.prevPage === null ? true : false} className='text-white' onClick={onPrevPage}>Info</Button>
+                  <span className='border-0 border-bottom fw-bold color-text-6'>{infoData?.currentPage}</span>
+                  <Button variant={`${infoData?.nextPage === null ? 'secondary' : 'info'}`} disabled={infoData?.nextPage === null ? true : false} className='text-white' onClick={onNextPage}>Info</Button>
                 </div> 
               </>
             }

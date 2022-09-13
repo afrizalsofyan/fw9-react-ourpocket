@@ -45,5 +45,12 @@ function ButtonAuth({ textButton, link, type }) {
     </div>
   );
 }
+export const ButtonGeneral = ({ textButton, onClick }) => {
+  return (
+    <div className='d-grid'>
+      <Button className='btn btn-md btn-prim-1 px-4 py-2' onClick={onClick}>{textButton}</Button>
+    </div>
+  );
+};
 
 export default ButtonAuth;

@@ -17,12 +17,14 @@ import EditProfile from './pages/dashboard/EditProfile';
 import FailedTransfer from './pages/dashboard/FailedTransfer';
 import History from './pages/dashboard/History';
 import ManagePhone from './pages/dashboard/ManagePhone';
+import NotificationDetail from './pages/dashboard/NotificationDetail';
 import Profile from './pages/dashboard/Profile';
 import SuccessTransfer from './pages/dashboard/SuccessTransfer';
 import TopUp from './pages/dashboard/TopUp';
 import Transfer from './pages/dashboard/Transfer';
 import TransferAmount from './pages/dashboard/TransferAmount';
 import TransferConfirmation from './pages/dashboard/TransferConfirmation';
+import TransactionDetail from './pages/dashboard/TransactionDetail';
 import LandingPage from './pages/LandingPage';
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
       </Route>
       <Route path='/home'>
         <Route path='dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
+        <Route path='notif-details' element={<PrivateRoute><NotificationDetail/></PrivateRoute>}></Route>
+        <Route path='transaction-details' element={<PrivateRoute><TransactionDetail/></PrivateRoute>}></Route>
         <Route path='history' element={<PrivateRoute><History/></PrivateRoute>}></Route>
         <Route path='transfer' element={<PrivateRoute><Transfer/></PrivateRoute>}></Route>
         <Route path='transfer/:id' element={<PrivateRoute><TransferAmount/></PrivateRoute>}></Route>

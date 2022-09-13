@@ -3,7 +3,7 @@ import { Col, Spinner } from 'react-bootstrap';
 import Img1 from '../assets/images/img/img3.png';
 import Img2 from '../assets/images/icons/logo.png';
 import Img3 from '../assets/images/img/img3.png';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { CardHistoryDashboard } from './CardDetailList';
 import Datadummy from '../helpers/dummydata.json';
 import { getSomeTransaction } from '../redux/actionAsync/transaction';
@@ -32,7 +32,7 @@ class TransactionInfoDashboard extends React.Component {
           <div className='d-flex flex-column gap-3'>
             {data != null ? data.map((el, index)=>{
               return(
-                <CardHistoryDashboard imgUrl={`${el.image_recipient}`} type={el.type} amount={el.amount} name={el.recipient} key={el.id} photo={el.image_recipient ? true : false}/>
+                <CardHistoryDashboard imgUrl={`${el.image_recipient}`} type={el.type} amount={el.amount} name={el.recipient} key={el.id} photo={el.image_recipient ? true : false} navigationTo={'/home/transaction-details'} param={el}/>
               );
             }) : <Spinner animation='grow' variant='info' />}
           </div>

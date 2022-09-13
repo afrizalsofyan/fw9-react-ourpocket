@@ -38,7 +38,7 @@ export const http = () => {
     },
     err => {
       console.log(err);
-      if(err.response.status === 400 && err.config.url.includes('user/allUser')) {
+      if(err.response.status === 400 && err.config.url.includes('/user/allUser?') || err.config.url.includes('search') || err.config.url.includes('sort') || err.config.url.includes('page')) {
         str.dispatch(saveErrorMsg(err.response.data.message));
       }
       if(err.response.status === 400 && err.config.url.includes('user/changePassword')) {
@@ -56,8 +56,10 @@ export const http = () => {
       if(err.response.status === 401) {
         str.dispatch(saveNewToken(Cookies.get('refreshToken')));
         //sebelum pakai persist
-        Cookies.set('token', Cookies.get('refreshToken'));
-        // const refreshToken = Cookies.get('refreshToken');
+        const refreshToken = Cookies.get('refreshToken');
+        if(refreshToken){
+          Cookies.set('token', Cookies.get('refreshToken'));
+        }
         // axios.defaults.headers.common['Authorization'] = 'Bearer ' + refreshToken;
         // if(refreshToken) {
         // } else {

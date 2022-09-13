@@ -29,7 +29,7 @@ export const UserCardHistoryDecreaseAmount = ({ img_path, alt, nameRecipient, na
         </div>
         <div className='d-flex flex-column justify-content-center text-center'>
           <span className='fw-semibold'>{`${nameSender} `} <span className='color-red fw-light'>to</span> {` ${nameRecipient}`}</span>
-          <span className='fw-light bg-grey-light'>{type_transaction}</span>
+          <span className='fw-light bg-grey-light text-start'>{type_transaction}</span>
           <span className='fw-light bg-grey-light'>{time_transaction}</span>
         </div>
       </div>

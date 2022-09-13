@@ -73,7 +73,7 @@ const AuthForm = ({errors, handleSubmit, handleChange, isValid}) => {
       <div className='text-center'>
         <span className='color-text-secondary'>
           Don't have an account? Let's{' '}
-          <Link to='/auth/register' className='link-rm-line color-text-primary fw-bold'>
+          <Link to='/auth/register' className='link-rm-line color-text-6 fw-bold'>
             Sign Up
           </Link>
         </span>

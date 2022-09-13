@@ -32,6 +32,7 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
         name='username'
         type='text'
         placeholder='Enter your username'
+        onChange={val => handleChange('username')(val.trim())}
         isInvalid={!!errors.username}
         validation={
           <Form.Control.Feedback type='invalid'>
@@ -94,11 +95,6 @@ function Register() {
     dispatch(register(val));
     dispatch(login(dataNewUse));
   };
-  // React.useEffect(()=>{
-  //   if(successMsg){
-  //     redirect('/auth/create-pin');  
-  //   }
-  // }, [redirect, successMsg]);
   React.useEffect(()=>{
     if(token){
       redirect('/auth/create-pin');

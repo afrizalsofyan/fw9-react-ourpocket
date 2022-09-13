@@ -32,13 +32,12 @@ const user = createSlice({
   },
   extraReducers: (build) => {
     build.addCase(getAllUser.pending, (state, action)=>{
-      state.errorMsg = null;
       state.successMsg = null;
+      state.errorMsg = null;
     });
     build.addCase(getAllUser.fulfilled, (state, action)=>{
       state.results = action.payload.result;
       state.infoData = action.payload.info;
-      state.errorMsg = action.payload.errorMsg;
       state.successMsg = action.payload.message;
     });
     build.addCase(getUser.fulfilled, (state, action)=>{

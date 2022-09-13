@@ -186,15 +186,17 @@ function History() {
                         <Button className='btn bg-color-1 color-text-4 border-0' onClick={onResetParam}>Reset</Button>
                       </div>
                     </div>
-                    {historyData?.map((data)=>{
-                      return(
-                        <>
-                          <div key={data?.id}>
-                            {data.recipient != profile.username && data.sender != 'topup' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={data.sender}  nameRecipient={data.recipient} type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
-                          </div>
-                        </>
-                      );
-                    })}
+                    <div className='pt-2'>
+                      {historyData?.map((data)=>{
+                        return(
+                          <>
+                            <div key={data?.id} className='pb-2'>
+                              {data.recipient != profile.username && data.sender != 'topup' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={data.sender}  nameRecipient={data.recipient} type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
+                            </div>
+                          </>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div className='d-flex justify-content-center align-items-center gap-4'>
                     <Button disabled={infoData?.prevPage === null} onClick={onPrevPage} className='btn px-3 py-2'>Prev</Button>

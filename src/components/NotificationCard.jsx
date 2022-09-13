@@ -19,11 +19,11 @@ export const NotificationCardItem = ({eventKey, icon, descTransction, amount}) =
               <div>
                 {icon}
               </div>
-              <div className='d-flex flex-column gap-2'>
-                <span className='fnt-desc2'>
+              <div className='d-flex flex-column gap-2 width-notif-content'>
+                <span className='fnt-desc2 text-truncate'>
                   {descTransction}
                 </span>
-                <span className='fw-bold'>Rp{amount}</span>
+                <span className='fw-bold'>{amount}</span>
               </div>
             </div>
           </div>
