@@ -12,6 +12,7 @@ import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actionAsync/auth';
 import { store } from '../../redux/store';
+import { logout } from '../../redux/reducers/auth';
 
 const loginSheme = Yup.object().shape({
   email: Yup.string().email('invalid email address format').required(),
@@ -22,6 +23,7 @@ const AuthForm = ({errors, handleSubmit, handleChange, isValid}) => {
   const successMsg = useSelector((state)=> state.auth.successMsg);
   const errorMsg = useSelector((state)=> state.auth.errorMsg);
   const [showPass, setShowPass] = React.useState(false);
+  const dispatch = useDispatch();
   return (
     <Form className='d-flex flex-column gap-5' noValidate onSubmit={handleSubmit} onChange={handleChange}>
       {successMsg && <Alert variant='success'>{successMsg}</Alert>}
@@ -73,7 +75,7 @@ const AuthForm = ({errors, handleSubmit, handleChange, isValid}) => {
       <div className='text-center'>
         <span className='color-text-secondary'>
           Don't have an account? Let's{' '}
-          <Link to='/auth/register' className='link-rm-line color-text-6 fw-bold'>
+          <Link to='/auth/register' className='link-rm-line color-text-6 fw-bold' onClick={()=>dispatch(logout())}>
             Sign Up
           </Link>
         </span>

@@ -10,6 +10,7 @@ export const convertMoney = (amount) =>
 
 
 function DetailTransferList() {
+  const profile = useSelector(state => state.user.profile);
   const amountData = useSelector((state)=> state.inputAmount.amount);
   const noteData = useSelector((state)=> state.inputAmount.note);
   const time = useSelector((state)=>state.inputAmount.time);
@@ -18,7 +19,7 @@ function DetailTransferList() {
   return (
     <div className='d-flex flex-column gap-3'>
       <CardDetailList title={'Amount'} content={amountToMoney}/>
-      <CardDetailList title={'Balance Left'} content={'Rp20.000'}/>
+      <CardDetailList title={'Balance Left'} content={convertMoney(profile?.balance - parseInt(amountData, 10))}/>
       <CardDetailList title={'Date & Time'} content={time}/>
       <CardDetailList title={'Notes'} content={noteData}/>
     </div>

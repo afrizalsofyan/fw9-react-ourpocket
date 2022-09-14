@@ -26,16 +26,26 @@ function NavbarDashboard({ titlePage }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
+  const [isOnline, setIsOnline] = React.useState(window.navigator.onLine);
 
   //willmount just render when first load
   React.useEffect(() => {
-    dispatch(getProfileCurrentUser());
-    dispatch(getAllNotification());
-    setVisible(true);
-    setTimeout(() => {
-      setVisible(false);
-    }, 1500);
-  }, [dispatch, token]);
+    if(token) {
+      dispatch(getProfileCurrentUser());
+      dispatch(getAllNotification());
+      setVisible(true);
+      setTimeout(() => {
+        setVisible(false);
+      }, 1500);
+    }
+    if(profile?.pin_number === null){
+      navigate('/auth/create-pin');
+    }
+    setIsOnline(window.navigator.onLine);
+    if (!isOnline) {  
+      navigate('/no-connection');
+    }
+  }, [dispatch, token, isOnline, navigate, profile?.pin_number]);
   const fullNameUser = `${profile?.first_name} ${profile?.last_name}`;
   return (
     <>
@@ -62,11 +72,11 @@ function NavbarDashboard({ titlePage }) {
                 className='d-flex d-sm-flex flex-column flex-sm-row gap-3 align-items-center link-rm-line'
               >
                 <div className='d-flex img-profile-navbar-box'>
-                  {profile?.photo_url ? <Image src={`${profile?.photo_url}`} alt={fullNameUser} fluid width={100} className='rounded-3'/> : <FiUser size={35} color={'#0d3846'} />}
+                  {profile?.photo_url ? <Image src={`${profile?.photo_url}`} alt={fullNameUser} fluid width={100} className='rounded-3'/> : <FiUser size={40} color={'#0d3846'} />}
                 </div>
                 <div className='d-flex flex-column color-text-2'>
-                  <span className='fw-bold'>{fullNameUser}</span>
-                  <span className='fw-light'>{profile?.phone_number}</span>
+                  <span className='fw-bold'>{profile?.first_name && profile?.last_name ? fullNameUser : profile?.username}</span>
+                  <span className='fw-light'>{profile?.phone_number ?? '-'}</span>
                 </div>
               </Link>
 

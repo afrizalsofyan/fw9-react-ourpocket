@@ -47,7 +47,7 @@ export const AmountForm = ({ errors, handleSubmit, handleChange, isValid, values
             {errors.amount}
           </Form.Control.Feedback>
         </InputGroup>
-        {values.amount > profile.balance ? <span className='text-left w-100 text-danger'>Please input with your limit balance</span> : null}
+        {values.amount > profile.balance ? <span className='text-left w-100 text-danger'>Please input with your limit balance or TopUp first.</span> : null}
         <div className='d-flex flex-column flex-sm-row align-items-center color-text-6'>
           <span className='fs-6 fw-bold'>{`${convertMoney(profile?.balance)} Available`}</span>
         </div>

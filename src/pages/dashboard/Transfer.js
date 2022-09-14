@@ -1,6 +1,6 @@
 import React from 'react';
 import NavbarDashboard from '../../components/NavbarDashboard';
-import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Container, Form, InputGroup, Row, Spinner } from 'react-bootstrap';
 import SideBarMenu from '../../components/SideBarMenu';
 import FooterDashboard from '../../components/FooterDashboard';
 import ContentLayout from '../../components/ContentLayout';
@@ -13,10 +13,13 @@ import Img4 from '../../assets/images/img/img4.png';
 import { FiSearch } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '../../redux/actionAsync/user';
+import { useNavigate } from 'react-router-dom';
 
 function Transfer() {
+  const navigate = useNavigate();
   const users = useSelector((state)=> state.user.results);
   const token = useSelector((state)=> state.auth.token);
+  const profile = useSelector((state)=> state.user.profile);
   const infoData = useSelector(state => state.user.infoData);
   const errorMsg = useSelector(state => state.user.errorMsg);
   const [page, setPage] = React.useState(1);
@@ -51,11 +54,13 @@ function Transfer() {
   const onSortType = (e) => {
     setSortType(e.target.value);
   };
-
+  console.log(keyword);
   React.useEffect(()=>{
     dispatch(getAllUser({keywords: keyword,sortType: sortType, limit: limit, page: page}));
+    if(profile.phone_number == null){
+      navigate('/home/profile');
+    }
   }, [dispatch, token, page, keyword, limit, sortType]);
-  console.log(sortType);
   return (
     <>
       <NavbarDashboard titlePage='OPo - transfer'/>
@@ -83,7 +88,7 @@ function Transfer() {
                 <div className='height-seacrh-layout'>
                   <div className='d-flex flex-column gap-5 justify-content-start h-100 py-4'>
                     {errorMsg == null ? <>
-                      {users && users.map((el)=>{
+                      {users?.length > 0 ? users.map((el)=>{
                         return(
                           <div key={el.id} >
                             <UserCard
@@ -93,10 +98,9 @@ function Transfer() {
                               phone={el.phone_number}
                             />
                           </div>
-                        );})}
+                        );}) : <div className='d-flex justify-content-center align-items-center h-100'><Spinner animation='grow' variant='info' /></div>}
                     </> : <div className='d-flex justify-content-center align-items-center h-100'>
                       <span className='color-text-6 fs-4 fw-light'>{errorMsg}</span> </div>}
-                      
                   </div>
                 </div>
                 {/* scondary */}

@@ -10,10 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSomeTransaction } from '../../redux/actionAsync/transaction';
 import { getProfileCurrentUser } from '../../redux/actionAsync/user';
 import { store } from '../../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const profile = useSelector(() => store.getState().user.profile);
+  const profile = useSelector(state => state.user.profile);
   const history = useSelector(() => store.getState().transaction.someResult);
   React.useEffect(()=>{
     dispatch(getSomeTransaction());
@@ -48,7 +49,7 @@ function Dashboard() {
           </Container>
           <FooterDashboard/> 
         </>
-        : <Spinner animation='grow' variant='info' />}
+        : <div className='min-vh-100 d-flex flex-row justify-content-center align-items-center'><Spinner animation='grow' variant='info' /></div>}
     </>
   );
 }

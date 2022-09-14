@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form } from 'react-bootstrap';
+import { Row, Col, Form, Alert } from 'react-bootstrap';
 import AuthBanner from '../../components/AuthBanner';
 import TitleAuthForm from '../../components/TitleAuthForm';
 import { ButtonSubmit } from '../../components/ButtonAuth';
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../redux/actionAsync/profile';
 import { createPin } from '../../redux/actionAsync/auth';
 import { getProfileCurrentUser } from '../../redux/actionAsync/user';
+import { store } from '../../redux/store';
 
 // const createPinSchema = Yup.object().shape({
 //   pin1: Yup.number().typeError('Pin1 must be a number').min(0).max(9).required(),
@@ -69,33 +70,51 @@ const CreatePinForm = ({ errors, handleSubmit, handleChange }) => {
 function CreatePin() {
   const dispatch = useDispatch();
   const redirect = useNavigate();
-  // const successMsg = useSelector((state)=>state.auth.successMsg);
+  const errorMsg = useSelector((state)=>state.auth.errorMsg);
+  const successMsg = useSelector(()=>store.getState().auth.successMsg);
   const token = useSelector((state) => state.auth.token);
   const profile = useSelector((state)=> state.user.profile);
+  const [errShow, setErrShow] = React.useState(false);
+  const [errText, setErrText] = React.useState();
   React.useEffect(() => {
     dispatch(getProfileCurrentUser());
   }, [dispatch, token]);
   const submitPin = (value) => {
     if(profile.pin_number === null){
       if(value.pin1 === '' || value.pin2 === '' || value.pin3 === '' || value.pin4 === '' || value.pin5 === '' || value.pin6 === ''){
-        window.alert('Value is required');
+        setErrShow(true);
+        setErrText('Value is required');
+        setTimeout(() => {
+          setErrShow(false);
+        }, 3000);
+        // window.alert('Value is required');
       } else {
         if (isNaN(parseInt(value.pin1)) === false && isNaN(parseInt(value.pin2)) === false && isNaN(parseInt(value.pin3)) === false && isNaN(parseInt(value.pin4)) === false && isNaN(parseInt(value.pin5)) === false && isNaN(parseInt(value.pin6)) === false){
           const joinPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6;
           console.log(typeof joinPin);
           const data = {email: profile.email, pin: joinPin};
+          setErrText('');
           dispatch(createPin(data));
+          
         } else {
-          window.alert('Please input with only number !!!');
+          setErrShow(true);
+          setErrText('Please input with only number');
+          setTimeout(() => {
+            setErrShow(false);
+          }, 3000);
+          // window.alert('Please input with only number !!!');
         }
       }
     }
   };
-  // React.useEffect(()=>{
-  //   if(successMsg){
-  //     redirect('/auth/create-pin-success');  
-  //   }
-  // }, [redirect, successMsg]);
+  React.useEffect(()=>{
+    if(errorMsg == null && successMsg !=null){
+      dispatch(getProfileCurrentUser());
+      if(profile?.pin_number != null){
+        redirect('/auth/create-pin-success');
+      }
+    }
+  }, [dispatch, errorMsg, successMsg, profile?.pin_number, redirect]);
   return (
     <>
       <HelmetProvider>
@@ -116,9 +135,10 @@ function CreatePin() {
                 'Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users'
               }
               subtitle={
-                'Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!'
+                'Create your pin before use OurPocket Apps for transfer to others.'
               }
             />
+            {errShow ? <Alert variant={'danger'}>{errText}</Alert> : null}
             <Formik
               onSubmit={submitPin}
               initialValues={{

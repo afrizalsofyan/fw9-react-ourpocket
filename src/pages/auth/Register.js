@@ -11,9 +11,10 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, register } from '../../redux/actionAsync/auth';
+import { store } from '../../redux/store';
 
 const registerScheme = Yup.object().shape({
-  username: Yup.string().min(6).required(),
+  username: Yup.string().matches(/^\S*$/, 'username can\'t use space').min(6).required(),
   email: Yup.string().email('Invalid email format').required(),
   password: Yup.string().min(4).required(),
 });
@@ -32,7 +33,6 @@ const AuthRegister = ({ errors, handleSubmit, handleChange }) => {
         name='username'
         type='text'
         placeholder='Enter your username'
-        onChange={val => handleChange('username')(val.trim())}
         isInvalid={!!errors.username}
         validation={
           <Form.Control.Feedback type='invalid'>
@@ -89,17 +89,18 @@ function Register() {
   const dispatch = useDispatch();
   const successMsg = useSelector((state)=>state.auth.successMsg);
   const errorMsg = useSelector((state)=>state.auth.errorMsg);
-  const token = useSelector((state)=>state.auth.token);
+  const token = useSelector(()=>store.getState().auth.token);
   const submitRegister = (val) => {
-    const dataNewUse ={email: val.email, password: val.password};
     dispatch(register(val));
-    dispatch(login(dataNewUse));
   };
   React.useEffect(()=>{
-    if(token){
-      redirect('/auth/create-pin');
+    if(successMsg != null && errorMsg == null){
+      // const dataNewUse ={email: val.email, password: val.password};
+      setTimeout(() => {
+        redirect('/auth/login');
+      }, 2500);
     }
-  }, [redirect, token]);
+  }, [redirect, successMsg, errorMsg]);
   return (
     <>
       <HelmetProvider>

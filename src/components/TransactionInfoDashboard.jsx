@@ -29,12 +29,13 @@ class TransactionInfoDashboard extends React.Component {
             </Link>
           </div>
           {/* item max 3 */}
-          <div className='d-flex flex-column gap-3'>
-            {data != null ? data.map((el, index)=>{
+          <div className='d-flex flex-column gap-3 h-100'>
+            {data.length > 0 ? data.map((el, index)=>{
+              // el.back = 'dashboard';
               return(
                 <CardHistoryDashboard imgUrl={`${el.image_recipient}`} type={el.type} amount={el.amount} name={el.recipient} key={el.id} photo={el.image_recipient ? true : false} navigationTo={'/home/transaction-details'} param={el}/>
               );
-            }) : <Spinner animation='grow' variant='info' />}
+            }) : <div className='d-flex justify-content-center align-items-center h-100'><Spinner animation='grow' variant='info' /></div>}
           </div>
         </div>
       </Col>

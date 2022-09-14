@@ -27,7 +27,7 @@ function ManagePhone() {
           <div className='height-up-form d-flex flex-column justify-content-between'>
             <div className='d-flex flex-row align-items-center justify-content-between px-3 shadow-sm rounded-4 px-4 py-3'>
               <div className='d-flex flex-column gap-2'>
-                <span className='fnt-desc2'>{'Primary'}</span>
+                <span className='fnt-desc2'>Phone number</span>
                 <span className='fw-bold fs-5 color-text-6'>{profile?.phone_number}</span>
               </div>
               {/* <div>

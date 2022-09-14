@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DetailsContentLayout from '../../components/DetailsItemLayour';
 import { convertMoney } from '../../components/DetailTransferList';
+import html2
 
 const NotificationDetail = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const NotificationDetail = () => {
   const nameSub = ['Type Transaction', 'Recipient Name', 'Recipient Phone', 'Time Transaction', 'Amount'];
   const contentSub = [params.recipient === profile.username ? 'accept' : 'send', params.recipient, params.recipient_phone ? params.recipient_phone : '-', newDate + ' '+ newTime, convertMoney(params.transfer_amount)];
   return (
-    <DetailsContentLayout title='Details Notification' noPhoto={params.photo_url ? false : true} photo={params.photo_url} nameSub={nameSub} contentSub={contentSub} btnText='Back to Dashboard' onClick={() => navigate('/home/dashboard')} />
+    <DetailsContentLayout title='Details Notification' noPhoto={params.photo_url ? false : true} photo={params.photo_url} nameSub={nameSub} contentSub={contentSub} btnText='Back to Dashboard' onClick={() => navigate(-1)} />
   );
 };
 

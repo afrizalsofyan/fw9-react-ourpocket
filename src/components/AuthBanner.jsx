@@ -1,9 +1,18 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import ImagePhoneAuth from '../assets/images/img/auth-phone-img.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 function AuthBanner() {
+  const navigate = useNavigate();
+  const [isOnline, setIsOnline] = React.useState(window.navigator.onLine);
+
+  React.useEffect(()=>{
+    setIsOnline(window.navigator.onLine);
+    if (!isOnline) {  
+      navigate('/no-connection');
+    }
+  }, [isOnline, navigate]);
   return (
     <Col xs={12} md={7} className='bg-auth px-5 py-5 d-flex'>
       <Row>

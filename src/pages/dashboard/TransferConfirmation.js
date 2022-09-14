@@ -35,8 +35,8 @@ function TransferConfirmation() {
                   {/* User Card */}
                   <UserCard
                     url={'/home/transfer/3'}
-                    img_path={Img3}
-                    name={`${recipient?.first_name} ${recipient?.last_name}`}
+                    img_path={recipient?.photo_url}
+                    name={recipient?.first_name && recipient?.last_name ? `${recipient?.first_name} ${recipient?.last_name}` : recipient?.username}
                     phone={recipient?.phone_number}
                   />
                   {/* Title Detail */}

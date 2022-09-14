@@ -20,6 +20,7 @@ const topupSchema = Yup.object().shape({
 const ModalTopup = (props) => {
   const dispatch = useDispatch();
   const redirect = useNavigate();
+  const profile = useSelector(state => state.user.profile);
   const successMsg = useSelector(() => store.getState().transaction.sucessMsg);
   const [show, setShow] = React.useState(false);
   const onSubmitTopup = (val)=>{
@@ -34,6 +35,11 @@ const ModalTopup = (props) => {
       }, 5000);
     }
   };
+  React.useEffect(()=>{
+    if(profile.phone_number == null){
+      redirect('/home/profile');
+    }
+  }, []);
   return (
     <Modal
       {...props}

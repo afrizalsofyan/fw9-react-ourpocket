@@ -11,11 +11,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import { historyTransaction } from '../../redux/actionAsync/transaction';
 import { convertMoney } from '../../components/DetailTransferList';
 import { FiSearch } from 'react-icons/fi';
-import { Formik } from 'formik';
-import { ButtonSubmit } from '../../components/ButtonAuth';
+import { useNavigate } from 'react-router-dom';
 
 function History() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = useSelector((state)=>state.auth.token);
   const profile = useSelector((state)=>state.user.profile);
   const transaction = useSelector((state)=>state.transaction.result);
@@ -100,9 +100,6 @@ function History() {
     const param = {token: token, page: transaction.info.currentPage, search: keyword, searchBy: searchByKeyword, sortBy: sortByKeyword, sortType: sortTypeKeyword};
     // , sortBy: sortByKeyword, sortType: sortType
     dispatch(historyTransaction(param));
-    console.log(searchByKeyword);
-    console.log(sortByKeyword);
-    console.log(typeof searchBy);
   };
   const onResetParam = () => {
     const param = {token: token, page: 1, search: undefined, searchBy: undefined, sortBy: undefined, sortType: undefined};
@@ -110,7 +107,8 @@ function History() {
   };
   React.useEffect(()=>{
     dispatch(historyTransaction(param));
-  }, []);
+  }, [dispatch]);
+  console.log(historyData);
   return (
     <>
       <NavbarDashboard titlePage='OPo - History'/>
@@ -187,15 +185,15 @@ function History() {
                       </div>
                     </div>
                     <div className='pt-2'>
-                      {historyData?.map((data)=>{
+                      {historyData?.length >=1 ? historyData?.map((el, index)=>{
                         return(
                           <>
-                            <div key={data?.id} className='pb-2'>
-                              {data.recipient != profile.username && data.sender != 'topup' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={data.sender}  nameRecipient={data.recipient} type_transaction={data.type} amount={`- ${convertMoney(data.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={data.recipient} type_transaction={data.type} amount={`+ ${convertMoney(data.amount)}`}/>}  
+                            <div key={index} className='pb-2 pointer-button' onClick={() => navigate('/home/transaction-details', {state: {param: {...el}}})}>
+                              {el.recipient !== profile.username && el.sender !== 'topup' ? <UserCardHistoryDecreaseAmount img_path={DummyImage2} alt='imgDummy2' nameSender={el.sender}  nameRecipient={el.recipient} type_transaction={el.type} amount={`- ${convertMoney(el.amount)}`}/> : <UserCardHistoryIncreaseAmount img_path={DummyImage1} alt='imgDummy1' name={el.recipient} type_transaction={el.type} amount={`+ ${convertMoney(el.amount)}`}/>}  
                             </div>
                           </>
                         );
-                      })}
+                      }): <div className='height-up-form d-flex justify-content-center align-items-center'><span>There is no data History</span></div>}
                     </div>
                   </div>
                   <div className='d-flex justify-content-center align-items-center gap-4'>

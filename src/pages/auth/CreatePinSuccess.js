@@ -3,19 +3,20 @@ import { Row, Col, Image, Button } from 'react-bootstrap';
 import AuthBanner from '../../components/AuthBanner';
 import TitleAuthForm from '../../components/TitleAuthForm';
 import SuccessIcon from '../../assets/images/icons/success.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/reducers/auth';
 import { useNavigate } from 'react-router-dom';
 
 function CreatePinSuccess() {
   const dispatch = useDispatch();
   const redirect = useNavigate();
-  const onLogout = () => {
-    dispatch(logout());
-    redirect('/auth/login');
-  };
+  const token = useSelector(state => state.auth.token);
   const onDashboard = () => {
-    redirect('/home/dashboard');
+    if(token != null) {
+      redirect('/home/dashboard');
+    } else {
+      dispatch(logout());
+    }
   };
   return (
     <Row className='gx-0'>
@@ -36,8 +37,7 @@ function CreatePinSuccess() {
             }
           />
         </div>
-        <Button onClick={onLogout} className='btn bg-color-1 border-0 py-2'>Back to Login</Button>
-        <Button onClick={onDashboard} className='btn bg-color-1 border-0 py-2'>Go to Dashboard</Button>
+        <Button onClick={onDashboard} className='btn bg-color-1 border-0 py-2'>Back to Dashboard</Button>
       </Col>
     </Row>
   );

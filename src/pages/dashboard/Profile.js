@@ -66,6 +66,8 @@ function Profile() {
   const redirect = useNavigate();
   const profile = useSelector((state)=> state.user.profile);
   const successMsg = useSelector(state => state.user.successUpdateMsg);
+  const [emptyPhone, setEmptyPhone] = React.useState('');
+  const [showMsg, setShowMsg] = React.useState(false);
   const onLogout = () => {
     dispatch(logout());
   };
@@ -76,7 +78,16 @@ function Profile() {
         dispatch(getProfileCurrentUser());
       }, 3000);
     }
-  }, [dispatch, successMsg]);
+    if(profile.phone_number == null){
+      setEmptyPhone('Please input your phone first at personal information sub menu before you did transaction.');
+      setShowMsg(true);
+      setTimeout(() => {
+        setShowMsg(false);
+      }, 8000);
+    } else {
+      setEmptyPhone('');
+    }
+  }, [dispatch, successMsg, profile.phone_number]);
   const fullNameUser = `${profile.first_name} ${profile.last_name}`;
   return (
     <>
@@ -88,11 +99,12 @@ function Profile() {
             child={
               <>
                 <div className='d-flex flex-column gap-3'>
+                  {showMsg && emptyPhone ? <Alert variant='warning' className='text-center'>{emptyPhone}</Alert> : null}
                   <HeaderProfile
                     alt={'imgProfile'}
                     imgUrl={`${profile.photo_url}`}
-                    name={fullNameUser}
-                    phone={profile.phone_number}
+                    name={profile.first_name && profile.last_name ? fullNameUser : profile.username}
+                    phone={profile.phone_number??'-'}
                     to='/home/profile'
                   />
                   <Row>

@@ -124,7 +124,7 @@ function SideBarMenu() {
         </ul>
         <div className='ps-3 pb-4 py-4'>
           <Button
-            className='nav-link not-act border-0 d-flex flex-row gap-4 align-items-center bg-transparent'
+            className='nav-link not-act border-0 d-flex flex-row gap-4 align-items-center bg-transparent shadow-none'
             onClick={onLogout}
           >
             <FiLogOut size={24} />

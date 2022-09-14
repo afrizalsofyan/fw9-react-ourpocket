@@ -32,8 +32,8 @@ const auth = createSlice({
       state.successMsg = null;
     });
     build.addCase(login.fulfilled, (state, action) => {
-      const token = action.payload.result.token;
-      const refreshToken = action.payload.result.refreshToken;
+      const token = action.payload.result?.token;
+      const refreshToken = action.payload.result?.refreshToken;
       if(token) {
         state.token = token;
         // localStorage.setItem('token', token);
