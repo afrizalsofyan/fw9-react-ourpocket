@@ -18,7 +18,7 @@ export const http = () => {
 
   instance.interceptors.request.use(
     config => {
-      console.log(config);
+      // console.log(config);
       // config.headers = { 
       //   'Authorization': `Bearer ${token}`,
       //   'Accept': 'application/json',
@@ -27,7 +27,7 @@ export const http = () => {
       return config;
     },
     err => {
-      console.log(err);
+      // console.log(err);
       return Promise.reject(err);
     }
   );
@@ -37,7 +37,7 @@ export const http = () => {
       return response;
     },
     err => {
-      console.log(err);
+      // console.log(err);
       if(err.response.status === 400 && err.config.url.includes('/user/allUser?') || err.config.url.includes('search') || err.config.url.includes('sort') || err.config.url.includes('page')) {
         str.dispatch(saveErrorMsg(err.response.data.message));
       }
