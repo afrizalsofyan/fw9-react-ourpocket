@@ -6,11 +6,9 @@ import FooterDashboard from '../../components/FooterDashboard';
 import NavbarDashboard from '../../components/NavbarDashboard';
 import SideBarMenu from '../../components/SideBarMenu';
 import { UserCard } from '../../components/UserCard';
-import Img3 from '../../assets/images/img/img3.png';
 import DetailTransferList from '../../components/DetailTransferList';
 import ModalTransferConfirmation from '../../components/ModalTransferConfirmation';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../redux/actionAsync/user';
+import { useSelector } from 'react-redux';
 
 function TransferConfirmation() {
   

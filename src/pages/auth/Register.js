@@ -10,8 +10,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, register } from '../../redux/actionAsync/auth';
-import { store } from '../../redux/store';
+import { register } from '../../redux/actionAsync/auth';
 
 const registerScheme = Yup.object().shape({
   username: Yup.string().matches(/^\S*$/, 'username can\'t use space').min(6).required(),
@@ -89,7 +88,6 @@ function Register() {
   const dispatch = useDispatch();
   const successMsg = useSelector((state)=>state.auth.successMsg);
   const errorMsg = useSelector((state)=>state.auth.errorMsg);
-  const token = useSelector(()=>store.getState().auth.token);
   const submitRegister = (val) => {
     dispatch(register(val));
   };

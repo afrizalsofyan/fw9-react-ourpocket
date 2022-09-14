@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Image, Button } from 'react-bootstrap';
 import { FiArrowUp, FiGrid, FiLogOut, FiPlus, FiUser } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import ActiveIcon from '../assets/images/icons/active-mark.png';
 import { logout } from '../redux/reducers/auth';
 
@@ -70,7 +70,6 @@ export const MenuNavbar = () => {
 
 function SideBarMenu() {
   const dispatch = useDispatch();
-  const redirect = useNavigate();
 
   const pathUrl = useLocation().pathname;
   const {id} = useParams();

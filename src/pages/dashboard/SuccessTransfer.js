@@ -4,7 +4,6 @@ import ContentLayout from '../../components/ContentLayout';
 import NavbarDashboard from '../../components/NavbarDashboard';
 import SideBarMenu from '../../components/SideBarMenu';
 import { UserCard } from '../../components/UserCard';
-import Img3 from '../../assets/images/img/img3.png';
 import SuccessLogo from '../../assets/images/icons/success.png';
 import DetailTransferList from '../../components/DetailTransferList';
 import FooterDashboard from '../../components/FooterDashboard';

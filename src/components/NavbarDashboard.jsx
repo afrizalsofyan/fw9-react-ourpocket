@@ -2,8 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import UserPhoto from '../assets/images/img/img3.png';
-import { FaRegUser } from 'react-icons/fa';
 import { FiBell, FiArrowDown, FiArrowUp, FiUser } from 'react-icons/fi';
 import { Alert, DropdownButton, Image } from 'react-bootstrap';
 import {

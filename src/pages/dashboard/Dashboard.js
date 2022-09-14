@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSomeTransaction } from '../../redux/actionAsync/transaction';
 import { getProfileCurrentUser } from '../../redux/actionAsync/user';
 import { store } from '../../redux/store';
-import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const dispatch = useDispatch();

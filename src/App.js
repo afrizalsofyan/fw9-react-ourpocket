@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
-import PrivateRoute, { PrivateAuthRoute } from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import CreatePin from './pages/auth/CreatePin';
 import CreatePinSuccess from './pages/auth/CreatePinSuccess';
 import ForgetPassword from './pages/auth/ForgetPassword';
