@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DetailsContentLayout from '../../components/DetailsItemLayour';
 import { convertMoney } from '../../components/DetailTransferList';
-import html2
 
 const NotificationDetail = () => {
   const navigate = useNavigate();
