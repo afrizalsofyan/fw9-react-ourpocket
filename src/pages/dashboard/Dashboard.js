@@ -18,7 +18,7 @@ function Dashboard() {
   React.useEffect(()=>{
     dispatch(getSomeTransaction());
     dispatch(getProfileCurrentUser());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       {profile != null && history != null ? 

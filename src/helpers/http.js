@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { logout, saveNewToken } from '../redux/reducers/auth';
+import { saveNewToken } from '../redux/reducers/auth';
 import { saveErrorMsg, saveErrorMsgUpdate } from '../redux/reducers/user';
 import { store as str } from '../redux/store';
 
@@ -38,7 +38,7 @@ export const http = () => {
     },
     err => {
       // console.log(err);
-      if(err.response.status === 400 && err.config.url.includes('/user/allUser?') || err.config.url.includes('search') || err.config.url.includes('sort') || err.config.url.includes('page')) {
+      if(err.response.status === 400 && (err.config.url.includes('/user/allUser?') || err.config.url.includes('search') || err.config.url.includes('sort') || err.config.url.includes('page'))) {
         str.dispatch(saveErrorMsg(err.response.data.message));
       }
       if(err.response.status === 400 && err.config.url.includes('user/changePassword')) {
