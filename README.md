@@ -1,12 +1,10 @@
 <h1 align='center'>OurPocket Website</h1>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home_phmera.png" width="200"  alt="porto img"/>
-  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334689/react-home2_y5sihc.png" width="133"  alt="porto img"/>
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home3_rcjhry.png" width="150" alt="porto img"/>
-  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home4_cuo3dd.png" width="138"  alt="porto img"/>
+  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home_phmera.png" width="300"  alt="porto img"/>
+  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334689/react-home2_y5sihc.png" width="300"  alt="porto img"/>
+  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home3_rcjhry.png" width="300" alt="porto img"/>
+  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home4_cuo3dd.png" width="300"  alt="porto img"/>
 </p>
 
 # About
