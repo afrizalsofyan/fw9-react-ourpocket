@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home_phmera.png" alt="porto img"/>
   <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334689/react-home2_y5sihc.png" width="240"  alt="porto img"/>
-  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home3_rcjhry.png" width="218" alt="porto img"/>
+  <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home3_rcjhry.png" width="228" alt="porto img"/>
   <img src="https://res.cloudinary.com/asadev619/image/upload/v1663334688/react-home4_cuo3dd.png" width="208"  alt="porto img"/>
 </p>
 
