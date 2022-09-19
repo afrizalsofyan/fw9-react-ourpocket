@@ -116,7 +116,7 @@ function NavbarDashboard({ titlePage }) {
                   }) : <span className='d-flex justify-content-center align-items-center h-100 py-5 notif-empty'>Notification Empty</span>}
                 </div>
               </DropdownButton>
-              <MenuNavbar />
+              {/* <MenuNavbar /> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
