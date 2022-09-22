@@ -8,7 +8,6 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProfile } from '../../redux/actionAsync/profile';
 import { createPin } from '../../redux/actionAsync/auth';
 import { getProfileCurrentUser } from '../../redux/actionAsync/user';
 import { store } from '../../redux/store';

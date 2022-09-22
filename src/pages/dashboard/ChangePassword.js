@@ -8,7 +8,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { ButtonSubmit } from '../../components/ButtonAuth';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePassword } from '../../redux/actionAsync/profile';
 import { changePasswordUser } from '../../redux/actionAsync/user';
 
 const changePasswordSchema = Yup.object().shape({

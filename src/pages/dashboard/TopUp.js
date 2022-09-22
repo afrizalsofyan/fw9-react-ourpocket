@@ -10,7 +10,6 @@ import { ButtonSubmit } from '../../components/ButtonAuth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { topupBalanceTransaction } from '../../redux/actionAsync/transaction';
-import { getProfileCurrentUser } from '../../redux/actionAsync/user';
 import {store} from '../../redux/store';
 
 const topupSchema = Yup.object().shape({

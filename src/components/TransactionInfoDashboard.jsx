@@ -1,11 +1,7 @@
 import React from 'react';
 import { Col, Spinner } from 'react-bootstrap';
-import Img1 from '../assets/images/img/img3.png';
-import Img2 from '../assets/images/icons/logo.png';
-import Img3 from '../assets/images/img/img3.png';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CardHistoryDashboard } from './CardDetailList';
-import Datadummy from '../helpers/dummydata.json';
 import { getSomeTransaction } from '../redux/actionAsync/transaction';
 import { connect } from 'react-redux';
 

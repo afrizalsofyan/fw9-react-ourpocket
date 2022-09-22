@@ -1,11 +1,10 @@
 import React from 'react';
-import { Alert, Button, Col, Container, Image, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Alert, Col, Container, Image, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import ContentLayout from '../../components/ContentLayout';
 import NavbarDashboard from '../../components/NavbarDashboard';
 import SideBarMenu from '../../components/SideBarMenu';
 import FooterDashboard from '../../components/FooterDashboard';
-import Img1 from '../../assets/images/img/img3.png';
 import { FiArrowRight, FiEdit2, FiTrash2, FiUser } from 'react-icons/fi';
 import { ButtonMenuProfile } from '../../components/ButtonAuth';
 import { useDispatch, useSelector } from 'react-redux';
@@ -63,7 +62,6 @@ export const HeaderProfile = ({ to, imgUrl, alt, name, phone }) => {
 
 function Profile() {
   const dispatch = useDispatch();
-  const redirect = useNavigate();
   const profile = useSelector((state)=> state.user.profile);
   const successMsg = useSelector(state => state.user.successUpdateMsg);
   const [emptyPhone, setEmptyPhone] = React.useState('');

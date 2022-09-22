@@ -6,8 +6,7 @@ import { ProfileLayout } from '../../components/ContentLayout';
 import { InputPin } from '../../components/InputField';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { createPin } from '../../redux/reducers/user';
-import { changePin } from '../../redux/actionAsync/profile';
+import { changePinUser } from '../../redux/actionAsync/user';
 
 const ChangePinForm = ({errors, handleChange, handleSubmit }) => {
   return (
@@ -74,7 +73,7 @@ function ChangeNewPin() {
       if (isNaN(parseInt(val.pin[0])) === false && isNaN(parseInt(val.pin[1])) === false && isNaN(parseInt(val.pin[2])) === false && isNaN(parseInt(val.pin[3])) === false && isNaN(parseInt(val.pin[4])) === false && isNaN(parseInt(val.pin[5])) === false){
         const finalPin = val.pin.join('');  
         const data = {newPin: finalPin, currentPin: param.state.pin};
-        dispatch(changePin(data));
+        dispatch(changePinUser(data));
         if(successMsg != null){
           setShowMsg(true);
           setTimeout(() => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import { FiArrowUp, FiPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProfile } from '../redux/actionAsync/profile';
+import { useSelector } from 'react-redux';
 import { convertMoney } from './DetailTransferList';
 
 function DashboardBalanceInfo() {

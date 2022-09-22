@@ -1,23 +1,21 @@
 import React from 'react';
 import { ProfileLayout } from '../../components/ContentLayout';
-import { Link, useNavigate } from 'react-router-dom';
-import { FiTrash } from 'react-icons/fi';
-import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function ManagePhone() {
-  const redirect = useNavigate();
-  const idPhone = 1;
+  // const redirect = useNavigate();
+  // const idPhone = 1;
   const profile = useSelector((state)=> state.user.profile);
-  const handleDeletePhone = (id) => {
-    id = 1;
-    if(id===idPhone) {
-      if(window.confirm('Are you sure want to delete this phone? ')){
-        console.log('phone deleted');
-        redirect('/home/profile/details');
-      }
-    }
-  };
+  // const handleDeletePhone = (id) => {
+  //   id = 1;
+  //   if(id===idPhone) {
+  //     if(window.confirm('Are you sure want to delete this phone? ')){
+  //       console.log('phone deleted');
+  //       redirect('/home/profile/details');
+  //     }
+  //   }
+  // };
   return (
     <>
       <ProfileLayout

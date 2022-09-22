@@ -5,11 +5,6 @@ import SideBarMenu from '../../components/SideBarMenu';
 import FooterDashboard from '../../components/FooterDashboard';
 import ContentLayout from '../../components/ContentLayout';
 import { UserCard } from '../../components/UserCard';
-
-import Img1 from '../../assets/images/img/img1.png';
-import Img2 from '../../assets/images/img/img2.png';
-import Img3 from '../../assets/images/img/img3.png';
-import Img4 from '../../assets/images/img/img4.png';
 import { FiSearch } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '../../redux/actionAsync/user';

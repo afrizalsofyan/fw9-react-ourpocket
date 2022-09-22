@@ -2,7 +2,6 @@ import { Col, Image, Row } from 'react-bootstrap';
 import { ButtonGeneral } from './ButtonAuth';
 import { ProfileLayoutDetails } from './ContentLayout';
 import AppLogo from '../assets/images/img/app-logo.png';
-import { FiUser } from 'react-icons/fi';
 
 const DetailsContentLayout = ({title, photo, noPhoto, nameSub, contentSub, onClick, btnText}) => {
   return (

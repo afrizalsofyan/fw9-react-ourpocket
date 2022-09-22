@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavbarDashboard from '../../components/NavbarDashboard';
 import { Container, Form, Row, InputGroup } from 'react-bootstrap';
 import SideBarMenu from '../../components/SideBarMenu';
 import FooterDashboard from '../../components/FooterDashboard';
 import ContentLayout from '../../components/ContentLayout';
 import { UserCard } from '../../components/UserCard';
-import Img3 from '../../assets/images/img/img3.png';
 import { FiEdit2 } from 'react-icons/fi';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -74,7 +73,6 @@ function TransferAmount() {
   const { id } = useParams();
   const redirect = useNavigate();
   const dispatch = useDispatch();
-  const token = useSelector((state)=>state.auth.token);
   const recipient = useSelector((state)=>state.user.dataUser);
   React.useEffect(()=>{
     dispatch(getUser({id: id}));

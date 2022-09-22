@@ -9,7 +9,6 @@ import {
   NotificationCardItem,
 } from './NotificationCard';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { MenuNavbar } from './SideBarMenu';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileCurrentUser } from '../redux/actionAsync/user';

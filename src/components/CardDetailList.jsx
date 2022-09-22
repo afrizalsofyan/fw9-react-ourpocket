@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { FiArrowDown, FiUser } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { convertMoney } from './DetailTransferList';
