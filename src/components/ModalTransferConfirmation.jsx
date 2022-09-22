@@ -94,7 +94,7 @@ function ModalTransferConfirmation({ show, onHide, id }) {
   const note = useSelector((state)=> state.inputAmount.note);
   const transferId = useSelector((state)=>state.inputAmount.type_id);
   const successMsg = useSelector(state => state.transaction.sucessMsg);
-  const onSubmitPin = (val) => {
+  const onSubmitPin = async (val) => {
     if(val.pin[0] === '' || val.pin[1] === '' || val.pin[2] === '' || val.pin[3] === '' || val.pin[4] === '' || val.pin[5] === ''){
       window.alert('Value is required');
     } else {
@@ -102,7 +102,7 @@ function ModalTransferConfirmation({ show, onHide, id }) {
         const finalPin = val.pin.join('');
         if (parseInt(finalPin) === checkPin) { 
           const data = {notes: note, amount: amount, type_id: transferId, recipient_id: parseInt(id, 10), pin: parseInt(finalPin, 10)};
-          dispatch(transferAmountTransaction(data));
+          await dispatch(transferAmountTransaction(data));
          
           // console.log(parseInt(finalPin) === checkPin);
           // console.log(data);

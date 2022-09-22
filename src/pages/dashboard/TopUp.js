@@ -22,8 +22,8 @@ const ModalTopup = (props) => {
   const profile = useSelector(state => state.user.profile);
   const successMsg = useSelector(() => store.getState().transaction.sucessMsg);
   const [show, setShow] = React.useState(false);
-  const onSubmitTopup = (val)=>{
-    dispatch(topupBalanceTransaction(val));
+  const onSubmitTopup = async (val)=>{
+    await dispatch(topupBalanceTransaction(val));
     if (successMsg != null || successMsg !== undefined) {
       setShow(true);
       setTimeout(() => {
